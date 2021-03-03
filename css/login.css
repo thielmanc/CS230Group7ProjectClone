@@ -1,0 +1,32 @@
+.center-me {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
+
+.bg-cover {
+    background-image: url("../images/doge-background.jpg");
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    background-attachment: scroll;
+    background-repeat: no-repeat; 
+}
+
+.form-signin {
+    background-color: beige;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+
+input {
+    margin-bottom: 10px
+}
+
+img {
+    max-width: 500px;
+    max-height: 200px;
+    margin: auto;
+}
