@@ -1,6 +1,7 @@
 <?php
 require 'includes/header.php';
 require 'includes/dbhandler.php';
+
 ?>
 
 <main>
@@ -35,7 +36,7 @@ if (isset($_SESSION['uid'])) {
 <div class="bg-cover">
     <div class="h-50 center-me text-center">
         <div class="my-auto">
-
+        <h1>hello <?= 'placeholder' // doesnt work yet $_SESSION['user']->full_name() ?>!</h1>
         <form action="includes/upload-helper.php" method="POST" enctype="multipart/form-data">
 
             <div class="form-group">

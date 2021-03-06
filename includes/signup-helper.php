@@ -1,12 +1,12 @@
 <?php
 
-if (isset($_POST['signup-submit'])) {
+if (isset($_POST['signup'])) {
 	require 'dbhandler.php';
 
-	$username = $_POST['uname'];
+	$username = $_POST['username'];
 	$email = $_POST['email'];
-	$passw = $_POST['pwd'];
-	$passw_rep = $_POST['con-pwd'];
+	$passw = $_POST['password'];
+	$passw_rep = $_POST['password-confirm'];
 	$fname = $_POST['fname'];
 	$lname = $_POST['lname'];
 
@@ -29,7 +29,7 @@ if (isset($_POST['signup-submit'])) {
 				header("Location: ../signup.php?error=UsernameTaken");
 				exit();
 			} else {
-				$sql = "INSERT INTO users (lname, fname, email, uname, password) VALUES (?, ?, ?, ?, ?)";
+				$sql = "INSERT INTO users (lname, fname, email, uname, password, privileged) VALUES (?, ?, ?, ?, ?, FALSE)";
 				$stmt = mysqli_stmt_init($conn);
 				if (!mysqli_stmt_prepare($stmt, $sql)) {
 					header("Location: ../signup.php?error=SQLInjection");
@@ -40,7 +40,7 @@ if (isset($_POST['signup-submit'])) {
 					mysqli_stmt_execute($stmt);
 					mysqli_stmt_store_result($stmt);
 
-					$sqlImg = "INSERT INTO profiles (uname, fname) VALUES ('$username', '$fname')";
+					$sqlImg = "INSERT INTO profiles (uname) VALUES ('$username')";
 					mysqli_query($conn, $sqlImg);
 
 					header("Location: ../signup.php?signup=success");
