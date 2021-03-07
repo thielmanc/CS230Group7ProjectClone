@@ -16,8 +16,9 @@ if (empty($uname) || empty($passwd)) {
   exit();
 }
 
+$conn = new DBConnection;
 $sql = "SELECT * FROM users WHERE uname=? OR email=?";
-$data = safe_query($conn, $sql, "ss", $uname, $uname);
+$data = $conn->safe_query($sql, "ss", $uname, $uname);
 
 if (empty($data)) {
   header("Location: /login.php?error=UserDNE");
