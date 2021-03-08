@@ -94,6 +94,8 @@ body {
     padding-right: 64px;
     width: calc(100% - 2 * 64px);
     height: calc(100% - 64px * 2);
+    overflow-y: scroll;
+    scrollbar-width: none;
 }
 
 .form-wrapper:last-of-type {
