@@ -1,7 +1,6 @@
 <?php
 
-// wrapper around the connection object generated when connecting to mysql db
-// provides some convenience methods for executing prepared statements
+//klasdfjkladsjklf
 class DBConnection {
 
     private $servename = "localhost";
