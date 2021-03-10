@@ -1,0 +1,17 @@
+.carousel-viewport {
+    overflow-x: hidden;
+}
+
+.carousel {
+    display: flex;
+}
+
+.carousel > * {
+    flex: 1 1 0;
+    position: relative;
+    transition: left 0.2s linear;
+}
+
+.carousel.no-animate > * {
+    transition: left 0.0s linear;
+}
