@@ -25,7 +25,7 @@ if (empty($data)) {
   exit();
 }
 
-if (!password_verify($passwd, $data['password'])) {
+if (!password_verify($passwd, $data['password'])) {       //note: this compares encrypted password. you can use !$passwd == $data['password'] to check against the actual stored password
   header("Location: /login.php?error=WrongPass");
   exit();
 }
