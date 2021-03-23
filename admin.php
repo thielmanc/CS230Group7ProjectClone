@@ -12,6 +12,8 @@ require 'includes/dbhandler.php';
         document.querySelector("#gallery-image").click(); // Wait for click event. # means its looking for an id
     }
 
+    //testing
+
     function preview(e) {
         if (e.files[0]) { // Action that will happen when clicked
             var reader = new FileReader(); // Open new file reader object
