@@ -16,16 +16,21 @@ if (empty($uname) || empty($passwd)) {
   exit();
 }
 
-$conn = new DBConnection;
 $sql = "SELECT * FROM users WHERE uname=? OR email=?";
-$data = $conn->safe_query($sql, "ss", $uname, $uname);
+$stmt = mysqli_stmt_init($conn);
+mysqli_stmt_prepare($stmt, $sql);
+mysqli_stmt_bind_param($stmt, "ss", $uname, $uname);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
+$data = mysqli_fetch_assoc($result);
+mysqli_stmt_close($stmt);
 
 if (empty($data)) {
   header("Location: /login.php?error=UserDNE");
   exit();
 }
 
-if (!password_verify($passwd, $data['password'])) {       //note: this compares encrypted password. you can use !$passwd == $data['password'] to check against the actual stored password
+if (!password_verify($passwd, $data['password'])) {
   header("Location: /login.php?error=WrongPass");
   exit();
 }

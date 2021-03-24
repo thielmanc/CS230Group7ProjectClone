@@ -19,9 +19,11 @@ if ($passw !== $passw_rep) {
 
 require 'dbhandler.php';
 
-$conn = new DBConnection;
 $sql = "SELECT 1 FROM users WHERE uname=? OR email=?";
-$stmt = $conn->safe_stmt_exec($sql, "ss", $username, $email);
+$stmt = mysqli_stmt_init($conn);
+mysqli_stmt_prepare($stmt, $sql);
+mysqli_stmt_bind_param($stmt, "ss", $uname, $uname);
+mysqli_stmt_execute($stmt);
 mysqli_stmt_store_result($stmt);
 $check = mysqli_stmt_num_rows($stmt);
 mysqli_stmt_close($stmt);
@@ -34,9 +36,17 @@ if ($check > 0) {
 $hashed = password_hash($passw, PASSWORD_BCRYPT);
 
 $sql = "INSERT INTO users (lname, fname, email, uname, password, privileged) VALUES (?, ?, ?, ?, ?, FALSE)";
-$conn->safe_query($sql, "sssss", $lname, $fname, $email, $username, $hashed);
+$stmt = mysqli_stmt_init($conn);
+mysqli_stmt_prepare($stmt, $sql);
+mysqli_stmt_bind_param($stmt, "sssss", $lname, $fname, $email, $username, $hashed);
+mysqli_stmt_execute($stmt);
+mysqli_stmt_close($stmt);
 
 $sql = "INSERT INTO profiles (uid) VALUES ((SELECT uid FROM users WHERE uname=?))";
-$conn->safe_query($sql, "s", $username);
+$stmt = mysqli_stmt_init($conn);
+mysqli_stmt_prepare($stmt, $sql);
+mysqli_stmt_bind_param($stmt, "s", $username);
+mysqli_stmt_execute($stmt);
+mysqli_stmt_close($stmt);
 
 header("Location: /signup.php?signup=success");
