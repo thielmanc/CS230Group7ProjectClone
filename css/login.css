@@ -20,8 +20,8 @@ body {
     display: flex;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 32px;
-    width: 60vw;
-    height: 74vh;
+    width: 75%;
+    height: 60%;
     margin: auto;
     margin-top: 48px;
 }
@@ -29,7 +29,7 @@ body {
 .info-panel {
     display: flex;
     flex-flow: column;
-    width: 56%;
+    width: 50%;
     padding: 48px;
     background-color: #2f2f2f;
     border-bottom-left-radius: 32px;
