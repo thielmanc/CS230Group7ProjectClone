@@ -27,10 +27,10 @@ function preview(e) {
 if (isset($_SESSION['uid'])) {
     // username after login
     $prof_user = $_SESSION['uname'];
-    $sqlpro = "SELECT * FROM profiles WHERE uname='$prof_user';";
+    $sqlpro = "SELECT * FROM profiles WHERE uid=(SELECT uid FROM users WHERE uname='$prof_user');";
     $res = mysqli_query($conn,$sqlpro);
     $row = mysqli_fetch_array($res);
-    $photo = $row['profpic']; // path to the profile picture
+    $photo = $row['pfpurl']; // path to the profile picture
 
     ?>
 <div class="bg-cover">
@@ -40,8 +40,8 @@ if (isset($_SESSION['uid'])) {
         <form action="includes/upload-helper.php" method="POST" enctype="multipart/form-data">
 
             <div class="form-group">
-                <img src="<?php echo $photo;?>" alt="profile pic" onclick="triggered();" id="prof-display">
-                <label for="prof-image" id="uname-style"><?php echo $pro_user;?></label>
+                <img src="<?= $photo ?>" alt="profile pic" onclick="triggered();" id="prof-display">
+                <label for="prof-image" id="uname-style"><?php echo $prof_user;?></label>
                 <input type="file" name="prof-image" id="prof-image" onchange="preview(this)" class="form-control" style="display: none;">
             </div>
 

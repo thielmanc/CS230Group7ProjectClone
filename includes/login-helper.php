@@ -36,7 +36,11 @@ if (!password_verify($passwd, $data['password'])) {
 }
 
 session_start();
-$_SESSION['user'] = new User($data['fname'], $data['lname'], $data['uname'], $data['email'], FALSE);
+// $_SESSION['user'] = new User($data['fname'], $data['lname'], $data['uname'], $data['email'], FALSE);
+$_SESSION['fname'] = $data['fname'];
+$_SESSION['lname'] = $data['lname'];
+$_SESSION['uname'] = $data['uname'];
+$_SESSION['email'] = $data['email'];
 $_SESSION['uid'] = $data['uid'];
 
 header("Location: /profile.php?success=login");

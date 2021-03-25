@@ -34,6 +34,7 @@ if (isset($_POST['gallery-submit'])) {
     } else {
         $new_name = uniqid('', true).".".$ext;          // random prefix. extra "." adds entropy, more unique
         $destination = '../gallery/'.$new_name;
+        $sqldest = "/gallery/$new_name";
         $sql = "INSERT INTO gallery (title, descript, picpath) VALUES (?,?,?)";
         $stmt = mysqli_stmt_init($conn);
         
@@ -41,7 +42,7 @@ if (isset($_POST['gallery-submit'])) {
             header("Location: ../admin.php?error=SQLInjection");
             exit();
         } else {
-            mysqli_stmt_bind_param($stmt, "sss", $title, $descript, $destination);
+            mysqli_stmt_bind_param($stmt, "sss", $title, $descript, $sqldest);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_store_result($stmt);
             move_uploaded_file($file_tmp_name, $destination);

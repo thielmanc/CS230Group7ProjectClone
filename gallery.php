@@ -15,7 +15,7 @@
             while ($row = mysqli_fetch_assoc($query)) { // While there is still a row in our gallery, keep displaying
                 echo '<div class="card">
                         <a href="review.php?id='.$row['pid'].'">
-                            <img src="gallery/'.$row["picpath"].'">
+                            <img src="'.$row["picpath"].'">
                             <h3>'.$row["title"].'</h3>
                             <p>'.$row["descript"].'</p>
                         </a>
