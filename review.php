@@ -12,19 +12,10 @@ require 'includes/review-helper.php';
 
             <form id="review-form" action="includes/review-helper.php" method="post">
 
-                <div class="container">
-                    <i class="fa fa-star fa-2x star-rev" data-index="1"></i>
-                    <i class="fa fa-star fa-2x star-rev" data-index="2"></i>
-                    <i class="fa fa-star fa-2x star-rev" data-index="3"></i>
-                    <i class="fa fa-star fa-2x star-rev" data-index="4"></i>
-                    <i class="fa fa-star fa-2x star-rev" data-index="5"></i>
-                </div>
-
                 <div class="form-group" style="margin-top: 15px;">
                     <label class="title-label" for="review-title" style="font-size: 16px; font-weight: bold;">Title</label>
                     <input type="text" name="review-title" id="review-title" style="width: 100%; margin-bottom: 10px;">
                     <textarea name="review" id="review-text" cols="80" rows="3" placeholder="Enter a Comment..."></textarea>
-                    <input type="hidden" name="rating" id="rating">
                     <input type="hidden" name="item_id" value="<?php echo $_GET['id']; ?>"> 
                 </div>
 
@@ -50,41 +41,7 @@ $(document).ready(function() {
 
     // get reviews
     xhr_getter('display-reviews.php?id=', "review_list");
-    //avg();
-    xhr_getter('includes/get-ratings.php?id=', "testAvg");
-
-    if (localStorage.getItem('rating') != null) {
-        setStars(parseInt(localStorage.getItem('rating')));
-    }
-    $('.star-rev').on('click', function() {
-        rateIndex = parseInt($(this).data('index'));
-        localStorage.setItem('rating', rateIndex);
-    });
-    $('.star-rev').mouseover(function() {
-        reset_star();
-        var currIndex = parseInt($(this).data('index'));
-        setStars(currIndex);
-
-    });
-    $('.star-rev').mouseleave(function() {
-        reset_star();
-
-        if (rateIndex != -1) {
-            setStars(rateIndex);
-        }
-    });
-
-    function setStars(max) {
-        for (var i = 0; i < max; i++) {
-            $('.star-rev:eq(' + i + ')').css('color', 'goldenrod');
-        }
-        document.getElementById('rating').value = parseInt(localStorage.getItem('rating'));
-        console.log(id);
-    }
-
-    function reset_star() {
-        $('.star-rev').css('color', 'grey');
-    }
+    
 
 
     //Used to interchangeably send GET requests for review display data. 
