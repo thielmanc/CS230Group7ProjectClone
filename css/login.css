@@ -1,7 +1,21 @@
+:root {
+    /* tweak to your heart's content */
+    --panel-max-possible-width: 1700px; /* maximum absolute width of the main panel before it stops scaling to fill larger screens */
+    --panel-preferred-width-scale: 70vw; /* preferred percentage of the screen we should use if we have the room (should be % or vw) */
+    --panel-min-possible-width-before-truncating: 1400px; /* minimum absolute width of the main panel - panel will start eating up whitespace to stay at this width instead of scaling to a smaller value with the screen */
+    --panel-preferred-width-scale-when-truncated: 50vw; /* preferred percentage of the screen we should use for the form only, after we discard the info panel to save room (should be % or vw) */
+    --panel-min-possible-width: 600px; /* minimum possible width of the form alone - form will eat up any whitespace it can to stay at this width, but could still dip below this if the screen is thinner than this value */
+}
+
 body {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
     background-image: url('/images/background-morgantown-1.jpg');
     background-size: cover;
+    margin: 0px;
     color: #2f2f2f;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
 .backdrop-filter {
@@ -16,14 +30,23 @@ body {
     height: 100vh;
 }
 
+main {
+    display: flex;
+    flex-grow: 1;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+main::-webkit-scrollbar {
+    display: none;
+}
+
 .form-panel {
     display: flex;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 32px;
-    width: 75%;
-    height: 60%;
+    width: max(var(--panel-min-possible-width-before-truncating), min(var(--panel-preferred-width-scale), var(--panel-max-possible-width)));
     margin: auto;
-    margin-top: 48px;
 }
 
 .info-panel {
@@ -60,26 +83,21 @@ body {
 }
 
 .carousel-viewport {
-    width: 44%;
+    flex: 1 1 0;
     height: 100%;
-    scrollbar-width: none;
-}
-
-.carousel-viewport::-webkit-scrollbar {
-    display: none;
+    overflow-x: hidden;
 }
 
 .form-wrapper {
-    margin-top: 32px;
-    margin-bottom: 32px;
-    padding: 32px;
+    padding: 3%;
     padding-left: 64px;
     padding-right: 64px;
 }
 
-h2 {
+main h2 {
     font-size: 2.5rem;
     text-align: center;
+    margin-bottom: revert;
 }
 
 .info-panel > h2 {
@@ -95,9 +113,9 @@ h2 {
     clip-path: circle(79px at center);
 }
 
-label {
-    font-size: large;
+main label {
     font-weight: bold;
+    margin-bottom: 0px;
 }
 
 .required-label::after {
@@ -105,7 +123,7 @@ label {
     color: red;
 }
 
-input:not([type=checkbox]) {
+main input:not([type=checkbox]) {
     width: 100%;
     height: 48px;
     border-radius: 24px;
@@ -127,23 +145,23 @@ input:not([type=checkbox]) {
     column-gap: 16px;
 }
 
-button {
-  display: block;
-  background-color: rgba(0, 0, 0, 0);
-  border: 2px solid green;
-  padding: 16px;
-  border-radius: 32px;
-  width: 60%;
-  color: green;
-  margin: auto;
-  margin-top: 24px;
-  margin-bottom: 32px;
-  font-size: larger;
-  cursor: pointer;
-  transition: background-color 0.2s linear;
+main button {
+    display: block;
+    background-color: rgba(0, 0, 0, 0);
+    border: 2px solid green;
+    padding: 16px;
+    border-radius: 32px;
+    width: 60%;
+    color: green;
+    margin: auto;
+    margin-top: 24px;
+    margin-bottom: 32px;
+    font-size: larger;
+    cursor: pointer;
+    transition: background-color 0.2s linear;
 }
 
-button:hover {
+main button:hover {
     color: white;
     background-color: green;
 }
@@ -155,4 +173,29 @@ button:hover {
     text-align: center;
     font-size: larger;
     text-decoration: none;
+}
+
+@media only screen and (max-width: 1500px) {
+    .form-panel {
+        width: min(100vw, max(var(--panel-preferred-width-scale-when-truncated), var(--panel-min-possible-width)));
+    }
+
+    .info-panel {
+        display: none;
+    }
+    
+    .carousel-viewport {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-height: 1000px) {
+    .form-panel {
+        height: 100%;
+        border-radius: 0px;
+    }
+    
+    .info-panel {
+        border-radius: 0px;
+    }
 }
