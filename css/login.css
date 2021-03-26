@@ -1,7 +1,7 @@
 :root {
     /* tweak to your heart's content */
     --panel-max-possible-width: 1700px; /* maximum absolute width of the main panel before it stops scaling to fill larger screens */
-    --panel-preferred-width-scale: 70vw; /* preferred percentage of the screen we should use if we have the room (should be % or vw) */
+    --panel-preferred-width-scale: 75%; /* preferred percentage of the screen we should use if we have the room (should be % or vw) */
     --panel-min-possible-width-before-truncating: 1400px; /* minimum absolute width of the main panel - panel will start eating up whitespace to stay at this width instead of scaling to a smaller value with the screen */
     --panel-preferred-width-scale-when-truncated: 50vw; /* preferred percentage of the screen we should use for the form only, after we discard the info panel to save room (should be % or vw) */
     --panel-min-possible-width: 600px; /* minimum possible width of the form alone - form will eat up any whitespace it can to stay at this width, but could still dip below this if the screen is thinner than this value */
