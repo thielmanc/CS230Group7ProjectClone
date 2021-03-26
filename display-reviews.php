@@ -29,7 +29,6 @@ if (mysqli_num_rows($result) > 0) {
                     <img class="mr-3" src="'.$picpath['pfpurl'].'" style="max-width: 75px; max-height: 75px; border-radius: 50%;">
                         <div class="media-body">
                             <h4 class="mt-0">'.$row['uname'].'</h4>
-                            <h5 style="color: goldenrod;">Rating: '.$row['ratingnum'].'</h5>
                             <p>'.$row['revdate'].'</p>
                             <p>'.$row['reviewtext'].'</p>
                         </div>
