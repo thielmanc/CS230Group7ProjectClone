@@ -139,8 +139,8 @@ if (isset($_SESSION['uname'])) {
         </a>
         <h3 class="w3-light-green w3-padding">Reports</h3>
 
-        <div style="height: 300px">
-            Work in progress...
+        <div>
+            <?php require 'display-reports.php' ?>
         </div>
         </div>
 
