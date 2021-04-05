@@ -27,7 +27,7 @@ function preview(e) {
 if (isset($_SESSION['uid'])) {
     // username after login
     $prof_user = $_SESSION['uname'];
-    $sqlpro = "SELECT * FROM profiles WHERE uid=(SELECT uid FROM users WHERE uname='$prof_user');";
+    $sqlpro = "SELECT * FROM users WHERE uname='$prof_user'";
     $res = mysqli_query($conn,$sqlpro);
     $row = mysqli_fetch_array($res);
     $photo = $row['pfpurl']; // path to the profile picture
