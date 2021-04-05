@@ -42,5 +42,7 @@ $_SESSION['lname'] = $data['lname'];
 $_SESSION['uname'] = $data['uname'];
 $_SESSION['email'] = $data['email'];
 $_SESSION['uid'] = $data['uid'];
+$_SESSION['privileged'] = $data['privileged'];
+
 
 header("Location: /profile.php?success=login");

@@ -4,7 +4,7 @@ session_start();
 
 define('KB', 1024);
 define('MB', 1048576);
-
+define('MB', 1048576);
 if (isset($_POST['prof-submit'])) {
     $uname = $_SESSION['uname'];
     $file = $_FILES['prof-image'];
@@ -30,7 +30,11 @@ if (isset($_POST['prof-submit'])) {
         header("Location: ../profile.php?error=FileSizeExceeded");
     } else {
         $new_name = uniqid('', true).".".$ext;          // random prefix. extra "." adds entropy, more unique
+<<<<<<< HEAD
         $destination = '../profiles/'.$new_name;
+=======
+        $destination = '../images/'.$new_name;
+>>>>>>> 3cead68dd676f58d4b1162fefe5b847d0db9d3d6
         $sql = "UPDATE users SET pfpurl='$destination' WHERE uname='$uname'";
         mysqli_query($conn, $sql);
         move_uploaded_file($file_tmp_name, $destination);

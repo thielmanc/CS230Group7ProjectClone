@@ -29,6 +29,13 @@ session_start();
             <ul class="navbar-nav mr-auto">
                 
                 <?php if (isset($_SESSION['uid'])){
+                    if ($_SESSION['privileged'] == 1){                  //if the user is an admin
+                        echo'
+                        <li class="nav-item">
+                            <a class="nav-link" href="admin.php">admin</a>
+                         </li>
+                        ';
+                    }
                     //this checks to see if someone is loged in. you set the uid when you login
                     echo '   
                 <li class="nav-item">
@@ -36,9 +43,6 @@ session_start();
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="profile.php">profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="admin.php">admin</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="includes/logout.php">Logout </a>
