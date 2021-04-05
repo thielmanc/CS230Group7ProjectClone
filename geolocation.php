@@ -35,6 +35,7 @@ require 'includes/dbhandler.php';
     
     <div id="map"></div>
 
+    <!-- https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Museum%20of%20Contemporary%20Art%20Australia&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=YOUR_API_KEY -->
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhVwcZXgvHpBIHpQha3K2P3EPRZ7Bmyfo&callback=initAutocomplete&libraries=places&v=weekly"
         async>
