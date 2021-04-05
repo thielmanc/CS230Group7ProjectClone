@@ -31,7 +31,7 @@ if (isset($_POST['prof-submit'])) {
     } else {
         $new_name = uniqid('', true).".".$ext;          // random prefix. extra "." adds entropy, more unique
         $destination = '../images/'.$new_name;
-        $sql = "UPDATE users SET pfpurl='$destination' WHERE uid=(SELECT * FROM users WHERE uname='$uname';)";
+        $sql = "UPDATE users SET pfpurl='$destination' WHERE uname='$uname'";
         mysqli_query($conn, $sql);
         move_uploaded_file($file_tmp_name, $destination);
         header("Location: ../profile.php?success=UploadWin");

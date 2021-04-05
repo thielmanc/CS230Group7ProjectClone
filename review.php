@@ -37,7 +37,7 @@ var id = <?php echo $_GET['id'];?>;
 
 
 $(document).ready(function() {
-    reset_star();
+    //reset_star();
 
     // get reviews
     xhr_getter('display-reviews.php?id=', "review_list");
