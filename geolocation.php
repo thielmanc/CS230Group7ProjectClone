@@ -3,34 +3,43 @@ require 'includes/header.php';
 require 'includes/dbhandler.php';
 
 ?>
-
 <html>
 
-    <head>
-        <title>Geolocation</title>
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-        <link rel="stylesheet" type="text/css" href="css/map.css" />
-        <script src="js/location.js"></script> 
-    </head>
+<head>
+    <title>Geolocation</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link rel="stylesheet" type="text/css" href="css/map.css" />
+    <script src="js/location.js"></script>
+</head>
+
+<body>
+    <main>
+        <div class="backdrop-filter"></div>
+
+        <!-- Search Bar. More preferences maybe? -->
+        <section class="searchApp" id="searchApp">
+            <header class="searchBar" id="searchBar">
+                <div class="search-bar-wrapper">
+                    <span class="lookup">
+                        <input id="pac-input" class="controls" type="text" placeholder="Location" />
+                    </span>
+                </div>
+            </header>
+        </section>
+
+        <!-- Place Cards. Displays options -->
+        <section class="placardContainer" class="placardContainer">
+            
+        </section>
+    </main>
     
-    <body>
+    <div id="map"></div>
 
-        <!-- information gathering -->
-        <div class="info">
-            <label for="username" style="text-align: center">What are you looking for?</label>
-            <div id="input">
-                <input id="pac-input" class="controls" type="text" placeholder="Search Box"/>
-            </div>
-        </div>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhVwcZXgvHpBIHpQha3K2P3EPRZ7Bmyfo&callback=initAutocomplete&libraries=places&v=weekly"
+        async>
+    </script>
 
-        <!-- Map container -->
-        <div id="map"></div>
-
-        <!-- Places will change depending on the key-value pairs in the url -->
-        <script
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhVwcZXgvHpBIHpQha3K2P3EPRZ7Bmyfo&callback=initAutocomplete&libraries=places&v=weekly"
-            async
-        ></script>
-    </body>
+</body>
 
 </html>
