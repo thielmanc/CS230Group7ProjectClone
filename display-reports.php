@@ -37,15 +37,23 @@ if (mysqli_num_rows($result) > 0) {
                         </div>
                 </div>
             </div>
+
+
             <form action="includes/display-report-helper.php" method="POST">
-            <input type="hidden" name="id" value='.$row['revid'].'>
-            <div class="form-group">
-                    <button class="btn btn-outline-danger" type="submit" name="approve-submit" id="approve-submit" style="width: 20%;" >Approve Comment</button>
+                <input type="hidden" name="id" value='.$row['revid'].'>
+
+                <div class="mx-auto">
+                    <div class="form-group">
+                        <button class="btn btn-outline-success mx-auto" type="submit" name="approve-submit" id="approve-submit" style="width: 100%;" >Approve Comment</button>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-outline-danger mx-auto" type="submit" name="remove-submit" id="remove-submit" style="width: 100%;" >Remove Comment</button>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <button class="btn btn-outline-danger" type="submit" name="remove-submit" id="remove-submit" style="width: 20%;" >Remove Comment</button>
-                </div>
-                </form>
+            </form>
+
+            <hr>
+            <hr>
              ';
     }
 }
