@@ -1,12 +1,12 @@
 main
 {
-	font-family: cursive;
+	font-family: 'arial';
 	text-align: center;
 }
 
 p
 {
-	color: white;
+	color: black;
 }
 
 .about
@@ -34,3 +34,10 @@ img
 	box-shadow: 0px 4px 8px 0px #b3b3b3f5;
 	padding: 0 16px 0 16px;
 }
+
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+  }
