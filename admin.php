@@ -27,9 +27,10 @@ require 'includes/dbhandler.php';
     <?php
 if (isset($_SESSION['uname'])) {
     $prof_user = $_SESSION['uname'];
-    $sqlpro = "SELECT * FROM users WHERE uid='$prof_user';";
-    $res = mysqli_query($cnn,$sqlpro);
+    $sqlpro = "SELECT * FROM users WHERE uname='$prof_user';";
+    $res = mysqli_query($conn,$sqlpro);
     $row = mysqli_fetch_array($res);
+    
     $photo = $row['pfpurl']; // path to the profile picture
 ?>
 
@@ -138,7 +139,6 @@ if (isset($_SESSION['uname'])) {
             <div class="w3-container">
         </a>
         <h3 class="w3-light-green w3-padding">Reports</h3>
-
         <div>
             <?php require 'display-reports.php' ?>
         </div>
@@ -182,13 +182,15 @@ if (isset($_SESSION['uname'])) {
         <hr>
 
         <a name="preview">
-            <div class="w3-container">
+        <div class="w3-container">
         </a>
-        <h3 class="w3-light-green w3-padding">Gallery Preview</h3>
 
-        <div style="height: 300px">
+            <h3 class="w3-light-green w3-padding">Gallery Preview</h3>
+
+            <div style="height: 300px">
             Work in progress...
-        </div>
+            </div>
+            
         </div>
 
         <hr>
@@ -202,14 +204,13 @@ if (isset($_SESSION['uname'])) {
             Work in progress...
         </div>
         </div>
-        </div>
+
 
 
 
     </body>
 
     </html>
-
     <?php
 }
 ?>
