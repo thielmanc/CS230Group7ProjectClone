@@ -13,7 +13,7 @@ if (isset($_POST['review-submit'])) {
     $downvotes = 56;
     $parentid = 34;
 
-    $sql = "INSERT INTO reviews (itemid, uname, title, reviewtext, revdate, upvotes, downvotes, parentid, status) VALUES ('$item_id', '$uname', '$title', '$review', '$date', '$upvotes', '$downvotes', '$parentid', 1)";
+    $sql = "INSERT INTO reviews (itemid, uname, title, reviewtext, revdate, upvotes, downvotes, parentid, status) VALUES ('$item_id', '$uname', '$title', '$review', '$date', '$upvotes', '$downvotes', '$parentid', 0)";
     mysqli_query($conn, $sql);
 
     header("Location: ../review.php?id=$item_id");
