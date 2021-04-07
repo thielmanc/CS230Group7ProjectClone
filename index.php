@@ -25,11 +25,11 @@ require 'includes/header.php';
 
         <div class="column">
             <div class="card">
-                <img src="images/doge.jpg">
+                <img src="images/KyleBrImg.jpg" class="center">
                 <div class="container">
-                    <h2>CEO</h2>
-                    <p>Harrison Ford</p>
-                    <p>Email: solo@cs230.com</p>
+                    <h2>Kyle Breedlove</h2>
+                    <p>Fun Fact! I hate fun facts!</p>
+                    <p>Email: kwb0008@mix.wvu.edu</p>
                 </div>
             </div>
         </div>
