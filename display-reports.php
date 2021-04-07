@@ -1,11 +1,7 @@
 <?php
 
-$servename = "localhost";
-$DBuname = "phpmyadmin";
-$DBPass = "cs230lab";
-$DBname = "cs230project";
-
 require 'includes/display-report-helper.php';
+require 'includes/dbhandler.php';
 
 $conn = mysqli_connect($servename, $DBuname, $DBPass, $DBname);
 

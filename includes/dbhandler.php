@@ -2,7 +2,7 @@
 
 $servename = "localhost";
 $DBuname = "phpmyadmin";
-$DBPass = "cs230lab"; // CHANGE AS NEEDED
+$DBPass = "maxtia21"; // CHANGE AS NEEDED
 $DBname = "cs230project";
 
 $conn = mysqli_connect($servename, $DBuname, $DBPass, $DBname);
