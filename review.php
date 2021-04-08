@@ -28,7 +28,28 @@ require 'includes/review-helper.php';
         </div>
 
     </div>
-    <span id="review_list"></span>
+    
+    <h5 style="text-align:center">todo: change this from dark mode to not dark mode</h5>
+    <link rel="stylesheet" href="/css/comments.css">
+    <div style="width: 1000px; margin-left: calc(50vw - 500px); background-color: #121212; padding: 16px;">
+        <div class="comment-tray">
+        <?php
+            require 'includes/comment-helper.php';
+            foreach(comments_on($_GET['id']) as $comment) {
+                echo_comment($comment);
+            }
+        ?>
+        </div>
+        <div class="comment-reply-panel">
+            <textarea class="comment-reply-field" placeholder="Post a comment..."></textarea>
+            <div class="comment-reply-panel-controls hide-until-enabled">
+                <input type="checkbox" id="allow-replies" name="allow-replies" checked><label for="allow-replies">Allow replies</label>
+                <button>POST</button>
+            </div>
+        </div>
+        <script src="/js/comments.js"></script>
+    </div>
+
 </main>
 
 <script type="text/javascript">
