@@ -54,11 +54,11 @@ $rolemap = [
 		<span class="info">Replies are not permitted</span>
 		<?php endif ?>
 	</div>
-	<div class="reply-tray">
-		<?php foreach(replies_to($data['cid']) as $reply) {
+	<div class="reply-tray"><?php
+		foreach(replies_to($data['cid']) as $reply) {
 			echo_comment($reply);
-		} ?>
-	</div>
+		}
+	?></div>
 </div>
 <?php
 }
