@@ -36,11 +36,11 @@ require 'includes/header.php';
 
         <div class="column">
             <div class="card">
-                <img src="images/doge-moon.jpg">
+                <img src="images/MudgeDavid.jpeg" class="center">
                 <div class="container">
-                    <h2>CEO</h2>
-                    <p>Harrison Ford</p>
-                    <p>Email: solo@cs230.com</p>
+                    <h2>David Mudge</h2>
+                    <p>My name is David.</p>
+                    <p>Email: dwm0013@mix.wvu.edu</p>
                 </div>
             </div>
         </div>
