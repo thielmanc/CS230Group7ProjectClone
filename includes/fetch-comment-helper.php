@@ -2,12 +2,12 @@
 require_once 'dbhandler.php';
 
 function comments_on($item_id) {
-    $stmt = safe_stmt_exec('SELECT * FROM reviews WHERE itemid = ? AND parentid IS NULL ORDER BY upvotes - downvotes', 'i', $item_id);
+    $stmt = safe_stmt_exec('SELECT * FROM reviews WHERE itemid = ? AND parentid IS NULL ORDER BY upvotes - downvotes DESC', 'i', $item_id);
     yield from transform($stmt);
 }
 
 function replies_to($cid) {
-    $stmt = safe_stmt_exec('SELECT * FROM reviews WHERE parentid = ? ORDER BY upvotes - downvotes', 'i', $cid);
+    $stmt = safe_stmt_exec('SELECT * FROM reviews WHERE parentid = ? ORDER BY upvotes - downvotes DESC', 'i', $cid);
     yield from transform($stmt);
 }
 
