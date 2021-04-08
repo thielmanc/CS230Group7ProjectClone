@@ -29,7 +29,7 @@ require 'includes/dbhandler.php';
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhVwcZXgvHpBIHpQha3K2P3EPRZ7Bmyfo&callback=initMap&libraries=places&v=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhVwcZXgvHpBIHpQha3K2P3EPRZ7Bmyfo&callback=initAutocomplete&libraries=places&v=weekly"
       async
     ></script>
   </body>
