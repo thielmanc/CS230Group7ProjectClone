@@ -43,7 +43,7 @@ require 'includes/review-helper.php';
             ]
             
             ?>
-            <div data-uid="<?= $uid ?>" class="comment">
+            <div data-uid="<?= $data['cid'] ?>" class="comment">
                 <div class="comment-content">
                     <header>
                         <div class="rating-container">

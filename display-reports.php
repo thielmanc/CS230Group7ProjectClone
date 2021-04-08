@@ -1,7 +1,7 @@
 <?php
 
-require 'includes/display-report-helper.php';
-require 'includes/dbhandler.php';
+require_once 'includes/display-report-helper.php';
+require_once 'includes/dbhandler.php';
 
 $conn = mysqli_connect($servename, $DBuname, $DBPass, $DBname);
 

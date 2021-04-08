@@ -16,14 +16,7 @@ if (empty($uname) || empty($passwd)) {
   exit();
 }
 
-$sql = "SELECT * FROM users WHERE uname=? OR email=?";
-$stmt = mysqli_stmt_init($conn);
-mysqli_stmt_prepare($stmt, $sql);
-mysqli_stmt_bind_param($stmt, "ss", $uname, $uname);
-mysqli_stmt_execute($stmt);
-$result = mysqli_stmt_get_result($stmt);
-$data = mysqli_fetch_assoc($result);
-mysqli_stmt_close($stmt);
+$data = safe_query("SELECT * FROM users WHERE uname=? OR email=?", "ss", $uname, $uname);
 
 if (empty($data)) {
   header("Location: /login.php?error=UserDNE");
