@@ -23,9 +23,11 @@ session_start();
     </script>
     <script src="https://kit.fontawesome.com/0809ee8fa6.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="js/header.js"></script>
 </head>
 <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">APARTMENTS!</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

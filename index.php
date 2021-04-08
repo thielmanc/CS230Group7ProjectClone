@@ -3,12 +3,10 @@ require 'includes/header.php';
 require 'includes/dbhandler.php';
 ?>
 
-
-
 <body>
 
     <main>
-        <link rel="stylesheet" href="/css/index-candidate.css">
+        <link rel="stylesheet" href="/css/index.css">
         <div class="backdrop-filter"></div>
 
         <div class="contentWrapper" id="homePageWrapper">

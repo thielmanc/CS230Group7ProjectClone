@@ -7,7 +7,7 @@ function initAutocomplete() {
     });
 
     // Create the search box and link it to the UI element
-    const input = documetn.getElementById("pac-input");
+    const input = document.getElementById("pac-input");
     const searchBox = new google.maps.places.SearchBox(input);
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
