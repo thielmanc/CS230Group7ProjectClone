@@ -1,61 +1,43 @@
 <?php
 require 'includes/header.php';
+require 'includes/dbhandler.php';
 ?>
 
-<main>
+<body>
 
-	<link rel="stylesheet" href="css/about.css">
+    <main>
+        <link rel="stylesheet" href="/css/index.css">
+        <div class="backdrop-filter"></div>
 
-	<div class="about">
-		<h1>About Us</h1>
-		<p>a;dfjieoanvnkcnafkjdfjkabdjfb</p>
-	</div>
+        <div class="contentWrapper" id="homePageWrapper">
 
-	<div class="row">
-		<div class="column">
-			<div class="card">
-				<img src="images/dogecoin.jpg">
-				<div class="container">
-					<h2>CEO</h2>
-					<p>Harrison Ford</p>
-					<p>Email: solo@cs230.com</p>
-				</div>
-			</div>
-		</div>
+            <!-- Home Page Title Section -->
+            <section class="homePage">
+                <div class="mainSearchWrapper" id="mainSearchWrapper">
+                    <h1 class="mainTitle" id="quickSearchMainTitle">Search for Apartment Reviews</h1>
+                    <p id="quickSearchSubTitle">Or Review your Own Apartments!</p>
 
-		<div class="column">
-                        <div class="card">
-                                <img src="images/doge.jpg">
-                                <div class="container">
-                                        <h2>CEO</h2>
-                                        <p>Harrison Ford</p>
-                                        <p>Email: solo@cs230.com</p>
-                                </div>
+                    
+
+                    <!-- Search Bar Section -->
+                    <section class="quickSearch" id="quickSearch">
+                        <div class="quickSearchWrapper">
+                            <div class="searchWrapper">
+                                <input type="text" id="quickSearchLookup" class="quickSearchLookup"
+                                    placeholder="Search for a Location" />
+                                <a href="geolocation.php" class="search" title="Search for Reviews">
+                                    <span>Search</span>
+                                </a>
+                            </div>
+                            <p class="errorMessage">You must choose a place to review</p>
                         </div>
+                    </section>
+
                 </div>
+            </section>
 
-		<div class="column">
-                        <div class="card">
-                                <img src="images/doge-moon.jpg">
-                                <div class="container">
-                                        <h2>CEO</h2>
-                                        <p>Harrison Ford</p>
-                                        <p>Email: solo@cs230.com</p>
-                                </div>
-                        </div>
-                </div>
+        </div>
 
-		<div class="column">
-                        <div class="card">
-                                <img src="images/doge-ram.jpg">
-                                <div class="container">
-                                        <h2>CEO</h2>
-                                        <p>Harrison Ford</p>
-                                        <p>Email: solo@cs230.com</p>
-                                </div>
-                        </div>
-                </div>
-	</div>
 
-</main>
-
+    </main>
+</body>

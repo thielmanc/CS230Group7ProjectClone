@@ -4,7 +4,7 @@ session_start();
 
 define('KB', 1024);
 define('MB', 1048576);
-
+define('MB', 1048576);
 if (isset($_POST['prof-submit'])) {
     $uname = $_SESSION['uname'];
     $file = $_FILES['prof-image'];
@@ -31,7 +31,7 @@ if (isset($_POST['prof-submit'])) {
     } else {
         $new_name = uniqid('', true).".".$ext;          // random prefix. extra "." adds entropy, more unique
         $destination = '../profiles/'.$new_name;
-        $sql = "UPDATE profiles SET pfpurl='$destination' WHERE uid=(SELECT uid FROM users WHERE uname='$uname')";
+        $sql = "UPDATE users SET pfpurl='$destination' WHERE uname='$uname'";
         mysqli_query($conn, $sql);
         move_uploaded_file($file_tmp_name, $destination);
         header("Location: ../profile.php?success=UploadWin");

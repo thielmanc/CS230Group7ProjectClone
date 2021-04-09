@@ -1,0 +1,100 @@
+.backdrop-filter {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+    filter: blur(5px);
+    background-image: url('/images/background-morgantown-1.jpg');
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+}
+
+#homePageWrapper.contentWrapper {
+    padding-bottom: 0;
+    overflow-x: hidden;
+    box-sizing: inherit;
+}
+
+#homePageWrapper .homePage {
+    height: 37.75rem;
+    position: relative;
+    font-size: 1rem;
+    font-size: 1rem;
+}
+
+#homePageWrapper #mainSearchWrapper.mainSearchWrapper {
+    z-index: 15;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+#homePageWrapper #mainSearchWrapper h1 {
+    font-size: 5rem;
+    line-height: 5.875rem;
+    margin-bottom: 1.125rem;
+    letter-spacing: -2.2px;
+    color: #fff;
+    text-align: center;
+}
+
+#homePageWrapper #mainSearchWrapper p {
+    font-size: 2rem;
+   /* line-height: 3.25rem; */
+    margin-bottom: 3.3125rem;
+    letter-spacing: -1px;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 1rem;
+        margin-left: 0px;
+}
+
+#quickSearch.quickSearch {
+    width: 1000px;
+    margin: auto;
+        margin-top: auto;
+        margin-right: auto;
+        margin-bottom: auto;
+        margin-left: auto;
+    position: relative;
+    font-size: 1.5rem;
+}
+
+#quickSearch .searchWrapper {
+    position: relative;
+    width: 100%;
+}
+
+#quickSearch .searchWrapper input {
+    box-sizing: inherit;
+    height: 3rem;
+    width: calc(100% - 8.25rem);
+    font-size: 1.75rem;
+}
+
+#quickSearch .search {
+    height: 3rem;
+    line-height: 3rem;
+    font-size: 1.75rem;
+    width: 7.75rem;
+    display: block;
+    float: right;
+    background-color: #121212;
+    color: #fff;
+    text-align: center;
+    border-radius: 0.25rem;
+}
+
+#quickSearch .errorMessage {
+    display: none;
+    position: absolute;
+    color: #cf0000;
+    padding: 0.5em;
+    width: 100%;
+}
