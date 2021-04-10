@@ -57,4 +57,16 @@ require 'includes/header.php';
         </div>
     </div>
 
+    <div class="column">
+            <div class="card">
+                <img src="images/camPic.jpg" class="center">
+                <div class="container">
+                    <h2>Cam Thielman</h2>
+                    <p>Also Pictured: Luna</p>
+                    <p>Email: cmt0024@mix.wvu.edu</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </main>
