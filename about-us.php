@@ -55,6 +55,17 @@ require 'includes/header.php';
                 </div>
             </div>
         </div>
+
+        <div class="column">
+            <div class="card">
+                <img src="images/JacobVila.jpeg" class="center">
+                <div class="container">
+                    <h2>Jacob Vila</h2>
+                    <p>My name is not David.</p>
+                    <p>Email: jv00002@mix.wvu.edu</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="column">
@@ -68,5 +79,7 @@ require 'includes/header.php';
             </div>
         </div>
     </div>
+
+
 
 </main>
