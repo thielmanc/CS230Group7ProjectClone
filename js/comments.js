@@ -20,10 +20,9 @@ function send_vote(uid, vote) {
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xhr.responseType = 'json';
 	xhr.onreadystatechange = function() {
-		if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+		if(xhr.readyState === XMLHttpRequest.DONE) {
 			ratingElem = document.querySelector('[data-uid="' + uid + '"]').querySelector('.rating');
 			if(xhr.status === 200) {
-				console.log(xhr.response);
 				if(xhr.response.success) {
 					ratingElem.innerHTML = xhr.response.rating;
 					document.querySelector('[data-uid="' + uid + '"]').setAttribute('data-vote-state', vote);
@@ -35,7 +34,28 @@ function send_vote(uid, vote) {
 			}
 		}
 	}
-	xhr.send(`cid=${uid}&vote=${vote}`)
+	xhr.send(`cid=${uid}&vote=${vote}`);
+}
+
+function report(uid) {
+	let xhr = new XMLHttpRequest();
+	xhr.open('POST', '/includes/report-helper.php', true);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhr.responseType = 'json';
+	xhr.onreadystatechange = function() {
+		if(xhr.readyState === XMLHttpRequest.DONE) {
+			if(xhr.status === 200) {
+				if(xhr.response.success) {
+					alert('Comment reported\n(Todo: replace this alert with something that looks a bit better)');
+				} else {
+					console.log('Error reporting comment: ' +  xhr.response.error)
+				}
+			} else {
+				console.log('Error reporting comment: status code not 200');
+			}
+		}
+	}
+	xhr.send(`cid=${uid}`);
 }
 
 document.querySelectorAll('.comment').forEach(function(elem) {

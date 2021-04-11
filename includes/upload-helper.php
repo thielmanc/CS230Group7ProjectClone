@@ -1,46 +1,48 @@
 <?php
-require 'dbhandler.php';
 session_start();
 
-define('KB', 1024);
-define('MB', 1048576);
-define('MB', 1048576);
-if (isset($_POST['prof-submit'])) {
-    $uname = $_SESSION['uname'];
-    $file = $_FILES['prof-image'];
-    $file_name = $file['name'];
-    $file_tmp_name = $file['tmp_name'];
-    $file_error = $file['error'];
-    $file_size = $file['size'];
-    $ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
-
-    $allowed = array('jpg', 'jpeg', 'png', 'svg');
-    
-    if ($file_error !== 0) {
-        header("Location: ../profile.php?error=UploadError");
-        exit();
-    }
-
-    if (!in_array($ext, $allowed)) {
-        header("Location: ../profile.php?error=InvalidType");
-        exit();
-    }
-
-    if ($file_size > 4 * MB) {
-        header("Location: ../profile.php?error=FileSizeExceeded");
-    } else {
-        $new_name = uniqid('', true).".".$ext;          // random prefix. extra "." adds entropy, more unique
-        $destination = '../profiles/'.$new_name;
-        $sql = "UPDATE users SET pfpurl='$destination' WHERE uname='$uname'";
-        mysqli_query($conn, $sql);
-        move_uploaded_file($file_tmp_name, $destination);
-        header("Location: ../profile.php?success=UploadWin");
-        exit();
-    }
-
-
-
-} else {
+if (!isset($_POST['prof-submit'])) {
     header("Location: ../profile.php");
     exit();
 }
+
+require 'file-validator.php';
+
+$file = $_FILES['prof-image'];
+
+$check = check_file($file);
+if($check !== UPLOAD_ERR_OK) {
+    switch($check) {
+        case UPLOAD_ERR_INVALID_NAME:
+            header("Location: /profile.php?error=BadFileName");
+            exit();
+        case UPLOAD_ERR_INVALID_TYPE:
+            header("Location: /profile.php?error=BadFileType");
+            exit();
+        case UPLOAD_ERR_INI_SIZE:
+        case UPLOAD_ERR_FORM_SIZE:
+        case UPLOAD_ERR_CUST_SIZE:
+            header("Location: /profile.php?error=MaxSizeExceeded");
+            exit();
+        case UPLOAD_ERR_PHP_CODE_DETECTED:
+            header("Location: /profile.php?error=BadFile");
+            exit();
+        default:
+            header("Location: /profile.php?error=UnknownError");
+            exit();
+    }
+}
+
+require 'dbhandler.php';
+
+$new_name = safe_file_name_gen($file);
+$destination = '../profiles/'.$new_name;
+$uname = $_SESSION['uname'];
+
+$sql = "UPDATE users SET pfpurl=? WHERE uname=?";
+safe_query($sql, 'ss', $destination, $uname);
+
+move_uploaded_file($file['tmp_name'], $destination);
+
+header("Location: /profile.php?success=UploadWin");
+exit();
