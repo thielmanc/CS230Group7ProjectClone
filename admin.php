@@ -126,7 +126,7 @@ require 'includes/dbhandler.php';
                 </div>
 
                 <?php //script that counts how many reported reviews are in the db 
-                $result=mysqli_query($conn,"SELECT count(*) as total from reviews where status='1'");
+                $result=mysqli_query($conn,"SELECT count(*) as total from reviews where status >= 1");
                 $data=mysqli_fetch_assoc($result);
                 ?>
                 <div class="w3-third"><!-- Top Overview element that displays Report-->

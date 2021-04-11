@@ -1,5 +1,6 @@
 <?php
 require_once 'dbhandler.php';
+session_start();
 
 function comments_on($item_id) {
     $stmt = safe_stmt_exec('SELECT * FROM reviews WHERE itemid = ? AND parentid IS NULL ORDER BY upvotes - downvotes DESC', 'i', $item_id);
@@ -23,7 +24,9 @@ function transform($stmt) {
             'author' => $comment['uname'],
             'role' => 'resident', # PLACEHOLDER
             'text' => $comment['reviewtext'],
-            'replies_permitted' => true # PLACEHOLDER
+            'replies_permitted' => true, # PLACEHOLDER
+            'vote_state' => in_array($_SESSION['uid'], json_decode($comment['upvoters'])) ? 'upvote' : 
+                            (in_array($_SESSION['uid'], json_decode($comment['downvoters'])) ? 'downvote' : 'none')
         );
     }
 }

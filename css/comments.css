@@ -47,6 +47,14 @@
 	color: #999;
 }
 
+.comment[data-vote-state="upvote"] > .comment-content > header > .rating-container > .upvote {
+	color: #6682f2;
+}
+
+.comment[data-vote-state="downvote"] > .comment-content > header > .rating-container > .downvote {
+	color: #6682f2;
+}
+
 .profile-picture {
 	width: 40px;
 	height: 40px;

@@ -11,7 +11,7 @@ if (!$conn) {
 }
 
 $item = $_GET['id'];
-$sql = "SELECT * FROM reviews WHERE status='1'";
+$sql = "SELECT * FROM reviews WHERE status >= 1";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
