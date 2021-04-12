@@ -43,7 +43,7 @@ require 'includes/review-helper.php';
             ]
             
             ?>
-            <div data-uid="<?= $data['cid'] ?>" class="comment">
+            <div data-uid="<?= $data['cid'] ?>" data-vote-state="<?= $data['vote_state'] ?>" class="comment">
                 <div class="comment-content">
                     <header>
                         <div class="rating-container">
@@ -60,7 +60,7 @@ require 'includes/review-helper.php';
                         <div class="comment-header-space"></div>
                         <a class="user-action-menu-link">⋮</a>
                         <div class="user-action-menu hide-until-enabled">
-                            <a href="javascript:alert('doesnt do anything yet');void 0;">Report...</a>
+                            <a href="javascript:report('<?= $data['cid'] ?>')">Report...</a>
                             <a href="javascript:alert('doesnt do anything yet');void 0;">Delete...</a>
                         </div>
                     </header>

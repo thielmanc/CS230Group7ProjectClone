@@ -1,11 +1,61 @@
 function upvote(uid) {
-	document.querySelector('[data-uid="' + uid + '"]').querySelector('.rating').innerHTML++;
-	// make request to server eventually
+	let state = document.querySelector('[data-uid="' + uid + '"]').getAttribute('data-vote-state');
+	if(state != 'upvote')
+		send_vote(uid, 'upvote');
+	else
+		send_vote(uid, 'none');
 }
 
 function downvote(uid) {
-	document.querySelector('[data-uid="' + uid + '"]').querySelector('.rating').innerHTML--;
-	// make request to server eventually
+	let state = document.querySelector('[data-uid="' + uid + '"]').getAttribute('data-vote-state');
+	if(state != 'downvote')
+		send_vote(uid, 'downvote');
+	else
+		send_vote(uid, 'none');
+}
+
+function send_vote(uid, vote) {
+	let xhr = new XMLHttpRequest();
+	xhr.open('POST', '/includes/vote-helper.php', true);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhr.responseType = 'json';
+	xhr.onreadystatechange = function() {
+		if(xhr.readyState === XMLHttpRequest.DONE) {
+			ratingElem = document.querySelector('[data-uid="' + uid + '"]').querySelector('.rating');
+			if(xhr.status === 200) {
+				if(xhr.response.success) {
+					ratingElem.innerHTML = xhr.response.rating;
+					document.querySelector('[data-uid="' + uid + '"]').setAttribute('data-vote-state', vote);
+				} else {
+					ratingElem.innerHTML = 'err';
+				}
+			} else {
+				ratingElem.innerHTML = 'err';
+			}
+		}
+	}
+	xhr.send(`cid=${uid}&vote=${vote}`);
+}
+
+function report(uid) {
+	let xhr = new XMLHttpRequest();
+	xhr.open('POST', '/includes/report-helper.php', true);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhr.responseType = 'json';
+	xhr.onreadystatechange = function() {
+		if(xhr.readyState === XMLHttpRequest.DONE) {
+			if(xhr.status === 200) {
+				if(xhr.response.success) {
+					alert('Comment reported\n(Todo: replace this alert with something that looks a bit better)');
+				} else {
+					console.log('Error reporting comment: ' +  xhr.response.error)
+				}
+			} else {
+				console.log('Error reporting comment: status code not 200');
+			}
+		}
+	}
+	xhr.send(`cid=${uid}`);
 }
 
 document.querySelectorAll('.comment').forEach(function(elem) {

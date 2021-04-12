@@ -19,8 +19,11 @@ if (!$conn) {
 // use safe_stmt_exec if more than one row is needed or a more complex operation needs to be performed
 function safe_query($query, $types, ...$params) {
     global $conn; // I should be executed for using this
+    if(!$conn)
+        die('Error: No connection to database');
     $stmt = $conn->stmt_init();
-    $stmt->prepare($query);
+    if(!$stmt->prepare($query))
+        die($conn->error);
     $stmt->bind_param($types, ...$params);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -32,8 +35,11 @@ function safe_query($query, $types, ...$params) {
 // executes a prepared statement and returns it
 function safe_stmt_exec($query, $types, ...$params) {
     global $conn; // terrible
+    if(!$conn)
+        die('Error: No connection to database');
     $stmt = $conn->stmt_init();
-    $stmt->prepare($query);
+    if(!$stmt->prepare($query))
+        die($conn->error);
     $stmt->bind_param($types, ...$params);
     $stmt->execute();
     return $stmt;

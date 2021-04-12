@@ -1,9 +1,11 @@
 <?php
-require 'dbhandler.php'
+require 'includes/header.php';
+require 'includes/dbhandler.php';
 
-if (isset($_POST['geolocation-search'])) {
-	session_start();
-	$place_name = $_SESSION[
+$place = $_POST['place_name'];
+$data = safe_query("SELECT * FROM reviews WHERE place_name=?","s",$place);
 
-
+if (empty($data)) {
+    header("Location: /geolocation.php?error=NoReviews");
+    exit();
 }

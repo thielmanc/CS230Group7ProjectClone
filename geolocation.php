@@ -1,36 +1,35 @@
 <?php
 require 'includes/header.php';
 require 'includes/dbhandler.php';
-
 ?>
 
 <html>
-  <head>
-    <title>Place Searches</title>
+
+<head>
+    <title>Place ID Finder</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <link rel="stylesheet" type="text/css" href="./style.css" />
-    <script src="js/location.js"></script>
     <link rel="stylesheet" type="text/css" href="css/map.css" />
-  </head>
-  <body>
-    <section class="searchApp" id="searchApp">
-	<header class="searchBar" id="searchBar">
-		<div class="search-bar-wrapper">
-			<span class="lookup">
-				<input type="text" id="searchBarLookup" class="searchBarLookup" placeholder="Search Apartments">
-				<button type="submit" id="search-submit" class="search-submit" name="search-submit">Search</button>
-			</span>
-		</div>
-	</header>
+    <script src="js/location.js"></script>
+</head>
 
-    </section>
-
+<body>
+    <div style="display: none">
+        <form method="POST" action="includes/geolocation-helper.php">
+            <label for="place-name"></label>
+            <input id="pac-input" class="controls" type="text" placeholder="Enter a location" />
+        </form>
+    </div>
     <div id="map"></div>
+    <div id="infowindow-content">
+        <span id="place-name" class="title"></span><br />
+        <strong>Place ID:</strong> <span id="place-id"></span><br />
+        <span id="place-address"></span>
+    </div>
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhVwcZXgvHpBIHpQha3K2P3EPRZ7Bmyfo&callback=initAutocomplete&libraries=places&v=weekly"
-      async
-    ></script>
-  </body>
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhVwcZXgvHpBIHpQha3K2P3EPRZ7Bmyfo&callback=initMap&libraries=places&v=weekly"
+        async></script>
+</body>
+
 </html>
