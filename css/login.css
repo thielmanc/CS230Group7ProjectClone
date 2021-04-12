@@ -7,6 +7,8 @@
     --panel-min-possible-width: 600px; /* minimum possible width of the form alone - form will eat up any whitespace it can to stay at this width, but could still dip below this if the screen is thinner than this value */
 }
 
+
+
 body {
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
     background-image: url('/images/background-morgantown-1.jpg');
@@ -37,6 +39,8 @@ main {
     scrollbar-width: none;
 }
 
+
+
 main::-webkit-scrollbar {
     display: none;
 }
@@ -47,6 +51,7 @@ main::-webkit-scrollbar {
     border-radius: 32px;
     width: max(var(--panel-min-possible-width-before-truncating), min(var(--panel-preferred-width-scale), var(--panel-max-possible-width)));
     margin: auto;
+    
 }
 
 .info-panel {
@@ -66,7 +71,7 @@ main::-webkit-scrollbar {
 }
 
 .info-panel a {
-    color: white;
+    color:MediumSeaGreen;
 }
 
 .info-panel > footer > a {
@@ -86,6 +91,7 @@ main::-webkit-scrollbar {
     flex: 1 1 0;
     height: 100%;
     overflow-x: hidden;
+    
 }
 
 .form-wrapper {
@@ -148,11 +154,11 @@ main input:not([type=checkbox]) {
 main button {
     display: block;
     background-color: rgba(0, 0, 0, 0);
-    border: 2px solid green;
+    border: 2px solid MediumSeaGreen;
     padding: 16px;
     border-radius: 32px;
     width: 60%;
-    color: green;
+    color: mediumSeaGreen;
     margin: auto;
     margin-top: 24px;
     margin-bottom: 32px;
@@ -173,6 +179,7 @@ main button:hover {
     text-align: center;
     font-size: larger;
     text-decoration: none;
+    
 }
 
 @media only screen and (max-width: 1500px) {
