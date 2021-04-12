@@ -7,7 +7,7 @@ require 'includes/dbhandler.php';
 <main>
 
     <link rel="stylesheet" href="css/profile.css">
-
+    <div class="backdrop-filter"></div>
     <script>
     function triggered() {
         document.querySelector("#prof-image").click(); // Wait for click event. # means its looking for an id
