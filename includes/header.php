@@ -17,7 +17,7 @@
 </head>
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">APARTMENTS!</a>
+        <a class="navbar-brand" href="#">APARTMENTS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -46,12 +46,18 @@
                     <li class="nav-item">
                         <a class="nav-link" href="includes/logout.php">Logout</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about-us.php">About Us</a>
+                    </li>
                 <?php else: ?>
                     <li class="nav-item">
                         <a class="nav-link" href="/login.php">Login</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/signup.php">Signup</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about-us.php">About Us</a>
                     </li>
                 <?php endif ?>
             </ul>
