@@ -5,7 +5,7 @@ require 'includes/header.php';
 <main>
 
     <link rel="stylesheet" href="css/about.css">
-
+    <div class="backdrop-filter"></div>
     <div class="about">
         <h1>Our Team</h1>
     </div>
@@ -58,7 +58,7 @@ require 'includes/header.php';
 
         <div class="column">
             <div class="card">
-                <img src="images/JacobVila.jpeg" class="center">
+                <img src="images/JacobVila.jpg" class="center">
                 <div class="container">
                     <h2>Jacob Vila</h2>
                     <p>My name is not David.</p>
@@ -66,9 +66,8 @@ require 'includes/header.php';
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="column">
+        <div class="column">
             <div class="card">
                 <img src="images/camPic.jpg" class="center">
                 <div class="container">
@@ -79,6 +78,9 @@ require 'includes/header.php';
             </div>
         </div>
     </div>
+    </div>
+
+   
 
 
 

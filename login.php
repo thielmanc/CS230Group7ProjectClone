@@ -4,13 +4,13 @@
 		<div class="backdrop-filter"></div>
 		<div class="form-panel">
 			<div class="info-panel">
-				<h2>Website name placeholder</h2>
-				<p>We help choosing a place to live in Morgantown by providing a space for current and prospective residents to browse, review, and discuss housing options.</p>
-				<p>New here? Get started by <a href="javascript:show_sign_up_form()">creating an account!</a></p>
+				<h2>Morgantown Housing</h2>
+				<p>We help make choosing a place to live in Morgantown easy by providing a space for current and prospective residents to browse, review, and discuss housing options.</p>
+				<p>New here? Get started by <a href="/signup.php">creating an account</a></p>
 				<div class="flex-fill-space"></div>
 				<footer>
-					<a href="javascript:alert('todo')">About us</a>
-					<a href="javascript:alert('todo')">Browse without an account</a>
+					<a href="/about-us.php">About Us</a>
+					<a href="javascript:alert('todo')">Browse without an account (todo)</a>
 				</footer>
 			</div>
 			<div class="carousel-viewport">
