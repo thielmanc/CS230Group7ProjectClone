@@ -45,3 +45,29 @@ body {
 #map #infowindow-content {
 	display: inline;
 }
+
+#placards.placards {
+	border-left: 1px solid #cacaca;
+	background-color: #f4f4f4;
+	float: right;
+	height: 100%;
+	overflow-y: auto;
+	position: relative;
+	overflow-x: hidden;
+	width: 30%;
+	top: .0625rem;
+}
+
+#placards .placard-opttion .placard-content {
+	position: relative;
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+	display: flex;
+}
+
+#placards .placard-option .placard-content .content-inner {
+	position: relative;
+	display: flex;
+	width: 100%;
+}

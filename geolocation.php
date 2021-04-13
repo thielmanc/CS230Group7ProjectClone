@@ -14,17 +14,37 @@ require 'includes/dbhandler.php';
 
 <body>
     <div style="display: none">
-        <form method="POST" action="includes/geolocation-helper.php">
-            <label for="place-name"></label>
-            <input id="pac-input" class="controls" type="text" placeholder="Enter a location" />
+        <form method="GET" action="includes/geolocation-helper.php">
+            <input id="pac-input" name="query" class="controls" type="text" placeholder="Enter a location" />
         </form>
     </div>
+
+    <section class="placards" id="placards">
+        <div id="placardContainer" class="placardContainer">
+            <ul>
+                <section class="placard-content">
+                    <div class="content-inner">
+                        <div class="apartment-name">
+                            
+                        </div>
+                        <div class="review-info">
+
+                        </div>
+                    </div>
+                </section>
+            </ul>
+        </div>
+    </section>
+
     <div id="map"></div>
+
     <div id="infowindow-content">
         <span id="place-name" class="title"></span><br />
         <strong>Place ID:</strong> <span id="place-id"></span><br />
         <span id="place-address"></span>
     </div>
+
+
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
     <script
