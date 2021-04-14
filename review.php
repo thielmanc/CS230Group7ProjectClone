@@ -28,6 +28,22 @@ require 'includes/review-helper.php';
         </div>
 
     </div>
+<<<<<<< HEAD
+    <span id="review_list"></span>
+</main>
+
+<script type="text/javascript">
+var rateIndex = -1;
+var id = <?php echo $_GET['id'];?>;
+
+
+$(document).ready(function() {
+    //reset_star();
+
+    // get reviews
+    xhr_getter('display-reviews.php?id=', "review_list");
+=======
+>>>>>>> d0c82e3b92a91c22f65a0f56019e6d3391cd2a5d
     
     <h5 style="text-align:center">todo: change this from dark mode to not dark mode</h5>
     <link rel="stylesheet" href="/css/comments.css">
