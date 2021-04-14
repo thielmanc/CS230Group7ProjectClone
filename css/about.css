@@ -1,9 +1,17 @@
 
+body{
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+
 
 main
 {
 	font-family: 'arial';
 	text-align: center;
+	flex-grow: 1;		
+	overflow-y: scroll;
 }
 
 .backdrop-filter {
@@ -16,6 +24,8 @@ main
     background-size: cover;
     width: 100vw;
     height: 100vh;
+	background-attachment: fixed;
+
 }
 
 p
@@ -29,7 +39,6 @@ p
 	padding: 8px;
 	border-radius: 16px;
 	margin: 10px;
-
 }
 
 img

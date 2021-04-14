@@ -5,6 +5,15 @@
     text-align: "center";
 }
 
+.my-auto
+{
+	box-shadow: 0px 4px 8px 0px #b3b3b3f5;
+	padding: 0 16px 0 16px;
+	border-radius: 32px;
+    background-color: rgba(255, 255, 255, 0.8);
+
+}
+
 #prof-display {
     display: block;
     width: 150px;
