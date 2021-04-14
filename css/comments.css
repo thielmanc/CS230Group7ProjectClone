@@ -1,5 +1,9 @@
-.comment-tray {
+.comment-section {
 	font-family: Roboto, Helvetica, Arial, sans-serif;
+	width: 1000px;
+	margin-left: calc(50vw - 500px);
+	background-color: #121212;
+	padding: 16px;
 }
 
 .comment {
@@ -121,6 +125,10 @@
 	font-size: 1.2rem;
 }
 
+.comment-reply-panel {
+	color: #cecece;
+}
+
 .comment-reply-field {
 	width: 100%;
 	border: none;
@@ -136,7 +144,7 @@
 	margin-top: 15px;
 }
 
-.comment-tray button {
+.comment-reply-panel-controls button {
 	border: none;
 	padding: 12px;
 	background-color: green;

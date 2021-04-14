@@ -58,6 +58,7 @@ function report(uid) {
 	xhr.send(`cid=${uid}`);
 }
 
+// set up events for each comment
 document.querySelectorAll('.comment').forEach(function(elem) {
     if(1 /* PLACEHOLDER for if-replies-permitted */) {
 		let mouseOverElem = false;
@@ -115,4 +116,19 @@ document.querySelectorAll('.comment').forEach(function(elem) {
 	actionMenuLink.addEventListener('click', showActionMenu);
 	actionMenu.addEventListener('mouseover', () => document.body.removeEventListener('click', hideActionMenu));
 	actionMenu.addEventListener('mouseout', () => document.body.addEventListener('click', hideActionMenu));
+});
+
+
+// set up events for comment field at bottom of page
+let input = document.querySelector('#main-comment-field');
+let controls = document.querySelector('#main-comment-panel-controls');
+let showCommentControls = () => controls.classList.add('enabled');
+let hideCommentControls = () => controls.classList.remove('enabled');
+
+input.addEventListener('focus', () => {
+	showCommentControls();
+});
+input.addEventListener('blur', () => {
+	if(!input.value)
+		hideCommentControls();			
 });
