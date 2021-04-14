@@ -22,16 +22,20 @@ require 'includes/dbhandler.php';
     <section class="placards" id="placards">
         <div id="placardContainer" class="placardContainer">
             <ul>
-                <section class="placard-content">
-                    <div class="content-inner">
-                        <div class="apartment-name">
-                            
-                        </div>
-                        <div class="review-info">
+                <li>
+                    <section class="placard-content">
+                        <div class="content-inner">
+                            <div class="apartment-name">
+                                <?php
+                                   
+                                ?>
+                            </div>
+                            <div class="review-info">
 
+                            </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
+                </li>
             </ul>
         </div>
     </section>
