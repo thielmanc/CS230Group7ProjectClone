@@ -77,6 +77,16 @@ require 'includes/header.php';
                 </div>
             </div>
         </div>
+        <div class="column">
+            <div class="card">
+                <img src="images/ryanCoxPic.jpg" class="center">
+                <div class="container">
+                    <h2>Ryan Cox</h2>
+                    <p>I am also a team member.</p>
+                    <p>Email: rmc0035@mix.wvu.edu</p>
+                </div>
+            </div>
+        </div>
     </div>
     </div>
 
