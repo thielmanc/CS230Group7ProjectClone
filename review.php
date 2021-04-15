@@ -1,7 +1,7 @@
 <?php require 'includes/header.php' ?>
 <main>
-    <h5 style="text-align:center">todo: change this from dark mode to not dark mode maybe???</h5>
     <link rel="stylesheet" href="/css/comments.css">
+    <div class="backdrop-filter"></div>
     <div class="comment-section">
         <div class="comment-tray">
         <?php
