@@ -4,6 +4,8 @@
 
 <main>
     <link rel="stylesheet" href="css/gallery.css">
+    <div class="backdrop-filter"></div>
+
     <h1>Gallery</h1>
 
     <div class="gallery-container">
