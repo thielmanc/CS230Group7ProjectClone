@@ -14,7 +14,7 @@ if (isset($_POST['review-submit'])) {
     $parentid = $_POST['parentid'];
 
     $sql = "INSERT INTO reviews (itemid, uname, title, reviewtext, revdate, parentid, upvotes, downvotes, upvoters, downvoters, status) VALUES (?, ?, ?, ?, ?, ?, 0, 0, '[]', '[]', 0)";
-    safe_query($sql, 'issssi', $item_id, $uname, $title, $review, $date, $parentid);
+    safe_query($sql, 'issssi', $item_id, $uname, $title, $censoredReview, $date, $parentid);
 
     header("Location: ../review.php?id=$item_id");
     exit();
