@@ -8,8 +8,7 @@ if (isset($_POST['review-submit'])) {
     $uname = $_SESSION['uname']; // define username variable from the session
     $title = $_POST['review-title'];
     $date = date('Y-m-d H:i:s');
-    $censoredReview = censor($review);
-    $censoredReview = $_POST['review'];
+    $censoredReview = censor($_POST['review']);
     $item_id = $_POST['item_id'];
     $parentid = $_POST['parentid'];
 
