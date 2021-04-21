@@ -1,5 +1,6 @@
 <?php 
 require_once 'dbhandler.php';
+require_once 'censorfunction.php';
 date_default_timezone_set('UTC');
 
 if (isset($_POST['review-submit'])) {
@@ -7,7 +8,8 @@ if (isset($_POST['review-submit'])) {
     $uname = $_SESSION['uname']; // define username variable from the session
     $title = $_POST['review-title'];
     $date = date('Y-m-d H:i:s');
-    $review = $_POST['review'];
+    $censoredReview = censor($review);
+    $censoredReview = $_POST['review'];
     $item_id = $_POST['item_id'];
     $parentid = $_POST['parentid'];
 
