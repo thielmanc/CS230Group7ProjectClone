@@ -1,0 +1,26 @@
+.options-tray {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	width: max-content;
+	row-gap: 1px;
+	background-color: #121212;
+	z-index: 99999999;
+}
+
+.options-tray .option {
+	background-color: #2f2f2f;
+	display: inline-flex;
+	padding: 12px;
+	color: #fff;
+	align-items: center;
+	column-gap: 10px;
+}
+
+.options-tray .option.selected {
+	background-color: #656565;
+}
+
+.options-tray .option:hover {
+	background-color: #6682f2;
+}
