@@ -87,8 +87,39 @@ async function fetch_suggestions(substr) {
 	}
 }
 
-// set up events for each comment
-document.querySelectorAll('.comment').forEach(function(elem) {
+async function commentCallback(parent) {
+	let elem = document.querySelector(`.comment[data-uid="${parent}"]`);
+	let replyFieldClone = elem.querySelector('.comment-reply-field').cloneNode(true); // clone nodes so changes made below aren't seen in the DOM
+	replyFieldClone.querySelectorAll('.user-mention').forEach(mention => {
+		mention.innerText = `@{ ${mention.innerText.substring(1)} }` // wrap all mentions in a @{ username } format - this makes it easier for the backend to parse out what is intended to be a mention
+	});
+	let commentText = replyFieldClone.innerText;
+	let response = await (await comment(commentText, parent, elem.querySelector(`#allow-replies--${parent}`).checked)).json();
+	if(response.success) {
+		let parser = document.createElement('div');
+		parser.innerHTML = response.html;
+		initCommentElem(parser.querySelector('.comment'));
+		elem.querySelector('.reply-tray').appendChild(parser.querySelector('.comment'));
+	} else {
+		console.log('Error posting comment: ' + response.error);
+		alert('An error occured posting your comment');
+	}
+}
+
+// send comment POST to server
+function comment(text, parent, allowReplies) {
+	return fetch('/includes/review-helper.php', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded'
+		},
+		body: `item_id=${encodeURIComponent(new URLSearchParams(window.location.search).get('id'))}&review=${encodeURIComponent(text)}&parentid=${parent}&allow-replies=${allowReplies}&review-submit=true`
+		}
+	);
+}
+
+// sets up all events for a comment element, such as click and hover events
+function initCommentElem(elem) {
     if(1 /* PLACEHOLDER for if-replies-permitted */) {
 		let mouseOverElem = false;
 		let mouseOverReplyPanel = false;
@@ -206,8 +237,6 @@ document.querySelectorAll('.comment').forEach(function(elem) {
 		});
 		// -------- finish setup user mention and autocomplete system --------
 
-		input.addEventListener('input', () => elem.querySelector('.review-hidden-input').value = input.innerText)
-
 		input.addEventListener('input', () => { input.style.height = ''; input.style.height = input.scrollHeight + 'px'; }); // fix textarea height
 	}
 	
@@ -226,8 +255,10 @@ document.querySelectorAll('.comment').forEach(function(elem) {
 	actionMenuLink.addEventListener('click', showActionMenu);
 	actionMenu.addEventListener('mouseover', () => document.body.removeEventListener('click', hideActionMenu));
 	actionMenu.addEventListener('mouseout', () => document.body.addEventListener('click', hideActionMenu));
-});
+}
 
+// set up events for each comment
+document.querySelectorAll('.comment').forEach(initCommentElem);
 
 // set up events for comment field at bottom of page
 let input = document.querySelector('#main-comment-field');
