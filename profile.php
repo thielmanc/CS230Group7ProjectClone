@@ -1,6 +1,6 @@
 <?php
 require 'includes/header.php';
-require 'includes/dbhandler.php';
+require_once 'includes/dbhandler.php';
 
 ?>
 

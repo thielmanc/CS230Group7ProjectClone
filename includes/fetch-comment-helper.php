@@ -12,6 +12,11 @@ function replies_to($cid) {
     yield from transform($stmt);
 }
 
+function comment_with_id($cid) {
+    $stmt = safe_stmt_exec('SELECT * FROM reviews WHERE revid = ?', 'i', $cid);
+    yield from transform($stmt);
+}
+
 function transform($stmt) {
     $stmt = $stmt->get_result();
     while($comment = $stmt->fetch_assoc()) {

@@ -2,7 +2,7 @@
 // handles upvoting/downvoting
 // probably vulnerable to race conditions but oh well
 
-require 'require-session-start.php';
+require_once '../includes/require-session-start.php';
 header('Content-Type: application/json');
 
 function error($reason) {
@@ -19,7 +19,7 @@ $cid = $_POST['cid'];
 if(!isset($cid))
     error('comment id not set');
 
-require 'dbhandler.php';
+require_once '../includes/dbhandler.php';
 
 $data = safe_query('SELECT upvoters, downvoters, upvotes, downvotes FROM reviews WHERE revid=?', 'i', $cid);
 $upvoters = json_decode($data['upvoters']);

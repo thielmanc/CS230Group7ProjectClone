@@ -1,5 +1,5 @@
 <?php
-require 'dbhandler.php';
+require_once 'dbhandler.php';
 session_start();
 
 define('KB', 1024);

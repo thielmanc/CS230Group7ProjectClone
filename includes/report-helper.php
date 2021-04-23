@@ -2,7 +2,7 @@
 // handles requests to report a comment
 // right now, this doesnt limit how many times a single person can report, but thats not a huge deal
 
-require 'require-session-start.php';
+require_once 'require-session-start.php';
 header('Content-Type: application/json');
 
 if(!isset($_POST['cid'])) {
@@ -13,7 +13,7 @@ if(!isset($_POST['cid'])) {
     exit();
 }
 
-require 'dbhandler.php';
+require_once 'dbhandler.php';
 
 safe_query('UPDATE reviews SET status = status + 1 WHERE revid = ?', 'i', $_POST['cid']);
 

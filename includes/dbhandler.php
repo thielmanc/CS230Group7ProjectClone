@@ -44,3 +44,10 @@ function safe_stmt_exec($query, $types, ...$params) {
     $stmt->execute();
     return $stmt;
 } 
+
+function unsafe_query($query) {
+    global $conn;
+    if(!$conn)
+        die('Error: No connection to database');
+    return mysqli_query($conn, $query)->fetch_assoc();
+}
