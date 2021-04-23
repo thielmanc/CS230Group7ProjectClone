@@ -171,6 +171,12 @@ main
 	margin-top: 15px;
 }
 
+.comment-reply-field:empty:before {
+	display: block;
+	position: relative;
+	content: 'Post a reply...';
+}
+
 .comment-reply-panel-controls button {
 	border: none;
 	padding: 12px;
@@ -186,12 +192,8 @@ main
 	float: right;
 }
 
-.hide-until-enabled {
-	display: none;
-}
-
-.enabled {
-	display: block;
+.hide-until-enabled:not(.enabled) {
+	display: none !important;
 }
 
 .reply-tray:not(:empty) {
@@ -206,4 +208,8 @@ main
 .info {
 	font-style: italic;
 	color: #535353;
+}
+
+.user-mention {
+	color: #6682f2;
 }

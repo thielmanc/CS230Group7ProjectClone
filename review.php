@@ -38,11 +38,12 @@
                     <p class="comment-text"><?= htmlspecialchars($data['text']) ?></p>
                     <?php if($data['replies_permitted']): ?>
                     <form class="comment-reply-panel hide-until-enabled" action="includes/review-helper.php" method="POST">
-                        <textarea class="comment-reply-field" name="review" placeholder="Post a reply..."></textarea>
+                        <div class="comment-reply-field" contenteditable></div>
                         <div class="comment-reply-panel-controls hide-until-enabled">
                             <input type="checkbox" id="allow-replies--<?= $data['cid'] ?>" name="allow-replies" checked><label for="allow-replies--<?= $data['cid'] ?>">Allow replies</label>
                             <button type="submit" name="review-submit">POST</button>
                         </div>
+                        <input type="hidden" name="review" class="review-hidden-input" value="">
                         <input type="hidden" name="item_id" value="<?= htmlspecialchars($_GET['id']) ?>">
                         <input type="hidden" name="parentid" value="<?= $data['cid'] ?>">
                     </form>
@@ -74,4 +75,7 @@
         </div>
         <script src="/js/comments.js"></script>
     </div>
+    <link rel="stylesheet" href="/css/options-tray.css">
+    <script src="/js/options-tray.js"></script>
+    <div class="options-tray user-mention-autocomplete-tray hide-until-enabled"></div>
 </main>
