@@ -21,7 +21,7 @@ function downvote(uid) {
 
 function send_vote(uid, vote) {
 	let xhr = new XMLHttpRequest();
-	xhr.open('POST', '/includes/vote-helper.php', true);
+	xhr.open('POST', '/api/vote.php', true);
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xhr.responseType = 'json';
 	xhr.onreadystatechange = function() {
@@ -71,7 +71,7 @@ async function autocomplete_users(substr) {
 }
 
 async function fetch_suggestions(substr) {
-	let response = await (await fetch('/includes/user-autocomplete-suggestions.php', {
+	let response = await (await fetch('/api/user-autocomplete-suggestions.php', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/x-www-form-urlencoded',
@@ -88,18 +88,21 @@ async function fetch_suggestions(substr) {
 }
 
 async function commentCallback(parent) {
-	let elem = document.querySelector(`.comment[data-uid="${parent}"]`);
+	let elem = parent ? document.querySelector(`.comment[data-uid="${parent}"]`) : document.querySelector('#main-comment-panel');
 	let replyFieldClone = elem.querySelector('.comment-reply-field').cloneNode(true); // clone nodes so changes made below aren't seen in the DOM
 	replyFieldClone.querySelectorAll('.user-mention').forEach(mention => {
 		mention.innerText = `@{ ${mention.innerText.substring(1)} }` // wrap all mentions in a @{ username } format - this makes it easier for the backend to parse out what is intended to be a mention
 	});
 	let commentText = replyFieldClone.innerText;
-	let response = await (await comment(commentText, parent, elem.querySelector(`#allow-replies--${parent}`).checked)).json();
+	let response = await (await comment(commentText, parent, elem.querySelector(`.allow-replies-input`).checked)).json();
 	if(response.success) {
 		let parser = document.createElement('div');
 		parser.innerHTML = response.html;
 		initCommentElem(parser.querySelector('.comment'));
-		elem.querySelector('.reply-tray').appendChild(parser.querySelector('.comment'));
+		if(parent)
+			elem.querySelector('.reply-tray').insertBefore(parser.querySelector('.comment'), elem.querySelector('.reply-tray').firstChild);
+		else
+			document.querySelector('.comment-tray').appendChild(parser.querySelector('.comment'));
 	} else {
 		console.log('Error posting comment: ' + response.error);
 		alert('An error occured posting your comment');
@@ -113,9 +116,90 @@ function comment(text, parent, allowReplies) {
 		headers: {
 			'Content-Type': 'application/x-www-form-urlencoded'
 		},
-		body: `item_id=${encodeURIComponent(new URLSearchParams(window.location.search).get('id'))}&review=${encodeURIComponent(text)}&parentid=${parent}&allow-replies=${allowReplies}&review-submit=true`
+		body: `item_id=${encodeURIComponent(new URLSearchParams(window.location.search).get('id'))}&review=${encodeURIComponent(text)}${parent ? '&parentid=' + parent : ''}&allow-replies=${allowReplies}&review-submit=true`
 		}
 	);
+}
+
+// sets up all the events necessary to get the tagging users system working
+// takes a .comment-reply-field input parameter (either in a comment or the bottom of the page)
+function initMentionSystem(input) {
+	input.addEventListener('input', evt => {
+		let range = window.getSelection().getRangeAt(0);
+		let textNode = range.commonAncestorContainer; // the node being typed into
+		let tray = document.querySelector('.user-mention-autocomplete-tray');
+
+		function hide_tray() {
+			tray.unfocus();
+			tray.classList.remove('enabled');
+			tray.removeEventListener('selection', tray.selectionCallback);
+		}
+
+		if(!textNode.parentElement.classList.contains('user-mention')) {
+			// user is not typing into an existing user-mention element - create one if they type an @ symbol
+			hide_tray();
+			if(evt.data == '@') {
+				let index = range.startOffset; // index of the @ sign in the node being typed in
+				let userMentionNode = document.createElement('span');
+				userMentionNode.classList.add('user-mention');
+				userMentionNode.innerText = '@';
+				range.insertNode(userMentionNode);
+				
+				// fix cursor position
+				range.setStart(userMentionNode, 1);
+				
+				textNode.data = textNode.data.substring(0, index - 1); // remove @ sign typed by user
+			}
+		} else {
+			// user is typing into a user-mention element - setup autocomplete events
+			let userMentionElement = textNode.parentElement;
+			
+			function show_tray(userMentionElement) {
+				tray.focus();
+				tray.classList.add('enabled');
+				
+				// adjust positioning of tray
+				let elemLeft = userMentionElement.getBoundingClientRect().left;
+				let elemTop = userMentionElement.getBoundingClientRect().top;
+				tray.style.left = (elemLeft + window.scrollX) + 'px';
+				tray.style.top = (elemTop + window.scrollY + 24) + 'px';
+
+
+				tray.removeEventListener('selection', tray.selectionCallback);
+				tray.selectionCallback = evt => {
+					let autospace = document.createTextNode(' '); // automatically insert space and bring cursor out of user-mention node when user makes choice from suggestions
+					userMentionElement.parentNode.insertBefore(autospace, userMentionElement.nextSibling);
+					range.setStart(autospace, 1);
+					userMentionElement.innerText = '@' + evt.detail.getAttribute('data-username');
+					hide_tray();
+				}
+				tray.addEventListener('selection', tray.selectionCallback)
+			}
+			
+			show_tray(userMentionElement);
+			autocomplete_users(textNode.data.substring(1)); // remove @ sign from username when autocompleting
+			
+			// if user enters whitespace, exit user-mention element
+			if(evt.inputType == 'insertLineBreak' || evt.inputType == 'insertParagraph' || evt.data == ' ') {
+				hide_tray();
+				let index = range.startOffset; // index of last char typed
+				let remaining = textNode.data.substring(index - 1); // part of user-mention element being separated, if any
+				textNode.data = textNode.data.substring(0, index - 1);
+				
+				// insert rest of username after user-mention element
+				let remainingTextNode = document.createTextNode(remaining);
+				userMentionElement.parentNode.insertBefore(remainingTextNode, userMentionElement.nextSibling);
+				
+				// fix cursor position
+				range.setStart(remainingTextNode, 1);
+				
+				// edge case - stop highlighting if username is now empty
+				if(userMentionElement.innerText == '@') {
+					userMentionElement.classList.remove('user-mention');
+				}
+			}
+		}
+	});
 }
 
 // sets up all events for a comment element, such as click and hover events
@@ -159,82 +243,7 @@ function initCommentElem(elem) {
 		});
 		
 		// -------- setup user mention and autocomplete system --------
-		input.addEventListener('input', evt => {
-			let range = window.getSelection().getRangeAt(0);
-			let textNode = range.commonAncestorContainer; // the node being typed into
-			let tray = document.querySelector('.user-mention-autocomplete-tray');
-
-			function hide_tray() {
-				tray.unfocus();
-				tray.classList.remove('enabled');
-				tray.removeEventListener('selection', tray.selectionCallback);
-			}
-
-			if(!textNode.parentElement.classList.contains('user-mention')) {
-				// user is not typing into an existing user-mention element - create one if they type an @ symbol
-				hide_tray();
-				if(evt.data == '@') {
-					let index = range.startOffset; // index of the @ sign in the node being typed in
-					let userMentionNode = document.createElement('span');
-					userMentionNode.classList.add('user-mention');
-					userMentionNode.innerText = '@';
-					range.insertNode(userMentionNode);
-					
-					// fix cursor position
-					range.setStart(userMentionNode, 1);
-					
-					textNode.data = textNode.data.substring(0, index - 1); // remove @ sign typed by user
-				}
-			} else {
-				// user is typing into a user-mention element - setup autocomplete events
-				let userMentionElement = textNode.parentElement;
-				
-				function show_tray(userMentionElement) {
-					tray.focus();
-					tray.classList.add('enabled');
-					
-					// adjust positioning of tray
-					let elemLeft = userMentionElement.getBoundingClientRect().left;
-					let elemTop = userMentionElement.getBoundingClientRect().top;
-					tray.style.left = (elemLeft + window.scrollX) + 'px';
-					tray.style.top = (elemTop + window.scrollY + 24) + 'px';
-
-
-					tray.removeEventListener('selection', tray.selectionCallback);
-					tray.selectionCallback = evt => {
-						let autospace = document.createTextNode(' '); // automatically insert space and bring cursor out of user-mention node when user makes choice from suggestions
-						userMentionElement.parentNode.insertBefore(autospace, userMentionElement.nextSibling);
-						range.setStart(autospace, 1);
-						userMentionElement.innerText = '@' + evt.detail.getAttribute('data-username');
-						hide_tray();
-					}
-					tray.addEventListener('selection', tray.selectionCallback)
-				}
-				
-				show_tray(userMentionElement);
-				autocomplete_users(textNode.data.substring(1)); // remove @ sign from username when autocompleting
-				
-				// if user enters whitespace, exit user-mention element
-				if(evt.inputType == 'insertLineBreak' || evt.inputType == 'insertParagraph' || evt.data == ' ') {
-					hide_tray();
-					let index = range.startOffset; // index of last char typed
-					let remaining = textNode.data.substring(index - 1); // part of user-mention element being separated, if any
-					textNode.data = textNode.data.substring(0, index - 1);
-					
-					// insert rest of username after user-mention element
-					let remainingTextNode = document.createTextNode(remaining);
-					userMentionElement.parentNode.insertBefore(remainingTextNode, userMentionElement.nextSibling);
-					
-					// fix cursor position
-					range.setStart(remainingTextNode, 1);
-					
-					// edge case - stop highlighting if username is now empty
-					if(userMentionElement.innerText == '@') {
-						userMentionElement.classList.remove('user-mention');
-					}
-				}
-			}
-		});
+		initMentionSystem(input);
 		// -------- finish setup user mention and autocomplete system --------
 
 		input.addEventListener('input', () => { input.style.height = ''; input.style.height = input.scrollHeight + 'px'; }); // fix textarea height
@@ -273,3 +282,5 @@ input.addEventListener('blur', () => {
 	if(!input.innerText)
 		hideCommentControls();			
 });
+
+initMentionSystem(input);

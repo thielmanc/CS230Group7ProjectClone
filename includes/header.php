@@ -8,6 +8,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
@@ -68,4 +69,18 @@
             </form>
         </div>
     </nav>
+    <link rel="stylesheet" href="/css/options-tray.css">
+    <script src="/js/options-tray.js"></script>
+    <div class="options-tray notification-tray">
+        <?php /* ----- DOESNT WORK YET DUE TO require_once ERROR -----
+        if(isset($_SESSION['uid'])) {
+            require_once 'fetch-notifications.php';
+            require_once '/home/as10/Desktop/project/WVU_CS230_2021.01_Group07/view-components/notification.php'; // TODO: fix include issue
+            //require_once '../view-components/notification.php';
+
+            foreach(mention_notifications() as $notification)
+                echo_mention_notification($notification);
+        } */
+        ?>
+    </div>
 </header>

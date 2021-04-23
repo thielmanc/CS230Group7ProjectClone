@@ -213,3 +213,8 @@ main
 .user-mention {
 	color: #6682f2;
 }
+
+.user-mention-autocomplete-tray .option {
+	align-items: center;
+	column-gap: 10px;
+}

@@ -5,7 +5,7 @@ function echo_comment($data) {
     ]
 
     ?>
-    <div data-uid="<?= $data['cid'] ?>" data-vote-state="<?= $data['vote_state'] ?>" class="comment">
+    <div id="comment--<?= $data['cid'] ?>" data-uid="<?= $data['cid'] ?>" data-vote-state="<?= $data['vote_state'] ?>" class="comment">
         <div class="comment-content">
             <header>
                 <div class="rating-container">
@@ -31,7 +31,7 @@ function echo_comment($data) {
             <div class="comment-reply-panel hide-until-enabled">
                 <div class="comment-reply-field" contenteditable></div>
                 <div class="comment-reply-panel-controls hide-until-enabled">
-                    <input type="checkbox" id="allow-replies--<?= $data['cid'] ?>" checked><label for="allow-replies--<?= $data['cid'] ?>">Allow replies</label>
+                    <input type="checkbox" id="allow-replies--<?= $data['cid'] ?>" class="allow-replies-input" checked><label for="allow-replies--<?= $data['cid'] ?>">Allow replies</label>
                     <button onclick="commentCallback(<?= $data['cid'] ?>)">POST</button>
                 </div>
             </div>
