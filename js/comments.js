@@ -63,11 +63,30 @@ function report(uid) {
 	xhr.send(`cid=${uid}`);
 }
 
+async function deleteComment(cid) {
+	let response = await (await fetch('/api/delete-comment.php', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded'
+		},
+		body: `cid=${cid}`
+	})).json();
+
+	if(response.success) {
+		document.querySelector(`[data-uid="${cid}"]`).remove();
+	} else {
+		alert('An error occurred deleting this comment');
+		console.log('Error deleting comment: ' + response.error);
+	}
+}
+
 async function autocomplete_users(substr) {
 	let options_html = '';
 	for(let data of await fetch_suggestions(substr))
 		options_html += `<div class="option" data-username="${sanitize(data.username)}"><img class="profile-picture" src="${sanitize(data.user_image)}">${sanitize(data.username)}</div>`;
-	document.querySelector('.user-mention-autocomplete-tray').innerHTML = options_html;
+	let tray = document.querySelector('.user-mention-autocomplete-tray');
+	tray.innerHTML = options_html;
+	tray.next();
 }
 
 async function fetch_suggestions(substr) {
@@ -102,10 +121,11 @@ async function commentCallback(parent) {
 		if(parent)
 			elem.querySelector('.reply-tray').insertBefore(parser.querySelector('.comment'), elem.querySelector('.reply-tray').firstChild);
 		else
-			document.querySelector('.comment-tray').appendChild(parser.querySelector('.comment'));
+			document.querySelector('.comment-tray').insertBefore(parser.querySelector('.comment'), document.querySelector('.comment-tray').firstChild);
+		elem.querySelector('.comment-reply-field').innerHTML = '';
 	} else {
 		console.log('Error posting comment: ' + response.error);
-		alert('An error occured posting your comment');
+		alert('An error occurred posting your comment');
 	}
 }
 
@@ -125,6 +145,11 @@ function comment(text, parent, allowReplies) {
 // takes a .comment-reply-field input parameter (either in a comment or the bottom of the page)
 function initMentionSystem(input) {
 	input.addEventListener('input', evt => {
+		if(input.innerText == '\n') {
+			// fix for Firefox keeping <br/> element in field if user deletes all content
+			input.innerHTML = ''
+		}
+
 		let range = window.getSelection().getRangeAt(0);
 		let textNode = range.commonAncestorContainer; // the node being typed into
 		let tray = document.querySelector('.user-mention-autocomplete-tray');

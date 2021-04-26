@@ -23,7 +23,9 @@ function echo_comment($data) {
                 <a class="user-action-menu-link">⋮</a>
                 <div class="user-action-menu hide-until-enabled">
                     <a href="javascript:report('<?= $data['cid'] ?>')">Report...</a>
-                    <a href="javascript:alert('doesnt do anything yet');void 0;">Delete...</a>
+                    <?php if($_SESSION['uname'] === $data['author']): ?>
+                    <a href="javascript:deleteComment(<?= $data['cid'] ?>)">Delete...</a>
+                    <?php endif ?>
                 </div>
             </header>
             <p class="comment-text"><?= preg_replace('/@\{ ([\S]+) \}/', "<span class=\"user-mention\">@$1</span>", htmlspecialchars($data['text'])) ?></p>

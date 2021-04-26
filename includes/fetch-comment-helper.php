@@ -1,6 +1,5 @@
 <?php
 require_once 'dbhandler.php';
-session_start();
 
 function comments_on($item_id) {
     $stmt = safe_stmt_exec('SELECT * FROM reviews WHERE itemid = ? AND parentid IS NULL ORDER BY upvotes - downvotes DESC', 'i', $item_id);
