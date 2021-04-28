@@ -1,40 +1,171 @@
-.center-me {
-    display: flex;
-    justify-content: center;
-    padding: 40px;
-    text-align: "center";
+:root {
+    --pfp-size: 10vw;
+    --pfp-outline-buffer: 30px;
+    --pfp-buffer-right: 40px;
+    --horiz-line-top: 7.2vw;
+    --horiz-line-thickness: 3px;
+    --horiz-line-color: mediumseagreen /* #6682f2 */;
 }
 
-.my-auto
-{
-	box-shadow: 0px 4px 8px 0px #b3b3b3f5;
-	padding: 0 16px 0 16px;
-	border-radius: 32px;
-    background-color: rgba(255, 255, 255, 0.8);
-
+body {
+    margin: 0px;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    height: 100vh;
 }
 
-#prof-display {
-    display: block;
-    width: 150px;
-    margin: 10px auto;
-    border-radius: 50%;
-}
-
-#uname-style {
-    font-size: 20px;
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-    font-weight: bold;
+main {
+    height: 100vh;
+    margin: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 15vw;
+    padding-right: 15vw;
+    position: relative;
 }
 
 .backdrop-filter {
     position: absolute;
     left: 0px;
     top: 0px;
-    z-index: -1;
+    z-index: -3;
     filter: blur(5px);
-    background-image: url('/images/background-morgantown-1.jpg');
-    background-size: cover;
+    background-image: url('background-morgantown-1.jpg');
     width: 100vw;
     height: 100vh;
 }
+
+.profile-header {
+    display: flex;
+    column-gap: var(--pfp-buffer-right);
+    margin-bottom: 32px;
+}
+
+.pfp-container {
+    width: calc(var(--pfp-size) + var(--pfp-outline-buffer));
+    height: calc(var(--pfp-size) + var(--pfp-outline-buffer));
+    display: inline-block;
+    position: relative;
+}
+
+.profile-picture {
+    position: relative;
+    left: calc(var(--pfp-outline-buffer) / 2);
+    top: calc(-100% + var(--pfp-outline-buffer) / 2);
+    width: var(--pfp-size);
+    height: var(--pfp-size);
+    clip-path: circle(50% at center);
+}
+
+.above-line-bg {
+    background-color: #2f2f2f;
+    width: 100%;
+    height: var(--horiz-line-top);
+    position: absolute;
+    left: 0px;
+    z-index: -3;
+    border-bottom: var(--horiz-line-thickness) solid var(--horiz-line-color);
+}
+
+.circle-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.circle-fill {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.circle-outline {
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(0% 100%, 0% var(--horiz-line-top), 100% var(--horiz-line-top), 100% 100%);
+}
+
+.right-content {
+    flex: 1 1 0;
+}
+
+.above-line-content {
+    display: flex;
+    align-items: flex-end;
+    height: var(--horiz-line-top);
+}
+
+.above-line-content > * {
+    margin-bottom: 20px;
+}
+
+.below-line-content {
+    display: flex;
+    height: calc(var(--pfp-size) + var(--pfp-outline-buffer) - var(--horiz-line-top));
+}
+
+.bio {
+    font-size: larger;
+    font-style: italic;
+    color: #626262;
+    width: 700px;
+}
+
+.username {
+    display: inline;
+    position: relative;
+    font-size: 2.4rem;
+    color: #cecece;
+}
+
+.flex-fill-space {
+    flex-grow: 1;
+}
+
+.send-message-button, .edit-profile-button, .save-changes-button {
+    display: block;
+    background-color: rgba(0, 0, 0, 0);
+    border: 2px solid green;
+    padding: 8px;
+    border-radius: 16px;
+    width: 200px;
+    color: green;
+    font-size: large;
+    cursor: pointer;
+    transition: background-color 0.2s linear;
+    text-decoration: none;
+    text-align: center;
+}
+    
+:is(.send-message-button, .edit-profile-button, .save-changes-button):hover {
+    color: white;
+    background-color: green;
+}
+
+.my-comments-panel {
+    width: calc(100% - (var(--pfp-size) + var(--pfp-outline-buffer) + var(--pfp-buffer-right)));
+    float: right;
+}
+
+.no-comments-placeholder {
+    font-size: large;
+    color: #808080;
+    text-align: center;
+}
+
+.edit-pfp-label {
+    position: absolute;
+    top: 65%;
+    width: max(40%, 90px);
+    left: calc(50% - (max(40%, 90px) + 6px * 2) / 2);
+    text-align: center;
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    padding: 6px;
+    font-size: 0.9rem;
+}
+
+.image-upload-input {
+    display: none;
+}
+

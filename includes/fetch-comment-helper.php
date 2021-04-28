@@ -1,5 +1,6 @@
 <?php
 require_once 'dbhandler.php';
+require_once 'fetch-user-info.php';
 
 function comments_on($item_id) {
     $stmt = safe_stmt_exec('SELECT * FROM reviews WHERE itemid = ? AND parentid IS NULL ORDER BY upvotes - downvotes DESC', 'i', $item_id);
@@ -23,14 +24,14 @@ function transform($stmt) {
             'cid' => $comment['revid'],
             'rating' => $comment['upvotes'] - $comment['downvotes'],
             'time' => $comment['revdate'],
-            'author_image' => safe_query('SELECT pfpurl FROM users WHERE uname = ?', 's', $comment['uname'])['pfpurl'],
-            'author_url' => 'javascript:alert("doesnt_do_anything_yet_should_eventually_go_to_profile_page")', # PLACEHOLDER
+            'author_image' => fetch_user_by_username($comment['uname'])['profile_picture'],
+            'author_url' => "/profile.php?user={$comment['uname']}",
             'author' => $comment['uname'],
             'role' => 'resident', # PLACEHOLDER
             'text' => $comment['reviewtext'],
             'replies_permitted' => true, # PLACEHOLDER
-            'vote_state' => in_array($_SESSION['uid'], json_decode($comment['upvoters'])) ? 'upvote' : 
-                            (in_array($_SESSION['uid'], json_decode($comment['downvoters'])) ? 'downvote' : 'none')
+            'vote_state' => in_array($_SESSION['user']['uid'], json_decode($comment['upvoters'])) ? 'upvote' : 
+                            (in_array($_SESSION['user']['uid'], json_decode($comment['downvoters'])) ? 'downvote' : 'none')
         );
     }
 }
