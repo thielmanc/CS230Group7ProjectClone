@@ -83,7 +83,7 @@ async function deleteComment(cid) {
 async function autocomplete_users(substr) {
 	let options_html = '';
 	for(let data of await fetch_suggestions(substr))
-		options_html += `<div class="option" data-username="${sanitize(data.username)}"><img class="profile-picture" src="${sanitize(data.user_image)}">${sanitize(data.username)}</div>`;
+		options_html += `<div class="option autocomplete-suggestion" data-username="${sanitize(data.username)}"><img class="profile-picture" src="${sanitize(data.user_image)}">${sanitize(data.username)}</div>`;
 	let tray = document.querySelector('.user-mention-autocomplete-tray');
 	tray.innerHTML = options_html;
 	tray.next();

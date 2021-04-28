@@ -26,4 +26,27 @@ body {
 .notification {
     flex-direction: column;
     align-items: baseline;
+    text-decoration: none;
+    padding: 20px;
+    row-gap: 6px;
+}
+
+.notification-tray {
+    right: 16px;
+    top: 32px;
+    max-height: 400px;
+    overflow-y: scroll;
+}
+
+.notification-title {
+    font-size: larger;
+    color: var(--theme-accent-green);
+}
+
+.notification-desc {
+    color: #b5b5b5;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    max-width: 40ch;
+    word-break: break-all;
 }
