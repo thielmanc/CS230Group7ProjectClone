@@ -11,7 +11,7 @@ if (isset($_POST['gallery-submit'])) {
     $file_tmp_name = $file['tmp_name'];
     $file_error = $file['error'];
     $file_size = $file['size'];
-
+    $address = $_POST['address'];
     $title = $_POST['title'];
     $descript = $_POST['descript'];
 
@@ -35,14 +35,14 @@ if (isset($_POST['gallery-submit'])) {
         $new_name = uniqid('', true).".".$ext;          // random prefix. extra "." adds entropy, more unique
         $destination = '../gallery/'.$new_name;
         $sqldest = "/gallery/$new_name";
-        $sql = "INSERT INTO gallery (title, descript, picpath) VALUES (?,?,?)";
+        $sql = "INSERT INTO gallery (title, descript, picpath, address) VALUES (?,?,?,?)";
         $stmt = mysqli_stmt_init($conn);
         
         if (!mysqli_stmt_prepare($stmt, $sql)) {
             header("Location: ../admin.php?error=SQLInjection");
             exit();
         } else {
-            mysqli_stmt_bind_param($stmt, "sss", $title, $descript, $sqldest);
+            mysqli_stmt_bind_param($stmt, "ssss", $title, $descript, $sqldest, $address);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_store_result($stmt);
             move_uploaded_file($file_tmp_name, $destination);

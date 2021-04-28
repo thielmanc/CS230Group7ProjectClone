@@ -178,7 +178,9 @@ require_once 'includes/dbhandler.php';
                                 <div class="form-group">
                                     <input type="text" name="title" class="form-control" placeholder="title">
                                 </div>
-
+                                <div class="form-group">
+                                    <input type="text" name="address" class="form-control" placeholder="address">
+                                 </div>
                                 <!-- Descrip of Image-->
                                 <div class="form-group">
                                     <textarea name="descript" id="bio" cols="30" rows="10" placeholder="Description"
