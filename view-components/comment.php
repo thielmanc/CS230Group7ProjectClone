@@ -23,7 +23,7 @@ function echo_comment($data) {
                 <a class="user-action-menu-link">⋮</a>
                 <div class="user-action-menu hide-until-enabled">
                     <a href="javascript:report('<?= $data['cid'] ?>')">Report...</a>
-                    <?php if($_SESSION['uname'] === $data['author']): ?>
+                    <?php if($_SESSION['user']['username'] === $data['author']): ?>
                     <a href="javascript:deleteComment(<?= $data['cid'] ?>)">Delete...</a>
                     <?php endif ?>
                 </div>

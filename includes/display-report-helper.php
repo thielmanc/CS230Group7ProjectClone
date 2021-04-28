@@ -20,5 +20,3 @@ if (isset($_POST['remove-submit'])) {
     header("Location: ../admin.php?success=removed");
     exit();
 }
-
-

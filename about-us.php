@@ -93,7 +93,7 @@ require 'includes/header.php';
             <div class="card">
                 <img src="images/doge-coin.gif" class="center">
                 <div class="container">
-                    <h2>Maximillian Campbell</h2>
+                    <h3>Maximillian Campbell</h2>
                     <p>Actually a Bot</p>
                     <p>Email: mbc0034@mix.wvu.edu</p>
                 </div>

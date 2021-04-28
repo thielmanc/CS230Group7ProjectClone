@@ -142,81 +142,87 @@ require_once 'includes/dbhandler.php';
                 </div>
             </div>
 
-            <hr>
 
             <a name="reports"><!-- Internal link destination def-->
                 <div class="w3-container">
             </a>
             <h3 class="w3-light-green w3-padding">Reports</h3>
-                    <div>
-                        <!-- Call on other file to display reviews that were flagged for review-->
+                    
+                    <!-- Call on other file to display reviews that were flagged for review-->
+                     <div class="gallery-container">
                         <?php require 'display-reports.php' ?>
                     </div>
+                    
                 </div>
 
-            <hr>
 
             <a name="uploader"><!-- Internal link destination def-->
                 <div class="w3-container">
             </a>
             <h3 class="w3-light-green w3-padding">Gallery Uploader</h3>
 
-                    <div class="h-50 center-me text-center">
-                        <div class="my-auto">
+            <div class="w3-display-container" style="width: 100%; height: 750px">
+                       <div class="w3-display-middle">
                             <!-- Form for gallery upload on admin page-->
                             <form action="includes/gallery-helper.php" method="POST" enctype="multipart/form-data">
 
                                 <!--Image to be used-->
                                 <div class="form-group">
-                                    <img src="images/doge.jpg" alt="Image Upload" onclick="triggered();" id="gallery-display">
-                                    <input type="text" name="title" class="form-control" placeholder="title">
+                                    <img class="galUpImg" src="images/doge.jpg" alt="Image Upload" onclick="triggered();" id="gallery-display">
+                                    
                                     <input type="file" name="gallery-image" id="gallery-image" onchange="preview(this)"
                                         class="form-control" style="display: none;">
                                 </div>
 
                                 <!-- Title of Image-->
                                 <div class="form-group">
+                                    <input type="text" name="title" class="form-control" placeholder="title">
+                                </div>
+
+                                <!-- Descrip of Image-->
+                                <div class="form-group">
                                     <textarea name="descript" id="bio" cols="30" rows="10" placeholder="Description"
-                                        style="text-align: center;"></textarea>
+                                    class="form-control" style="text-align: center;"></textarea>
                                 </div>
 
                                 <!--Submit button-->
                                 <div class="form-group">
                                     <button type="submit" name="gallery-submit"
-                                        class="btn btn-outline-success btn-lg btn-block">upload</button>
+                                         class="form-control">upload</button>
                                 </div>
 
                             </form>
                         </div>
-                    </div>
+        </div>
                 </div>
 
-            <hr>
 
             <a name="preview"><!-- Internal link destination def-->
                 <div class="w3-container">
             </a>
-            <h3 class="w3-light-green w3-padding">Gallery Preview</h3>
+             <h3 class="w3-light-green w3-padding">Gallery Preview</h3>
 
-                    <div style="height: 300px"><!-- Unfinished-->
-                        Work in progress...
+            
+             <link rel="stylesheet" href="css/admin.css">
+                    <div class="backdrop-filter"></div>
+                            <div class="gallery-container">
+                                <?php 
+                                    include_once 'includes/dbhandler.php';
+                                    $sql = "SELECT * FROM gallery ORDER BY upload_date DESC";
+                                    $query = mysqli_query($conn, $sql);  // Execute sql statement 
+
+                                    while ($row = mysqli_fetch_assoc($query)) { // While there is still a row in our gallery, keep displaying
+                                        echo '<div class="card">
+                                                <a href="review.php?id='.$row['pid'].'">
+                                                    <img class="galpre" src="'.$row["picpath"].'">
+                                                    <h3>'.$row["title"].'</h3>
+                                                    <p>'.$row["descript"].'</p>
+                                                </a>
+                                            </div>';
+                                    }
+                                ?>
                     </div>
-                
                 </div>
-
-            <hr>
-
-            <a name="wip"><!-- Internal link destination def-->
-                <div class="w3-container">
-            </a>
-            <!-- Unfinished-->
-            <h3 class="w3-light-green w3-padding">Any Other Admin Controls</h3>
-            <!-- Unfinished-->
-                    <div style="height: 300px">
-                        Work in progress...
-                    </div>
-                </div>
-
         </body>
     </html>
 <!--Needed for final php script to be closed for everything to display-->

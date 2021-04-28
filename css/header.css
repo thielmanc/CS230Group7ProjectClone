@@ -3,39 +3,24 @@ body {
     margin: 0px;
 }
 
-.header {
-    display: flex;
+.global-header {
+	display: flex;
+	column-gap: 16px;
+	background-color: #343a40;
+	padding: 16px;
     align-items: center;
-    padding: 16px;
-    background-color: #121212;
+}
+
+.global-header .nav-link {
+    color: #999c9f;
+    text-decoration: none;
+}
+
+.global-header .header-logo {
+    font-size: 20px;
+    text-decoration: none;
     color: white;
-}
-
-header > img {
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-}
-
-header > h1 {
-    font-weight: normal;
-    margin: 0px;
-    margin-left: 40px;
-    font-size: x-large;
-}
-
-.content {
-    padding: 16px;
-}
-
-.sticky {
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
-
-.stick + .content {
-    padding-top: 102px;
+    margin-right: 16px;
 }
 
 .notification {

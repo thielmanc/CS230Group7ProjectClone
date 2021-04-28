@@ -6,7 +6,6 @@ if (!isset($_POST['login'])) {
 }
 
 require 'dbhandler.php';
-require '../models/user.php';
 
 $uname = $_POST['username'];
 $passwd = $_POST['password'];
@@ -28,13 +27,15 @@ if (!password_verify($passwd, $data['password'])) {
   exit();
 }
 
+require 'fetch-user-info.php';
 session_start();
-// $_SESSION['user'] = new User($data['fname'], $data['lname'], $data['uname'], $data['email'], FALSE);
+$_SESSION['user'] = fetch_user_by_username($data['uname']);
 $_SESSION['fname'] = $data['fname'];
 $_SESSION['lname'] = $data['lname'];
 $_SESSION['uname'] = $data['uname'];
 $_SESSION['email'] = $data['email'];
 $_SESSION['uid'] = $data['uid'];
+$_SESSION['pfpurl'] = $data['pfpurl'];
 $_SESSION['privileged'] = $data['privileged'];
 
 

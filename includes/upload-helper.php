@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_POST['prof-submit'])) {
-    header("Location: ../profile.php");
+    header("Location: /profile.php");
     exit();
 }
 
@@ -36,13 +36,17 @@ if($check !== UPLOAD_ERR_OK) {
 require 'dbhandler.php';
 
 $new_name = safe_file_name_gen($file);
-$destination = '../profiles/'.$new_name;
+$destination_on_disk = '../profiles/'.$new_name;
+$destination_on_server = '/profiles/'.$new_name;
 $uname = $_SESSION['uname'];
 
 $sql = "UPDATE users SET pfpurl=? WHERE uname=?";
-safe_query($sql, 'ss', $destination, $uname);
+safe_query($sql, 'ss', $destination_on_server, $uname);
 
-move_uploaded_file($file['tmp_name'], $destination);
+move_uploaded_file($file['tmp_name'], $destination_on_disk);
+
+// since we changed the user's profile picture, we have to update that in $_SESSION['user'], else other scripts will still see the old one
+$_SESSION['user']['profile_picture'] = $destination_on_server;
 
 header("Location: /profile.php?success=UploadWin");
 exit();

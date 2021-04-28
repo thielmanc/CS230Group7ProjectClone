@@ -1,7 +1,6 @@
 <?php
 function censor($reviewtext){
 
-    //censorship function starts here
     $censoredarray = [];
     
     //splitting strings into arrays for comparison
