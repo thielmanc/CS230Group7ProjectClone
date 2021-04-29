@@ -38,5 +38,9 @@ $_SESSION['uid'] = $data['uid'];
 $_SESSION['pfpurl'] = $data['pfpurl'];
 $_SESSION['privileged'] = $data['privileged'];
 
+// set up csrf token for form security
+$csrftoken = bin2hex(random_bytes(16));
+$_SESSION['csrftoken'] = $csrftoken;
+header("Set-Cookie: csrftoken=$csrftoken; Path=/; SameSite=Strict; HttpOnly");
 
 header("Location: /profile.php?success=login");

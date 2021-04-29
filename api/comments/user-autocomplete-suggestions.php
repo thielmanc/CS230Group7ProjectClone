@@ -1,5 +1,5 @@
 <?php
-require '../includes/require-session-start.php';
+require '../../includes/require-session-start.php';
 header('Content-Type: application/json');
 
 if(!isset($_POST['substring'])) {
@@ -10,7 +10,7 @@ if(!isset($_POST['substring'])) {
     exit();
 }
 
-require_once '../includes/dbhandler.php';
+require_once '../../includes/dbhandler.php';
 
 $stmt = safe_stmt_exec("SELECT uname, pfpurl FROM users WHERE uname LIKE ? LIMIT 4", 's', $_POST['substring'].'%');
 $stmt = $stmt->get_result();

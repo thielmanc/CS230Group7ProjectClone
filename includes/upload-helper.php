@@ -1,5 +1,13 @@
 <?php
-session_start();
+require_once 'require-session-start.php';
+
+if(!check_csrf_token()) {
+    echo json_encode([
+        'success' => false,
+        'error' => 'request not same site'
+    ]);
+    exit();
+}
 
 if (!isset($_POST['prof-submit'])) {
     header("Location: /profile.php");

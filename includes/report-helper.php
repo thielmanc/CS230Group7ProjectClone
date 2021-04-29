@@ -5,6 +5,14 @@
 require_once 'require-session-start.php';
 header('Content-Type: application/json');
 
+if(!check_csrf_token()) {
+    echo json_encode([
+        'success' => false,
+        'error' => 'request not same site'
+    ]);
+    exit();
+}
+
 if(!isset($_POST['cid'])) {
     echo json_encode([
         'success' => false,

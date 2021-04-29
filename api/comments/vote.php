@@ -2,7 +2,7 @@
 // handles upvoting/downvoting
 // probably vulnerable to race conditions but oh well
 
-require_once '../includes/require-session-start.php';
+require_once '../../includes/require-session-start.php';
 header('Content-Type: application/json');
 
 function error($reason) {
@@ -13,13 +13,18 @@ function error($reason) {
     exit();
 }
 
+if(!check_csrf_token()) {
+    error('request not same site');
+    exit();
+}
+
 $vote = $_POST['vote'];
 $cid = $_POST['cid'];
 
 if(!isset($cid))
     error('comment id not set');
 
-require_once '../includes/dbhandler.php';
+require_once '../../includes/dbhandler.php';
 
 $data = safe_query('SELECT upvoters, downvoters, upvotes, downvotes FROM reviews WHERE revid=?', 'i', $cid);
 $upvoters = json_decode($data['upvoters']);

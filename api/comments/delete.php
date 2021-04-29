@@ -1,6 +1,14 @@
 <?php
-require_once '../includes/require-session-start.php';
+require_once '../../includes/require-session-start.php';
 header('Content-Type: application/json');
+
+if(!check_csrf_token()) {
+    echo json_encode([
+        'success' => false,
+        'error' => 'request not same site'
+    ]);
+    exit();
+}
 
 if(!isset($_POST['cid'])) {
     echo json_encode([
@@ -10,7 +18,7 @@ if(!isset($_POST['cid'])) {
     exit();
 }
 
-require_once '../includes/dbhandler.php';
+require_once '../../includes/dbhandler.php';
 
 $commenter = safe_query('SELECT uid FROM users WHERE uname = (SELECT uname FROM reviews WHERE revid = ?)', 'i', $_POST['cid'])['uid'];
 

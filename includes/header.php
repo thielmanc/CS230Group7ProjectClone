@@ -22,18 +22,18 @@
             //this checks to see if someone is loged in. you set the uid when you login
             if (isset($_SESSION['uid'])):
                 if ($_SESSION['privileged'] == 1): //if the user is an admin ?>                  
-                    <a class="nav-link" href="admin.php">Admin</a>
+                    <a class="navigation-link" href="admin.php">Admin</a>
                 <?php endif ?>
 
-                <a class="nav-link" href="/index.php">Home</a>
-                <a class="nav-link" href="/profile.php">Profile</a>
-                <a class="nav-link" href="/gallery.php">Gallery</a>
-                <a class="nav-link" href="includes/logout.php">Logout</a>
-                <a class="nav-link" href="/about-us.php">About Us</a>
+                <a class="navigation-link" href="/index.php">Home</a>
+                <a class="navigation-link" href="/profile.php">Profile</a>
+                <a class="navigation-link" href="/gallery.php">Gallery</a>
+                <a class="navigation-link" href="includes/logout.php">Logout</a>
+                <a class="navigation-link" href="/about-us.php">About Us</a>
             <?php else: ?>
-                <a class="nav-link" href="/login.php">Login</a>
-                <a class="nav-link" href="/signup.php">Signup</a>
-                <a class="nav-link" href="/about-us.php">About Us</a>
+                <a class="navigation-link" href="/login.php">Login</a>
+                <a class="navigation-link" href="/signup.php">Signup</a>
+                <a class="navigation-link" href="/about-us.php">About Us</a>
             <?php endif ?>
 
     <link rel="stylesheet" href="/css/options-tray.css">

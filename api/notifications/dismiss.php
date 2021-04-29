@@ -1,11 +1,11 @@
 <?php
 header('Content-Type: application/json');
+require_once '../../includes/require-session-start.php';
 require_once '../../includes/dbhandler.php';
 
 function dismiss($type, $id) {
     require_once '../../includes/fetch-notifications.php'; // for type constants
 
-    // todo: check to make sure the current user is actually the one dismissing their notifications
     switch($type) {
         case NOTIFICATION_MENTION:
             safe_query('UPDATE mentions SET dismissed = TRUE WHERE mid = ?', 'i', $id);
@@ -16,6 +16,14 @@ function dismiss($type, $id) {
                 'error' => "unknown type $type"
             ]);
     }
+}
+
+if(!check_csrf_token()) {
+    echo json_encode([
+        'success' => false,
+        'error' => 'request not same site'
+    ]);
+    exit();
 }
 
 if(isset($_GET['type']) && isset($_GET['id']) && isset($_GET['redirect'])) {

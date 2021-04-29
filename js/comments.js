@@ -21,7 +21,7 @@ function downvote(uid) {
 
 function send_vote(uid, vote) {
 	let xhr = new XMLHttpRequest();
-	xhr.open('POST', '/api/vote.php', true);
+	xhr.open('POST', '/api/comments/vote.php', true);
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xhr.responseType = 'json';
 	xhr.onreadystatechange = function() {
@@ -64,7 +64,7 @@ function report(uid) {
 }
 
 async function deleteComment(cid) {
-	let response = await (await fetch('/api/delete-comment.php', {
+	let response = await (await fetch('/api/comments/delete.php', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/x-www-form-urlencoded'
@@ -90,7 +90,7 @@ async function autocomplete_users(substr) {
 }
 
 async function fetch_suggestions(substr) {
-	let response = await (await fetch('/api/user-autocomplete-suggestions.php', {
+	let response = await (await fetch('/api/comments/user-autocomplete-suggestions.php', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/x-www-form-urlencoded',

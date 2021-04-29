@@ -4,6 +4,14 @@ require_once 'censorfunction.php';
 date_default_timezone_set('UTC');
 header('Content-Type: application/json');
 
+if(!check_csrf_token()) {
+    echo json_encode([
+        'success' => false,
+        'error' => 'request not same site'
+    ]);
+    exit();
+}
+
 if (!isset($_POST[$param = 'review-submit']) || !isset($_POST[$param = 'review']) || !isset($_POST[$param = 'item_id'])) {
     echo json_encode([
         'success' => false,
