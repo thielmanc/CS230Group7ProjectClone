@@ -8,6 +8,11 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" href="/css/_global.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/header.css">
     <script src="https://kit.fontawesome.com/0809ee8fa6.js" crossorigin="anonymous"></script>
 </head>
@@ -33,16 +38,16 @@
 
     <link rel="stylesheet" href="/css/options-tray.css">
     <script src="/js/options-tray.js"></script>
-    <div class="options-tray notification-tray">
-        <?php /* ----- DOESNT WORK YET DUE TO require_once ERROR -----
+    <div class="options-tray notification-tray hide-until-enabled">
+        <?php
         if(isset($_SESSION['uid'])) {
             require_once 'fetch-notifications.php';
-            require_once '/home/as10/Desktop/project/WVU_CS230_2021.01_Group07/view-components/notification.php'; // TODO: fix include issue
-            //require_once '../view-components/notification.php';
+            require_once __DIR__.'/../view-components/notification.php';
 
             foreach(mention_notifications() as $notification)
-                echo_mention_notification($notification);
-        } */
+                echo_notification($notification);
+        }
         ?>
+        <script src="/js/notifications.js"></script>
     </div>
 </header>

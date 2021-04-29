@@ -72,5 +72,5 @@ img {
 
 .gallery-container a:hover {
     opacity: 70%;
-    text-decoration-color: goldenrod;
+    text-decoration-color: rgb(57, 202, 154);
 }

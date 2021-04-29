@@ -19,6 +19,7 @@
                         <a href="review.php?id='.$row['pid'].'">
                             <img src="'.$row["picpath"].'">
                             <h3>'.$row["title"].'</h3>
+                            <p style="font-size:larger; color:rgb(70, 120, 80);";>'.$row["address"].'</p>
                             <p>'.$row["descript"].'</p>
                         </a>
                       </div>';

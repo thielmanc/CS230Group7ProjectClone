@@ -2,8 +2,12 @@
 
 $servename = "localhost";
 $DBuname = "phpmyadmin";
+<<<<<<< HEAD
 $DBPass = "Mor3M4lloc!"; // CHANGE AS NEEDED
 
+=======
+$DBPass = "Mor3M4lloc!"; // CHANGE AS NEEDED
+>>>>>>> 378231a8cfe26ce479bc0653648f55e3739031ad
 $DBname = "cs230project";
 
 mysqli_report(MYSQLI_REPORT_STRICT); // enables logging of SQL errors, much easier to debug

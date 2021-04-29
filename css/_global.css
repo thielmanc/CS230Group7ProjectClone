@@ -1,0 +1,15 @@
+:root {
+	--theme-dark-0: #121212;
+	--theme-dark-1: #2f2f2f;
+
+    --theme-light-1: #656565;
+	--theme-light-0: #cecece;
+	
+	--theme-accent-blue: #6682f2;
+	--theme-accent-green: mediumseagreen;
+	--theme-accent-purple: #551955;
+}
+
+body {
+	font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
