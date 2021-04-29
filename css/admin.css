@@ -29,18 +29,6 @@
     text-decoration-color: goldenrod;
 }
 
-.backdrop-filter {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    z-index: -1;
-    filter: blur(5px);
-    background-image: url('/images/background-morgantown-1.jpg');
-    background-size: cover;
-    width: 100vw;
-    height: 100vh;
-}
-
 body {
     display: flex;
     flex-direction: column;

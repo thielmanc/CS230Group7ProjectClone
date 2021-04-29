@@ -22,17 +22,6 @@ main {
     position: relative;
 }
 
-.backdrop-filter {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    z-index: -3;
-    filter: blur(5px);
-    background-image: url('background-morgantown-1.jpg');
-    width: 100vw;
-    height: 100vh;
-}
-
 .profile-header {
     display: flex;
     column-gap: var(--pfp-buffer-right);

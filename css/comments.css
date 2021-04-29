@@ -11,18 +11,6 @@ main
 	overflow-y: scroll;
 }
 
-.backdrop-filter {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    z-index: -1;
-    filter: blur(5px);
-    background-image: url('/images/background-morgantown-1.jpg');
-    background-size: cover;
-    width: 100vw;
-    height: 100vh;
-}
-
 .header-card {
 	margin-left: calc(50vw/2);
 	margin-bottom: 10px;
@@ -225,10 +213,6 @@ img {
 	outline: none;
 	height: 40px;
 	float: right;
-}
-
-.hide-until-enabled:not(.enabled) {
-	display: none !important;
 }
 
 .reply-tray:not(:empty) {
