@@ -21,17 +21,13 @@ require 'includes/dbhandler.php';
                     <section class="quickSearch" id="quickSearch">
                         <div class="quickSearchWrapper">
                             <div class="searchWrapper">
-                                <form method="POST" action="/includes/index-helper.php">
-                                    <input type="text" id="quickSearchLookup" class="quickSearchLookup" name="address" placeholder="Search for a Location" />
-                                    <a href="geolocation.php" class="search" title="Search for Reviews">
-                                        <span>Search</span>
-                                    </a>
+                                <form method="GET" action="includes/geolocation-helper.php">
+                                    <input name="address"   type="text" id="quickSearchLookup" class="quickSearchLookup"  placeholder="Search for a Location" />
+                                    <button type="submit">Search</button>
                                 </form>
                             </div>
                         </div>
                     </section>
-
-
 
                 </div>
             </section>

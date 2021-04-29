@@ -29,7 +29,7 @@ body {
 	text-overflow: ellipsis;
 	width: 400px;
 }
-	  
+
 .controls:focus {
 	border-color: #4d90fe;
 }
@@ -58,16 +58,11 @@ body {
 	top: .0625rem;
 }
 
-#placards .placard-opttion .placard-content {
-	position: relative;
-	display: table;
+.card {
+	border: groove black;
 	width: 100%;
-	table-layout: fixed;
-	display: flex;
+	padding: 10px;
+	margin: 3%;
+	right: 7%;
 }
 
-#placards .placard-option .placard-content .content-inner {
-	position: relative;
-	display: flex;
-	width: 100%;
-}

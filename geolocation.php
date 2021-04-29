@@ -1,6 +1,6 @@
 <?php
-require 'includes/header.php';
-require 'includes/dbhandler.php';
+    require 'includes/dbhandler.php';
+    require 'includes/header.php';
 ?>
 
 <html>
@@ -15,27 +15,77 @@ require 'includes/dbhandler.php';
 <body>
     <div style="display: none">
         <form method="GET" action="includes/geolocation-helper.php">
-            <input id="pac-input" name="query" class="controls" type="text" placeholder="Enter a location" />
+            <input id="pac-input" name="address" class="controls" type="text" placeholder="Enter a location" />
+            <button type="submit">Search</button>
         </form>
     </div>
 
     <section class="placards" id="placards">
         <div id="placardContainer" class="placardContainer">
             <ul>
-                <li>
-                    <section class="placard-content">
-                        <div class="content-inner">
-                            <div class="apartment-name">
-                                <?php
-                                   
-                                ?>
-                            </div>
-                            <div class="review-info">
+                <?php
+                    if (!isset($address)) {
+                        $address = $_GET['address'];
+                        if (empty($address)) {
+                            $sql = "SELECT address FROM gallery";
+                            $query = mysqli_query($conn,$sql);
 
-                            </div>
-                        </div>
-                    </section>
-                </li>
+                            while ($row = mysqli_fetch_assoc($query)) {
+                                echo '
+                                    <li style="list-style-type: none">
+                                        <div class="card">
+                                            '.$row['address'].'
+                                            <div class="avg-review">
+                                                Average Review
+                                                <div class="comments">
+                                                    Number of Comments
+                                                </div>
+                                            </div>
+                                         </div>
+                                    </li>
+                                     ';
+                            }
+                        }
+                    } else {
+                        $sql = "SELECT address FROM gallery WHERE address=".$address;
+                        $query = mysqli_query($conn, $sql);
+
+                        if (empty($query)) {
+                            while ($row = mysqli_fetch_assoc($query)) {
+                                echo '
+                                    <li style="list-style-type: none">
+                                        <div class="card">
+                                            '.$row['address'].'
+                                            <div class="avg-review">
+                                                Average Review
+                                                <div class="comments">
+                                                    Number of Comments
+                                                </div>
+                                            </div>
+                                         </div>
+                                    </li>
+                                     ';
+                            }
+                        } else {
+                            echo '
+                                    <li style="list-style-type: none">
+                                        <div class="card">
+                                            '.$address.'
+                                            <div class="avg-review">
+                                                Average Review
+                                                <div class="comments">
+                                                    Number of Comments
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                 ';
+
+                        }
+                    }
+                ?>
+
+
             </ul>
         </div>
     </section>
