@@ -1,6 +1,5 @@
 <?php
 require 'includes/header.php';
-require 'includes/dbhandler.php';
 ?>
 
 <body>
@@ -35,6 +34,7 @@ require 'includes/dbhandler.php';
             <section class="cards">
                 <ul>
                     <?php
+                        include_once 'includes/dbhandler.php';
                         if (isset($_POST['address'])) {
 
                             $address = $_POST['address'];
@@ -48,22 +48,29 @@ require 'includes/dbhandler.php';
                             if (empty($data)) {
                                 echo '
                                         <div class="error-message">
-                                            <p>Sorry. That does not seem to be in our database. Would you like to <a>request</a> a board be made?</p>
+                                            <p>Sorry. That does not seem to be in our database. Would you like to <a href="/request.php">request</a> a board be made?</p>
                                         </div>
-                                     ';                                
+                                     ';                               
                                 
                             } else {
+                                $sql = "SELECT * FROM gallery";
+                                $query = mysqli_query($conn, $sql);
+                                $row = mysqli_fetch_assoc($query);
                                 echo '
-                                    <li style="list-style-type: none;">
-                                        <div class="card-wrapper">
-                                            <div class="pic-card">
-                                                Pic Card Section
+                                    <a href="review.php?id='.$row['pid'].'">
+                                        <li style="list-style-type: none;">
+                                            <div class="card-wrapper">
+                                                
+                                                    <div class="pic-card">
+                                                        <img src="'.$row['picpath'].'" style="border-radius: 25px 0px 0px 25px">
+                                                    </div>
+                                                    <div class="info-card">
+                                                        <strong>'.$row['address'].'</strong>
+                                                        Description: '.$row['descript'].'
+                                                    </div>
                                             </div>
-                                            <div class="info-card">
-                                                <p>'.$address.'</p>
-                                            </div>
-                                        </div>
-                                    </li>
+                                        </li>
+                                    </a>
                                      ';
                             }
                         }

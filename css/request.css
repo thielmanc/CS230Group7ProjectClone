@@ -1,0 +1,29 @@
+
+.background {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+    filter: blur(5px);
+    background-image: url('/images/background-morgantown-1.jpg');
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+}
+
+.panel-wrapper {
+    height: 100%;
+    border-radius: 25px;
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.8);
+    width: 500px;
+    border: 15px white;
+    margin: 1% 1% 1% 5%;
+
+}
+
+.address {
+    width: 50px;
+    padding: 50px;
+    margin: 50px;
+}

@@ -84,7 +84,7 @@
     border-radius: 25px;
     display: flex;
     background-color: rgba(255, 255, 255, 0.8);
-    width: 300px;
+    width: 500px;
     border: 15px white;
     margin: 1% 1% 1% 5%;
 }
@@ -92,20 +92,21 @@
 .pic-card {
     display: flex;
     flex-flow: column;
-    width: 200px;
-    padding: 48px;
+    width: 230px;
     background-color: #2f2f2f;
     border-bottom-left-radius: 25px;
     border-top-left-radius: 25px;
     color: white;
 }
 
+
 .info-card {
     display: flex;
     flex-flow: column;
-    width: 50%;
+    width: 70%;
     padding: 48px;
     color: black;
+
 }
 
 .background {
