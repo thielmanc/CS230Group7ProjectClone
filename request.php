@@ -8,12 +8,15 @@ require 'includes/header.php';
         <div class="background"></div>
 
         <form method="POST" action="request.php">
-            <div class="panel-wrapper">
-                <div class="address">
-                    Address
-                </div>
+            <div class="request-form">
+                <label for="address">Address</label>
+                <input name="address" class="address" type="text" placeholder="Address">
+                    
+                <label for="description">Description</label>
+                <textarea name="description" class="description"> </textarea>
+                <button type="submit">Submit</button>
             </div>
+            
         </form>
-
     </main>
 </body>
