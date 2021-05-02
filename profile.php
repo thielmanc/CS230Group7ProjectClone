@@ -35,7 +35,7 @@
 				<?php endif ?>
 			</div>
 			<div class="below-line-content">
-				<p class="bio">placeholder bio heres my bio and this is my profile xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx</p>
+				<p class="bio" ><?= htmlspecialchars($user['bio'])?></p>
 			</div>			
 		</div>
 	</header>

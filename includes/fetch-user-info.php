@@ -13,7 +13,8 @@ function fetch_user_by_id($id) {
         'username' => $data['uname'],
         'email' => $data['email'],
         'profile_picture' => ($data['pfpurl'] && file_exists(__DIR__."/..{$data['pfpurl']}")) ? $data['pfpurl'] : DEFAULT_PROFILE_PICTURE,
-        'privileged' => $data['privileged']
+        'privileged' => $data['privileged'],
+        'bio' => $data['bio']
     );
 }
 
@@ -26,6 +27,7 @@ function fetch_user_by_username($username) {
         'username' => $data['uname'],
         'email' => $data['email'],
         'profile_picture' => ($data['pfpurl'] && file_exists(__DIR__."/..{$data['pfpurl']}")) ? $data['pfpurl'] : DEFAULT_PROFILE_PICTURE,
-        'privileged' => $data['privileged']
+        'privileged' => $data['privileged'],
+        'bio' => $data['bio']
     );
 }

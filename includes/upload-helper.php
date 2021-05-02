@@ -47,9 +47,9 @@ $new_name = safe_file_name_gen($file);
 $destination_on_disk = '../profiles/'.$new_name;
 $destination_on_server = '/profiles/'.$new_name;
 $uname = $_SESSION['uname'];
-
-$sql = "UPDATE users SET pfpurl=? WHERE uname=?";
-safe_query($sql, 'ss', $destination_on_server, $uname);
+$bio = $_POST['bio'];
+$sql = "UPDATE users SET pfpurl=?, bio=? WHERE uname=?";
+safe_query($sql, 'sss', $destination_on_server, $bio,$uname);
 
 move_uploaded_file($file['tmp_name'], $destination_on_disk);
 

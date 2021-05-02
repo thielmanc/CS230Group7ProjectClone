@@ -20,7 +20,7 @@
 				<h1 class="username"><?= htmlspecialchars($_SESSION['user']['username']) ?></h1>
 			</div>
 			<div class="below-line-content">
-				<p class="bio">placeholder bio heres my bio and this is my profile xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx</p>
+				
 			</div>			
 		</div>
 	</header>
@@ -32,6 +32,9 @@
             <script src="js/image-upload-input.js"></script>
             <input type="file" name="prof-image" class="image-upload-input" data-preview-elem="profile-picture">
             <input type="hidden" name="prof-submit" value="prof-submit">
+			
+            <textarea name="bio" id="bio" cols="50" rows="2" placeholder="New Bio" class="form-control" style="text-align: center;"></textarea>
+                
             <button type="submit" class="save-changes-button">Save</button>
         </form>
 	</div>
