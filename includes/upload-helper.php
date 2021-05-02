@@ -55,6 +55,7 @@ move_uploaded_file($file['tmp_name'], $destination_on_disk);
 
 // since we changed the user's profile picture, we have to update that in $_SESSION['user'], else other scripts will still see the old one
 $_SESSION['user']['profile_picture'] = $destination_on_server;
+$_SESSION['user']['bio'] = $bio;
 
 header("Location: /profile.php?success=UploadWin");
 exit();

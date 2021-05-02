@@ -37,7 +37,6 @@
 			<div class="below-line-content">
 				<p class="bio" ><?= htmlspecialchars($user['bio'])?></p>
 			</div>			
-		</div>
 	</header>
 	<div class="my-comments-panel">
 		<h2><?= $user_is_viewing_own_profile ? 'My ' : htmlspecialchars($user['username']) . "'s " ?>comments</h2>
