@@ -1,6 +1,6 @@
 <?php session_start() ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -44,8 +44,9 @@
             require_once 'fetch-notifications.php';
             require_once __DIR__.'/../view-components/notification.php';
 
-            foreach(mention_notifications() as $notification)
+            foreach(mention_notifications() as $notification) {
                 echo_notification($notification);
+            }
         }
         ?>
         <script src="/js/notifications.js"></script>

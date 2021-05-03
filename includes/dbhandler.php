@@ -13,13 +13,15 @@ if (!$conn) {
     die("Connection failed...".mysqli_connect_error());
 }
 
+const NO_CONNECTION_ERR_MSG = 'Error: No connection to database';
+
 // executes a prepared query and returns an assoc array containing the FIRST ROW ONLY
 // good for fetching something from the DB by a unique identifier - ex. fetching a user by username, comment by id, etc.
 // use safe_stmt_exec if more than one row is needed or a more complex operation needs to be performed
 function safe_query($query, $types, ...$params) {
     global $conn; // I should be executed for using this
     if(!$conn) {
-        die('Error: No connection to database');
+        die(NO_CONNECTION_ERR_MSG);
     }
     $stmt = $conn->stmt_init();
     if(!$stmt->prepare($query)) {
@@ -37,7 +39,7 @@ function safe_query($query, $types, ...$params) {
 function safe_stmt_exec($query, $types, ...$params) {
     global $conn; // terrible
     if(!$conn) {
-        die('Error: No connection to database');
+        die(NO_CONNECTION_ERR_MSG);
     }
     $stmt = $conn->stmt_init();
     if(!$stmt->prepare($query)) {
@@ -51,7 +53,7 @@ function safe_stmt_exec($query, $types, ...$params) {
 function unsafe_query($query) {
     global $conn;
     if(!$conn) {
-        die('Error: No connection to database');
+        die(NO_CONNECTION_ERR_MSG);
     }
     return mysqli_query($conn, $query)->fetch_assoc();
 }

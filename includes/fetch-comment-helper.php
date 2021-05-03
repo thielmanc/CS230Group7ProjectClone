@@ -20,6 +20,14 @@ function comment_with_id($cid) {
 function transform($stmt) {
     $stmt = $stmt->get_result();
     while($comment = $stmt->fetch_assoc()) {
+        
+        $vote_state = 'none';
+        if(in_array($_SESSION['user']['uid'], json_decode($comment['upvoters']))) {
+            $vote_state = 'upvote';
+        } else if(in_array($_SESSION['user']['uid'], json_decode($comment['downvoters']))) {
+            $vote_state = 'downvote';
+        }
+
         yield array(
             'cid' => $comment['revid'],
             'rating' => $comment['upvotes'] - $comment['downvotes'],
@@ -30,8 +38,7 @@ function transform($stmt) {
             'role' => 'resident', # PLACEHOLDER
             'text' => $comment['reviewtext'],
             'replies_permitted' => true, # PLACEHOLDER
-            'vote_state' => in_array($_SESSION['user']['uid'], json_decode($comment['upvoters'])) ? 'upvote' : 
-                            (in_array($_SESSION['user']['uid'], json_decode($comment['downvoters'])) ? 'downvote' : 'none')
+            'vote_state' => $vote_state
         );
     }
 }
