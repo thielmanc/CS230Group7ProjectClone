@@ -11,7 +11,7 @@
 				<circle class="circle-fill" cx="50%" cy="50%" r="50%" fill="#2f2f2f" />
 				<circle class="circle-outline" cx="50%" cy="50%" r="50%" stroke="var(--horiz-line-color)" stroke-width="var(--horiz-line-thickness)" fill="#2f2f2f" />
 			</svg> 
-			<img id="profile-picture" class="profile-picture" src="<?= htmlspecialchars($_SESSION['user']['profile_picture']) ?>">
+			<img id="profile-picture" class="profile-picture" alt="Profile Picture" src="<?= htmlspecialchars($_SESSION['user']['profile_picture']) ?>">
             <p class="edit-pfp-label">Click to edit</p>
 		</div>
 		<div class="above-line-bg"></div>

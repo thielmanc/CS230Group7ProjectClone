@@ -19,7 +19,7 @@
 				<div class="carousel">
 					<div class="form-wrapper">
 						<h2>Welcome back!</h2>
-						<img id="login-pfp" src="/images/default-silhouette.svg">
+						<img id="login-pfp" alt="Login Here" src="/images/default-silhouette.svg">
 						<form method="POST" action="/includes/login-helper.php">
 							<label for="username">Your username or email:</label>
 							<input type="text" id="username" name="username" placeholder="Username" required>
