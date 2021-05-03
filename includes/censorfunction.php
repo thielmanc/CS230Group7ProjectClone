@@ -4,7 +4,7 @@ function censor($reviewtext){
     $censoredarray = [];
     
     //splitting strings into arrays for comparison
-    $filecontents = file_get_contents('includes/badwords.txt');
+    $filecontents = file_get_contents('badwords.txt');
     $badwords = preg_split('/[\s]+/', $filecontents, -1, PREG_SPLIT_NO_EMPTY);
     $reviewArr = preg_split('/[\s]+/', $reviewtext, -1, PREG_SPLIT_NO_EMPTY);
     
@@ -27,6 +27,6 @@ function censor($reviewtext){
         array_push($censoredarray, $bleep);
       }
     }
-    //$cleanRev =  implode(" ",$censoredarray);
+    $cleanRev =  implode(" ",$censoredarray);
     return $cleanRev;
 }
