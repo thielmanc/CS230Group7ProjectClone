@@ -38,7 +38,6 @@ if($commenter !== $_SESSION['uid']) {
     exit();
 }
 
-// TODO: also delete children
 safe_query('DELETE FROM reviews WHERE revid = ?', 'i', $_POST['cid']);
 
 echo json_encode([
