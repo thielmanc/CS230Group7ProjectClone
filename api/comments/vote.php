@@ -21,9 +21,9 @@ if(!check_csrf_token()) {
 $vote = $_POST['vote'];
 $cid = $_POST['cid'];
 
-if(!isset($cid))
+if(!isset($cid)) {
     error('comment id not set');
-
+}
 require_once '../../includes/dbhandler.php';
 
 $data = safe_query('SELECT upvoters, downvoters, upvotes, downvotes FROM reviews WHERE revid=?', 'i', $cid);
@@ -46,8 +46,9 @@ if($vote == 'upvote') {
     $upvotes++;
 
 } else if ($vote == 'downvote') {
-    if(in_array($uid, $downvoters))
+    if(in_array($uid, $downvoters)) {
         error('you already downvoted');
+    }
     if(($i = array_search($uid, $upvoters)) !== false) {
         array_splice($upvoters, $i, 1); // remove user from upvoters
         $upvotes--;

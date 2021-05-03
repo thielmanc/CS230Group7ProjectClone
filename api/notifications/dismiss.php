@@ -6,12 +6,10 @@ require_once '../../includes/dbhandler.php';
 function dismiss($type, $id) {
     require_once '../../includes/fetch-notifications.php'; // for type constants
 
-    switch($type) {
-        case NOTIFICATION_MENTION:
-            safe_query('UPDATE mentions SET dismissed = TRUE WHERE mid = ?', 'i', $id);
-            break;
-        default:
-            echo json_encode([
+    if ($type == NOTIFCATION_MENTION) {
+        safe_query('UPDATE mentions SET dismissed = TRUE WHERE mid = ?', 'i', $id);
+    } else {
+        echo json_encode([
                 'success' => false,
                 'error' => "unknown type $type"
             ]);

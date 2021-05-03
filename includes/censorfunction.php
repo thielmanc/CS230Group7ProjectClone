@@ -17,7 +17,7 @@ function censor($reviewtext){
           $check = true;
         }
       }
-      if($check == false){
+      if($check){
         array_push($censoredarray, $word);
       } else{
         $bleep = "";
@@ -27,6 +27,6 @@ function censor($reviewtext){
         array_push($censoredarray, $bleep);
       }
     }
-    $cleanRev =  implode(" ",$censoredarray);
+    //$cleanRev =  implode(" ",$censoredarray);
     return $cleanRev;
 }
