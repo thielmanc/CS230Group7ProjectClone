@@ -21,28 +21,34 @@ const DEFAULT_MAX_FILE_SIZE = 4 * MB;
 // can return any of the codes defined at https://www.php.net/manual/en/features.file-upload.errors.php
 // could also return any of the 4 custom codes above
 function check_file($file, $allowed_types = SAFE_IMAGE_TYPES, $maxsize = DEFAULT_MAX_FILE_SIZE) {
-    if(!$file)
+    if(!$file) {
         return UPLOAD_ERR_NO_FILE;
+    }
 
-    if ($file['error'])
+    if ($file['error']) {
         return $file['error'];
+    }
 
-    if($file['size'] == 0)
+    if($file['size'] == 0) {
         return UPLOAD_ERR_NO_FILE; // this check probably isnt necessary
+    }
 
     // file name must contain a valid name and exactly one extension
     $valid_name_regex = '/^[a-zA-Z0-9_ -]+\.[a-zA-Z0-9]+$/';
-    if(preg_match($valid_name_regex, $file['name']) !== 1)
+    if(preg_match($valid_name_regex, $file['name']) !== 1) {
         return UPLOAD_ERR_INVALID_NAME;
+    }
 
     // checks file mime type and extension
     // both must be valid
     $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
-    if (!array_key_exists($file['type'], $allowed_types) || !in_array($ext, $allowed_types[$file['type']]))
+    if (!array_key_exists($file['type'], $allowed_types) || !in_array($ext, $allowed_types[$file['type']])) {
         return UPLOAD_ERR_INVALID_TYPE;
+    }
 
-    if ($file['size'] > $maxsize)
+    if ($file['size'] > $maxsize) {
         return UPLOAD_ERR_CUST_SIZE;
+    }
 
     /*
         files stored correctly can still execute php code if used with include() or require()

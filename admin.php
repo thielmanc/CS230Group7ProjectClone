@@ -89,7 +89,7 @@ require_once 'includes/dbhandler.php';
             <!-- !PAGE CONTENT! -->
             <div class="w3-main" style="margin-left:300px;margin-top:43px;">
 
-                <a name="overview"> <!-- Internal link destination def-->
+                <a id="overview"> <!-- Internal link destination def-->
                     <div class="w3-row-padding w3-margin-bottom">
                 </a>
 
@@ -143,7 +143,7 @@ require_once 'includes/dbhandler.php';
             </div>
 
 
-            <a name="reports"><!-- Internal link destination def-->
+            <a id="reports"><!-- Internal link destination def-->
                 <div class="w3-container">
             </a>
             <h3 class="w3-light-green w3-padding">Reports</h3>
@@ -156,7 +156,7 @@ require_once 'includes/dbhandler.php';
                 </div>
 
 
-            <a name="uploader"><!-- Internal link destination def-->
+            <a id="uploader"><!-- Internal link destination def-->
                 <div class="w3-container">
             </a>
             <h3 class="w3-light-green w3-padding">Gallery Uploader</h3>
@@ -199,7 +199,7 @@ require_once 'includes/dbhandler.php';
                 </div>
 
 
-            <a name="preview"><!-- Internal link destination def-->
+            <a id="preview"><!-- Internal link destination def-->
                 <div class="w3-container">
             </a>
              <h3 class="w3-light-green w3-padding">Gallery Preview</h3>
