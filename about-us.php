@@ -13,7 +13,7 @@ require 'includes/header.php';
     <div class="row">
         <div class="column">
             <div class="card">
-                <img src="images/About_Us_Max_Sheehe.jpg" class="center"> 
+                <img src="images/About_Us_Max_Sheehe.jpg" alt="Max Shee" class="center"> 
                 <!--make sure to use the center class to center your profile image-->
                 <div class="container">
                     <h2>Max Sheehe</h2>
@@ -25,7 +25,7 @@ require 'includes/header.php';
 
         <div class="column">
             <div class="card">
-                <img src="images/KyleBrImg.jpg" class="center">
+                <img src="images/KyleBrImg.jpg" alt="Kyle" class="center">
                 <div class="container">
                     <h2>Kyle Breedlove</h2>
                     <p>Fun Fact! I hate fun facts!</p>
@@ -36,7 +36,7 @@ require 'includes/header.php';
 
         <div class="column">
             <div class="card">
-                <img src="images/MudgeDavid.jpeg" class="center">
+                <img src="images/MudgeDavid.jpeg" alt="Mudge David" class="center">
                 <div class="container">
                     <h2>David Mudge</h2>
                     <p>My name is David.</p>
@@ -47,7 +47,7 @@ require 'includes/header.php';
 
         <div class="column">
             <div class="card">
-                <img src="images/austin-williams-aboutus.png" class="center">
+                <img src="images/austin-williams-aboutus.png" alt="Austin Williams" class="center">
                 <div class="container">
                     <h2>Austin Williams</h2>
                     <p>Team member</p>
@@ -58,7 +58,7 @@ require 'includes/header.php';
 
         <div class="column">
             <div class="card">
-                <img src="images/JacobVila.jpg" class="center">
+                <img src="images/JacobVila.jpg" alt="Jacob Vila" class="center">
                 <div class="container">
                     <h2>Jacob Vila</h2>
                     <p>My name is not David.</p>
@@ -69,7 +69,7 @@ require 'includes/header.php';
 
         <div class="column">
             <div class="card">
-                <img src="images/camPic.jpg" class="center">
+                <img src="images/camPic.jpg" alt="Cam" class="center">
                 <div class="container">
                     <h2>Cam Thielman</h2>
                     <p>Also Pictured: Luna</p>
@@ -80,7 +80,7 @@ require 'includes/header.php';
 
         <div class="column">
             <div class="card">
-                <img src="images/ryanCoxPic.jpg" class="center">
+                <img src="images/ryanCoxPic.jpg" alt="Ryan Cox" class="center">
                 <div class="container">
                     <h2>Ryan Cox</h2>
                     <p>I am also a team member.</p>
@@ -91,7 +91,7 @@ require 'includes/header.php';
 
         <div class="column">
             <div class="card">
-                <img src="images/doge-coin.gif" class="center">
+                <img src="images/doge-coin.gif" alt="Doge" class="center">
                 <div class="container">
                     <h3>Maximillian Campbell</h2>
                     <p>Actually a Bot</p>

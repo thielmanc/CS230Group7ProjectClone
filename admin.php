@@ -34,7 +34,8 @@ require_once 'includes/dbhandler.php';
             $photo = $row['pfpurl']; // path to the profile picture
     ?>
 
-    <html>
+    <!DOCTYPE html>
+    <html lang="en">
         <title>Admin Page</title>
         <!-- Links to free open source designs-->
         <meta charset="UTF-8">
@@ -63,7 +64,7 @@ require_once 'includes/dbhandler.php';
                 <div class="w3-container w3-row">
                     <div class="w3-col s4">
                         <!-- grabs users photo to display-->
-                        <img src="<?php echo $photo ?>" class="w3-circle w3-margin-right" style="width:46px">
+                        <img src="<?php echo $photo ?>" class="w3-circle w3-margin-right" alt="photo" style="width:46px">
                     </div>
                     <div class="w3-col s8 w3-bar">
                         <!-- grabs users name to display-->
@@ -73,15 +74,15 @@ require_once 'includes/dbhandler.php';
                 <hr>
                 <!-- display and internal linking for side bar nav for admin-->
                 <div class="w3-bar-block">
-                    <a href="#overview" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i> 
+                    <a href="#overview" class="w3-bar-item w3-button w3-padding"><em class="fa fa-users fa-fw"></em> 
                         Overview</a>
-                    <a href="#reports" class="w3-bar-item w3-button w3-padding"><i class="fas fa-exclamation-circle fa-fw"></i> 
+                    <a href="#reports" class="w3-bar-item w3-button w3-padding"><em class="fas fa-exclamation-circle fa-fw"></em> 
                         Reports</a>
-                    <a href="#uploader" class="w3-bar-item w3-button w3-padding"><i class="fas fa-upload fa-fw"></i> 
+                    <a href="#uploader" class="w3-bar-item w3-button w3-padding"><em class="fas fa-upload fa-fw"></em> 
                         Gallery Uploader</a>
-                    <a href="#preview" class="w3-bar-item w3-button w3-padding"><i class="fas fa-laptop-house fa-fw"></i> 
+                    <a href="#preview" class="w3-bar-item w3-button w3-padding"><em class="fas fa-laptop-house fa-fw"></em> 
                         Gallery Preview</a>
-                    <a href="#wip" class="w3-bar-item w3-button w3-padding"><i class="	fas fa-question-circle fa-fw"></i> 
+                    <a href="#wip" class="w3-bar-item w3-button w3-padding"><em class="	fas fa-question-circle fa-fw"></em> 
                         Anything else...</a>
                 </div>
             </nav>
@@ -99,7 +100,7 @@ require_once 'includes/dbhandler.php';
                 ?>
                 <div class="w3-third"><!-- Top Overview element that displays Users-->
                     <div class="w3-container w3-blue w3-padding-16">
-                        <div class="w3-left"><i class="fas fa-address-book w3-xxxlarge"></i></div>
+                        <div class="w3-left"><em class="fas fa-address-book w3-xxxlarge"></em></div>
                         <div class="w3-right">
                             <!-- display data pulled form previous php script-->
                             <h3><?php echo $data['total'] ?></h3>
@@ -115,7 +116,7 @@ require_once 'includes/dbhandler.php';
                 ?>
                 <div class="w3-third"><!-- Top Overview element that displays Review-->
                     <div class="w3-container w3-orange w3-text-white w3-padding-16">
-                        <div class="w3-left"><i class="fas fa-newspaper w3-xxxlarge"></i></div>
+                        <div class="w3-left"><em class="fas fa-newspaper w3-xxxlarge"></em></div>
                         <div class="w3-right">
                             <!-- display data pulled form previous php script-->
                             <h3><?php echo $data['total'] ?></h3>
@@ -131,7 +132,7 @@ require_once 'includes/dbhandler.php';
                 ?>
                 <div class="w3-third"><!-- Top Overview element that displays Report-->
                     <div class="w3-container w3-red w3-padding-16">
-                        <div class="w3-left"><i class="fas fa-exclamation-circle w3-xxxlarge"></i></div>
+                        <div class="w3-left"><em class="fas fa-exclamation-circle w3-xxxlarge"></em></div>
                         <div class="w3-right">
                             <!-- display data pulled form previous php script-->
                             <h3><?php echo $data['total'] ?></h3>

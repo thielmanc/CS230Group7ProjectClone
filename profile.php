@@ -20,7 +20,7 @@
 				<circle class="circle-fill" cx="50%" cy="50%" r="50%" fill="#2f2f2f" />
 				<circle class="circle-outline" cx="50%" cy="50%" r="50%" stroke="var(--horiz-line-color)" stroke-width="var(--horiz-line-thickness)" fill="#2f2f2f" />
 			</svg> 
-			<img class="profile-picture" src="<?= htmlspecialchars($user['profile_picture']) ?>">
+			<img class="profile-picture" alt="Profile Picture" src="<?= htmlspecialchars($user['profile_picture']) ?>">
 		</div>
 		<div class="above-line-bg"></div>
 		<div class="right-content">

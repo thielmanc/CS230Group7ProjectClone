@@ -1,6 +1,6 @@
-projectKey=did-php
+projectKey=aprojectkey
 serverUrl=http://localhost:9000
 serverVersion=8.8.0.42792
-dashboardUrl=http://localhost:9000/dashboard?id=did-php
-ceTaskId=AXjvxyzDfnagbciUypZx
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AXjvxyzDfnagbciUypZx
+dashboardUrl=http://localhost:9000/dashboard?id=aprojectkey
+ceTaskId=AXkv2APnoyDQ1mgAQjhw
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXkv2APnoyDQ1mgAQjhw

@@ -13,7 +13,7 @@ function echo_comment($data) {
                     <span class="rating"><?= $data['rating'] ?></span>
                     <a class="downvote" href="javascript:downvote('<?= $data['cid'] ?>')">▼</a>
                 </div>
-                <a href="<?= htmlspecialchars($data['author_url']) ?>"><img class="profile-picture" src="<?= htmlspecialchars($data['author_image']) ?>"></a>
+                <a href="<?= htmlspecialchars($data['author_url']) ?>"><img class="profile-picture" alt="Profile Picture" src="<?= htmlspecialchars($data['author_image']) ?>"></a>
                 <div>
                     <a href="<?= htmlspecialchars($data['author_url']) ?>" class="comment-user"><?= htmlspecialchars($data['author']) ?></a>
                     <span class="comment-time"><?= $data['time'] ?></span>
