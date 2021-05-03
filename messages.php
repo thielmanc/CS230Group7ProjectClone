@@ -19,9 +19,13 @@
 	<div class="messages-panel">
 		<div class="messages-section">
             <?php
-            
-            foreach(messages_to_and_from($_GET['user']) as $message)
+            require_once 'includes/dismiss-message.php';
+
+            foreach(messages_to_and_from($_GET['user']) as $message) {
                 echo_message($message);
+                if($message['mode'] === 'incoming')
+                    dismiss($message['mid']);
+            }
             ?>
 		</div>
 		<div class="send-message-form">

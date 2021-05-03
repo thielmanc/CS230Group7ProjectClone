@@ -6,10 +6,12 @@ function messages_to_and_from($user) {
     $stmt = safe_stmt_exec('SELECT *, IF(receiver = ?, "incoming", "outgoing") AS mode
                             FROM messages
                             WHERE (receiver = (SELECT uid FROM users WHERE uname = ?) AND sender   = ?) OR
-                                  (sender   = (SELECT uid FROM users WHERE uname = ?) AND receiver = ?)', 'isisi', $_SESSION['user']['uid'], $user, $_SESSION['user']['uid'], $user, $_SESSION['user']['uid']);
+                                  (sender   = (SELECT uid FROM users WHERE uname = ?) AND receiver = ?)
+                            ORDER BY date', 'isisi', $_SESSION['user']['uid'], $user, $_SESSION['user']['uid'], $user, $_SESSION['user']['uid']);
     $stmt = $stmt->get_result();
     while($message = $stmt->fetch_assoc()) {
         yield array(
+            'mid' => $message['mid'],
             'text' => $message['message'],
             'date' => $message['date'],
             'mode' => $message['mode']
@@ -18,17 +20,39 @@ function messages_to_and_from($user) {
 }
 
 function message_with_id($mid) {
-    $stmt = safe_stmt_exec('SELECT *, IF(receiver = ?, "incoming", "outgoing") AS mode
+    $message = safe_query('SELECT *, IF(receiver = ?, "incoming", "outgoing") AS mode
                             FROM messages
-                            WHERE mid = ?', 'ii', $_SESSION['user']['uid'], $mid);
+                            WHERE mid = ?
+                            ORDER BY date', 'ii', $_SESSION['user']['uid'], $mid);
+    return array(
+        'mid' => $message['mid'],
+        'text' => $message['message'],
+        'date' => $message['date'],
+        'mode' => $message['mode']
+    );
+}
+
+function unread_messages_from($user) {
+    $stmt = safe_stmt_exec('SELECT * FROM messages
+                            WHERE sender = (SELECT uid FROM users WHERE uname = ?) AND receiver = ? AND DISMISSED = FALSE
+                            GROUP BY mid
+                            ORDER BY date', 'si', $user, $_SESSION['user']['uid']);
+    $messages = [];
+    $count = 0;
     $stmt = $stmt->get_result();
     while($message = $stmt->fetch_assoc()) {
-        yield array(
+        $count++;
+        array_push($messages, array(
+            'mid' => $message['mid'],
             'text' => $message['message'],
             'date' => $message['date'],
-            'mode' => $message['mode']
-        );
+            'mode' => 'incoming'
+        ));
     }
+    return array(
+        'count' => $count,
+        'messages' => $messages
+    );
 }
 
 function users_with_conversations() {

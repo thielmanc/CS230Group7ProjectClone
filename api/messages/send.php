@@ -26,7 +26,7 @@ $mid = unsafe_query('SELECT LAST_INSERT_ID() AS mid')['mid']; // automatically g
 require_once '../../includes/fetch-messages.php';
 require_once '../../view-components/message.php';
 ob_start();
-echo_message(iterator_to_array(message_with_id($mid))[0]); // UNFINISHED: remove dirty quick-fix for ->next() not working 
+echo_message(message_with_id($mid));
 $messageHTML = ob_get_clean();
 
 echo json_encode([
