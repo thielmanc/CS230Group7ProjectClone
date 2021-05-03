@@ -66,10 +66,6 @@ main::-webkit-scrollbar {
     font-size: larger;
 }
 
-.flex-fill-space {
-    flex-grow: 1;
-}
-
 .info-panel > footer {
     display: flex;
     justify-content: space-between;

@@ -1,0 +1,32 @@
+<?php
+    require_once 'includes/require-session-start.php';
+    require_once 'includes/header.php';
+    require_once 'includes/fetch-user-info.php';
+    require 'includes/fetch-messages.php';
+    require 'view-components/message.php';
+?>
+<main>
+    <link rel="stylesheet" href="/css/messages.css">
+    <script src="/js/messages.js"></script>
+	<div class="conversations-panel">
+        <h3 class="my-conversations-header">My conversations</h3>
+        <?php
+
+        foreach(users_with_conversations() as $user)
+            echo_user_conversation_card($user);
+        ?>
+	</div>
+	<div class="messages-panel">
+		<div class="messages-section">
+            <?php
+            
+            foreach(messages_to_and_from($_GET['user']) as $message)
+                echo_message($message);
+            ?>
+		</div>
+		<div class="send-message-form">
+			<textarea type="text" id="send-message-input" placeholder="Send message..." rows="1"></textarea>
+			<button onclick="sendMessage(<?= fetch_user_by_username($_GET['user'])['uid'] ?>)">Send</button>
+		</div>
+	</div>
+</main>

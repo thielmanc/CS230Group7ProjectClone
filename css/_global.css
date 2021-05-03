@@ -18,6 +18,10 @@ body {
 	display: none !important;
 }
 
+.flex-fill-space {
+    flex-grow: 1;
+}
+
 .backdrop-filter {
     position: absolute;
     left: 0px;

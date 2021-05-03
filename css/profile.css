@@ -104,10 +104,6 @@ main {
     color: #cecece;
 }
 
-.flex-fill-space {
-    flex-grow: 1;
-}
-
 .send-message-button, .edit-profile-button, .save-changes-button {
     display: block;
     background-color: rgba(0, 0, 0, 0);

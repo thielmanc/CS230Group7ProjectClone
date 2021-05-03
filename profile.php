@@ -31,7 +31,7 @@
 				<?php if($user_is_viewing_own_profile): ?>
 					<a href="/edit-profile.php" class="edit-profile-button">Edit profile</a>
 				<?php else: ?>
-					<button class="send-message-button" onclick="alert('todo')">Send message</button>
+					<a href="/messages.php?user=<?= htmlspecialchars(urlencode($user['username'])) ?>" class="send-message-button">Send message</a>
 				<?php endif ?>
 			</div>
 			<div class="below-line-content">
