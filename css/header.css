@@ -48,6 +48,11 @@ body {
     top: 32px;
     max-height: 400px;
     overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.notification-tray::-webkit-scrollbar {
+    display: none;
 }
 
 .notification-title {

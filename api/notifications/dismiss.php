@@ -10,6 +10,9 @@ function dismiss($type, $id) {
         case NOTIFICATION_MENTION:
             safe_query('UPDATE mentions SET dismissed = TRUE WHERE mid = ?', 'i', $id);
             break;
+        case NOTIFICATION_MESSAGE:
+            safe_query('UPDATE messages SET dismissed = TRUE WHERE mid = ?', 'i', $id);
+            break;
         default:
             echo json_encode([
                 'success' => false,

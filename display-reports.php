@@ -31,9 +31,9 @@ if (mysqli_num_rows($result) > 0) {
                     <img class="mr-3" src="'.$picpath['pfpurl'].'" style="max-width: 75px; max-height: 75px; border-radius: 50%;">
                         <div class="media-body">
                             <h4 class="mt-0">'.$row['uname'].'</h4>
-                            <p>'.$row['title'].'</p>
-                            <p>'.$row['revdate'].'</p>
-                            <p>'.$row['reviewtext'].'</p>
+                            <p>'.htmlspecialchars($row['title']).'</p>
+                            <p>'.htmlspecialchars($row['revdate']).'</p>
+                            <p>'.htmlspecialchars($row['reviewtext']).'</p>
                         </div>
                 </div>
                 <form action="includes/display-report-helper.php" method="POST">

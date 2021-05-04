@@ -64,11 +64,11 @@ require_once 'includes/dbhandler.php';
                 <div class="w3-container w3-row">
                     <div class="w3-col s4">
                         <!-- grabs users photo to display-->
-                        <img src="<?php echo $photo ?>" class="w3-circle w3-margin-right" alt="photo" style="width:46px">
+                        <img src="<?php echo htmlspecialchars($photo) ?>" class="w3-circle w3-margin-right" alt="photo" style="width:46px">
                     </div>
                     <div class="w3-col s8 w3-bar">
                         <!-- grabs users name to display-->
-                        <span>Welcome, <strong><?php echo $prof_user?></strong></span><br>
+                        <span>Welcome, <strong><?php echo htmlspecialchars($prof_user)?></strong></span><br>
                     </div>
                 </div>
                 <hr>
@@ -218,8 +218,8 @@ require_once 'includes/dbhandler.php';
                                         echo '<div class="card">
                                                 <a href="review.php?id='.$row['pid'].'">
                                                     <img class="galpre" src="'.$row["picpath"].'">
-                                                    <h3>'.$row["title"].'</h3>
-                                                    <p>'.$row["descript"].'</p>
+                                                    <h3>'.htmlspecialchars($row["title"]).'</h3>
+                                                    <p>'.htmlspecialchars($row["descript"]).'</p>
                                                 </a>
                                             </div>';
                                     }
