@@ -1,6 +1,7 @@
 <?php
 require_once 'require-session-start.php';
 require_once 'dbhandler.php';
+require_once 'pretty-relative-date.php';
 
 // pseudo-enum of notification types
 const NOTIFICATION_MENTION = 1;
@@ -14,10 +15,14 @@ function mention_notifications() {
         yield array(
             'title' => "{$commentData['uname']} mentioned you in a comment",
             'desc' => $commentData['reviewtext'],
-            'time' => $commentData['revdate'],
+            'time' => relative_date_string(new DateTime($commentData['revdate'])),
             'link' => '/api/notifications/dismiss.php?type='.NOTIFICATION_MENTION.'&id='.$mention['mid'].'&redirect='.urlencode("/review.php?id={$commentData['itemid']}#comment--{$mention['cid']}"),
             'id' => $mention['mid'],
             'type' => NOTIFICATION_MENTION
         );
     }
+}
+
+function all_notifications() {
+    yield from mention_notifications();
 }

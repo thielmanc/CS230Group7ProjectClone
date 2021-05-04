@@ -1,14 +1,20 @@
 <?php
-require_once '../includes/require-session-start.php';
+require_once '../../includes/require-session-start.php';
 header('Content-Type: application/json');
 
+require_once '../../includes/fetch-notifications.php';
+require_once '../../view-components/notification.php';
 
+$count = 0;
+ob_start();
+foreach(all_notifications() as $notification) {
+    echo_notification($notification);
+    $count++;
+}
+$notificationHTML = ob_get_clean();
 
-$sql = "SELECT
-            CONCAT((SELECT uname FROM users WHERE uid = ?), ' mentioned you in a comment') AS notif_title,
-            'placeholder' AS notif_desc,
-            CONCAT('/review.php?id=', (SELECT itemid FROM reviews WHERE revid = cid), '#', 'PLACEHOLDER-HASH') AS notif_link
-        FROM mentions
-        WHERE uid = ? AND dismissed = FALSE
-        -- UNION SELECT ... AS notif_title, ... AS notif_desc
-        -- FROM ...";
+echo json_encode([
+    'success' => true,
+    'count' => $count,
+    'html' => $notificationHTML
+]);

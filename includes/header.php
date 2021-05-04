@@ -18,6 +18,26 @@
 </head>
 <header class="global-header">
         <a class="header-logo" href="/index.php">APARTMENTS!</a>
+
+        <!-- notifications tray --> 
+        <link rel="stylesheet" href="/css/options-tray.css">
+        <script src="/js/options-tray.js"></script>
+        <div class="options-tray notification-tray hide-until-enabled">
+            <?php
+            if(isset($_SESSION['uid'])) {
+                require_once 'fetch-notifications.php';
+                require_once __DIR__.'/../view-components/notification.php';
+
+                $notification_count = 0;
+                foreach(all_notifications() as $notification) {
+                    echo_notification($notification);
+                    $notification_count++;
+                }
+            }
+            ?>
+            <script src="/js/notifications.js"></script>
+        </div>
+
         <?php
             //this checks to see if someone is loged in. you set the uid when you login
             if (isset($_SESSION['uid'])):
@@ -30,25 +50,16 @@
                 <a class="navigation-link" href="/gallery.php">Gallery</a>
                 <a class="navigation-link" href="includes/logout.php">Logout</a>
                 <a class="navigation-link" href="/about-us.php">About Us</a>
+                <div class="flex-fill-space"></div>
+                <!-- notification bell -->
+                <svg class="notification-bell" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="white" d="m 18 32 q 0 51 -15 51 a 2 2 0 0 0 0 6 L 39 89 a 1 1 0 0 0 22 0 L 97 89 a 1 1 0 0 0 0 -6 q -15 0 -15 -51 a 1 1 0 0 0 -64 0"></path>
+                    <circle class="notification-alert-circle hide-until-enabled <?= $notification_count > 0 ? 'enabled' : '' ?>" cx="30" cy="30" r="30" fill="#7c0b0b"></circle>
+                    <text class="notification-count hide-until-enabled <?= $notification_count > 0 ? 'enabled' : '' ?>" x="30" y="30" text-anchor="middle" dominant-baseline="middle" fill="white"><?= $notification_count ?></text>
+                </svg>
             <?php else: ?>
                 <a class="navigation-link" href="/login.php">Login</a>
                 <a class="navigation-link" href="/signup.php">Signup</a>
                 <a class="navigation-link" href="/about-us.php">About Us</a>
             <?php endif ?>
-
-    <link rel="stylesheet" href="/css/options-tray.css">
-    <script src="/js/options-tray.js"></script>
-    <div class="options-tray notification-tray hide-until-enabled">
-        <?php
-        if(isset($_SESSION['uid'])) {
-            require_once 'fetch-notifications.php';
-            require_once __DIR__.'/../view-components/notification.php';
-
-            foreach(mention_notifications() as $notification) {
-                echo_notification($notification);
-            }
-        }
-        ?>
-        <script src="/js/notifications.js"></script>
-    </div>
 </header>
