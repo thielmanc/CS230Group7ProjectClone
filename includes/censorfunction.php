@@ -9,15 +9,15 @@ function censor($reviewtext){
     $reviewArr = preg_split('/[\s]+/', $reviewtext, -1, PREG_SPLIT_NO_EMPTY);
     
     foreach ($reviewArr as $word){
-      $count = 0;
+
       $check = false;
       foreach ($badwords as $swear){
         if ((strtolower($word)) == $swear){
-          $count += 1;
+     
           $check = true;
         }
       }
-      if($check){
+      if ( $check == false){
         array_push($censoredarray, $word);
       } else{
         $bleep = "";

@@ -1,5 +1,6 @@
 <?php
 require_once 'dbhandler.php';
+require_once 'censorfunction.php';
 session_start();
 
 define('KB', 1024);
@@ -13,7 +14,7 @@ if (isset($_POST['gallery-submit'])) {
     $file_size = $file['size'];
     $address = $_POST['address'];
     $title = $_POST['title'];
-    $descript = $_POST['descript'];
+    $censoredDescript = censor($_POST['descript']);
 
     $ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
 
@@ -42,7 +43,7 @@ if (isset($_POST['gallery-submit'])) {
             header("Location: ../admin.php?error=SQLInjection");
             exit();
         } else {
-            mysqli_stmt_bind_param($stmt, "ssss", $title, $descript, $sqldest, $address);
+            mysqli_stmt_bind_param($stmt, "ssss", $title, $censoredDescript, $sqldest, $address);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_store_result($stmt);
             move_uploaded_file($file_tmp_name, $destination);
