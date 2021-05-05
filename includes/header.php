@@ -17,7 +17,7 @@
     <script src="https://kit.fontawesome.com/0809ee8fa6.js" crossorigin="anonymous"></script>
 </head>
 <header class="global-header">
-        <a class="header-logo" href="/index.php">APARTMENTS!</a>
+        <a class="header-logo" href="/index.php">Housing Helper</a>
 
         <!-- notifications tray --> 
         <link rel="stylesheet" href="/css/options-tray.css">
@@ -45,9 +45,10 @@
                     <a class="navigation-link" href="admin.php">Admin</a>
                 <?php endif ?>
 
-                <a class="navigation-link" href="/index.php">Home</a>
-                <a class="navigation-link" href="/profile.php">Profile</a>
+                <a class="navigation-link" href="/index.php">Search</a>
                 <a class="navigation-link" href="/gallery.php">Gallery</a>
+                <a class="navigation-link" href="/profile.php">Profile</a>
+                <a class="navigation-link" href="/messages.php">Direct Messages</a>
                 <a class="navigation-link" href="includes/logout.php">Logout</a>
                 <a class="navigation-link" href="/about-us.php">About Us</a>
                 <div class="flex-fill-space"></div>

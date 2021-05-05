@@ -13,8 +13,8 @@ require 'includes/header.php';
             <!-- Home Page Title Section -->
             <section class="homePage">
                 <div class="mainSearchWrapper" id="mainSearchWrapper">
-                    <h1 class="mainTitle" id="quickSearchMainTitle">Search for Apartment Reviews</h1>
-                    <p id="quickSearchSubTitle">Or Review your Own Apartments!</p>
+                    <h1 class="mainTitle" id="quickSearchMainTitle">Housing Helper</h1>
+                    <p id="quickSearchSubTitle">Search for Housing Reviews</p>
 
                     <!-- Search Bar Section -->
                     <section class="quickSearch" id="quickSearch">
@@ -22,7 +22,7 @@ require 'includes/header.php';
                             <div class="searchWrapper">
                                 <form method="POST" action="/index.php">
                                     <input name="address" type="text" id="quickSearchLookup" class="quickSearchLookup"
-                                        placeholder="Search for a Location" />
+                                        placeholder="Search for a Location (by address)" />
                                     <button type="submit">Search</button>
                                 </form>
                             </div>
