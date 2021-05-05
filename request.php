@@ -7,7 +7,7 @@ require 'includes/header.php';
         <link rel="stylesheet" href="/css/request.css">
         <div class="background"></div>
 
-        <form method="POST" action="request.php">
+        <form method="POST" action="admin.php">
             <div class="request-form">
                 <label for="address">Address</label>
                 <input name="address" class="address" type="text" placeholder="Address">
