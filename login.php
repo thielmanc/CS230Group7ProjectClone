@@ -67,6 +67,9 @@
 								case 'UsernameOrEmailTaken':
 									echo 'Either that username or email is already registered. If you have an account, try signing in instead.';
 									break;
+								case 'WeakPass':
+									echo 'That password doesn\'t match our password policy. Make sure you use at least 8 characters, a number, a letter, and a special character.';
+									break;
 								// add others as needed
 							}
 						?></p>
@@ -84,7 +87,8 @@
 							<input type="email" id="email-signup" name="email" placeholder="Email" required>
 							
 							<label for="password-signup" class="required-label">Your password:</label>
-							<input type="password" id="password-signup" name="password" placeholder="Password" required>
+							<p class="password-policy-info">8+ characters, with at least one letter, number, and special character</p>
+							<input type="password" id="password-signup" name="password" placeholder="Password" required minlength="8">
 							
 							<label for="password-confirm-signup" class="required-label">Confirm your password:</label>
 							<input type="password" id="password-confirm-signup" name="password-confirm" placeholder="Confirm password" required>

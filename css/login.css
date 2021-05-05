@@ -125,6 +125,12 @@ main label {
     color: red;
 }
 
+.password-policy-info {
+    font-style: italic;
+    color: var(--theme-light-1);
+    margin-bottom: 0px;
+}
+
 main input:not([type=checkbox]) {
     width: 100%;
     height: 48px;
@@ -139,6 +145,11 @@ main input:not([type=checkbox]) {
     display: block;
     background-color: rgba(0, 0, 0, 0);
     border: 1px solid #797979;
+}
+
+.invalid-password {
+    border: 1px solid red !important;
+    color: red;
 }
 
 .name-wrapper {

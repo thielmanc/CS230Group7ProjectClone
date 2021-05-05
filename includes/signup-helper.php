@@ -17,6 +17,12 @@ if ($passw !== $passw_rep) {
 	exit();
 }
 
+// enforce against password policy
+if(strlen($passw) < 8 || preg_match('/[a-zA-Z]/', $passw) !== 1 || preg_match('/[0-9]/', $passw) !== 1 || preg_match('/['.preg_quote('~!@#$%^&*()_+{}[]|\:;"\'<,>.?').']/', $passw) !== 1) {
+	header("Location: /signup.php?error=WeakPass");
+	exit();
+}
+
 require 'dbhandler.php';
 
 $stmt = safe_stmt_exec("SELECT 1 FROM users WHERE uname=? OR email=?", "ss", $username, $username);
