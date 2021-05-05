@@ -2,9 +2,7 @@ HOUSING HELPER
 
 This repository holds the code for the HOUSING HELPER website. This website allows for the reviewal of housing locations in the Morgantown West Virginia area by users, as well as allowing users to contact one another to learn more about a property. APARTMENTS! is different from similar websites in that it is focused specifically on the Morgantown area, and that it has a map integrated into the platform allowing for users to more easily locate properties they are considering staying at.
 
-![alt text](https://github.com/tdevine1/WVU_CS230_2021.01_Group07/screenshots_for_readme/Screenshot (39).png?raw=true)
-
-
+![alt text](https://github.com/tdevine1/WVU_CS230_2021.01_Group07/images/6067d797a152e7.73699344.png?raw=true)
 
 
 
