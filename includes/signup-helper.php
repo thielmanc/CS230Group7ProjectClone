@@ -39,4 +39,20 @@ $hashed = password_hash($passw, PASSWORD_BCRYPT);
 
 safe_query("INSERT INTO users (lname, fname, email, uname, password, privileged) VALUES (?, ?, ?, ?, ?, FALSE)", "sssss", $lname, $fname, $email, $username, $hashed);
 
-header("Location: /signup.php?signup=success");
+require 'fetch-user-info.php';
+session_start();
+$_SESSION['user'] = fetch_user_by_username($username);
+$_SESSION['fname'] = $_SESSION['user']['first_name'];
+$_SESSION['lname'] = $_SESSION['user']['last_name'];
+$_SESSION['uname'] = $_SESSION['user']['username'];
+$_SESSION['email'] = $_SESSION['user']['email'];
+$_SESSION['uid'] = $_SESSION['user']['uid'];
+$_SESSION['pfpurl'] = $_SESSION['user']['profile_picture'];
+$_SESSION['privileged'] = $_SESSION['user']['privileged'];
+
+// set up csrf token for form security
+$csrftoken = bin2hex(random_bytes(16));
+$_SESSION['csrftoken'] = $csrftoken;
+header("Set-Cookie: csrftoken=$csrftoken; Path=/; SameSite=Strict; HttpOnly");
+
+header("Location: /profile.php?signup=success");

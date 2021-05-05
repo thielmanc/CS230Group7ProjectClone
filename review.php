@@ -13,10 +13,10 @@
                 <div class="header-card">
                     <div class="media-body">
                         <div class="inner-div">
-                            <img class="mr-3" alt="Picture" src="'.$row['picpath'].'">
-                            <h3 class="mt-0">'.$row['title'].'</h3>
-                            <p style="font-size:larger; text-align: center; color:rgb(70, 120, 80);";>Adress: '.$row['address'].'</p>  
-                            <p>'.$row['descript'].'</p>  
+                            <img class="mr-3" alt="Picture" src="'.htmlspecialchars($row['picpath']).'">
+                            <h3 class="mt-0">'.htmlspecialchars($row['title']).'</h3>
+                            <p style="font-size:larger; text-align: center; color:rgb(70, 120, 80);";>Address: '.htmlspecialchars($row['address']).'</p>  
+                            <p>'.htmlspecialchars($row['descript']).'</p>  
                         </div>
                     </div>
                 </div>

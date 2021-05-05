@@ -41,14 +41,18 @@
 	</header>
 	<div class="my-comments-panel">
 		<h2><?= $user_is_viewing_own_profile ? 'My ' : htmlspecialchars($user['username']) . "'s " ?>comments</h2>
-		<p class="no-comments-placeholder"><?= $user_is_viewing_own_profile ? 'You do not ' : htmlspecialchars($user['username']) . ' does not ' ?>have any comments yet</p>
 		<link rel="stylesheet" href="/css/comments.css">
 		<?php
 			require_once 'includes/fetch-comment-helper.php';
 			require_once 'view-components/comment.php';
+			$count = 0;
 			foreach(comments_by($user['username']) as $comment) {
 				echo_comment($comment);
+				$count++;
 			}
+			if($count == 0):?>
+			<p class="no-comments-placeholder"><?= $user_is_viewing_own_profile ? 'You do not ' : htmlspecialchars($user['username']) . ' does not ' ?>have any comments yet</p>
+			<?php endif
 		?>
 	</div>
 </main>
