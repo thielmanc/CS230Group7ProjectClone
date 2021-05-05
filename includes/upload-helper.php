@@ -1,3 +1,5 @@
+//uploads profile picture to database
+
 <?php
 require_once 'require-session-start.php';
 
@@ -18,6 +20,8 @@ require 'file-validator.php';
 
 $file = $_FILES['prof-image'];
 
+// checks if there are any issues that could prevent the file from being uploaded, including 
+//size, file name, and file type
 $check = check_file($file);
 if($check !== UPLOAD_ERR_OK) {
     switch($check) {
@@ -43,6 +47,7 @@ if($check !== UPLOAD_ERR_OK) {
 
 require 'dbhandler.php';
 
+//set variables for new profile picture
 $new_name = safe_file_name_gen($file);
 $destination_on_disk = '../profiles/'.$new_name;
 $destination_on_server = '/profiles/'.$new_name;
@@ -57,5 +62,6 @@ move_uploaded_file($file['tmp_name'], $destination_on_disk);
 $_SESSION['user']['profile_picture'] = $destination_on_server;
 $_SESSION['user']['bio'] = $bio;
 
+//successful profile picture change
 header("Location: /profile.php?success=UploadWin");
 exit();
