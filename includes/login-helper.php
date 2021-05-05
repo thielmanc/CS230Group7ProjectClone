@@ -43,4 +43,9 @@ $csrftoken = bin2hex(random_bytes(16));
 $_SESSION['csrftoken'] = $csrftoken;
 header("Set-Cookie: csrftoken=$csrftoken; Path=/; SameSite=Strict; HttpOnly");
 
-header("Location: /profile.php?success=login");
+// redirect the user to the site they were trying to go to if specified
+// note: this might be an open redirect but i don't think so
+if(isset($_POST['redirect']))
+  header("Location: http://{$_SERVER['HTTP_HOST']}{$_POST['redirect']}");
+else
+  header("Location: /profile.php?success=login");

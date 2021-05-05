@@ -12,17 +12,21 @@ main {
 	overflow-y: hidden;
 }
 
-.conversations-panel {
+.conversations-aside {
 	width: 450px;
+	background-color: #f3f3f3;
+}
+
+.conversations-panel {
 	display: flex;
 	flex-direction: column;
 	row-gap: 4px;
-	background-color: #f3f3f3;
 }
 
 .my-conversations-header {
 	margin-left: auto;
 	margin-right: auto;
+	text-align: center;
 }
 
 .user-conversation-card {

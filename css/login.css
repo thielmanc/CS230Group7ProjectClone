@@ -103,6 +103,18 @@ main h2 {
     clip-path: circle(79px at center);
 }
 
+.error-message {
+    text-align: center;
+    color: red;
+    border: 1px solid red;
+    border-radius: 6px;
+    padding: 4px;
+}
+
+.error-message:empty {
+    display: none;
+}
+
 main label {
     font-weight: bold;
     margin-bottom: 0px;

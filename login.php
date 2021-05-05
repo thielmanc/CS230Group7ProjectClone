@@ -20,6 +20,26 @@
 					<div class="form-wrapper">
 						<h2>Welcome back!</h2>
 						<img id="login-pfp" alt="Login Here" src="/images/default-silhouette.svg">
+						<p class="error-message"><?php
+							switch($_GET['error']) {
+								case 'NotLoggedIn':
+									echo 'Sorry, you need to be logged in to do that';
+									break;
+								case 'EmptyField':
+									echo 'One of the fields were empty. Try logging in again.';
+									break;
+								case 'UserDNE':
+									echo 'Sorry, that user doesn\'t exist';
+									break;
+								case 'WrongPass';
+									echo 'Sorry, that password wasn\'t right. Try entering it again.';
+									break;
+								case 'UserIsNotAdmin':
+									echo 'You don\'t have permission to do that';
+									break;
+								// add others as needed
+							}
+						?></p>
 						<form method="POST" action="/includes/login-helper.php">
 							<label for="username">Your username or email:</label>
 							<input type="text" id="username" name="username" placeholder="Username" required>
@@ -27,6 +47,10 @@
 							<label for="password">Your password:</label>
 							<input type="password" id="password" name="password" placeholder="Password" required>
 							
+							<?php if(isset($_GET['redirect'])): ?>
+							<input type="hidden" name="redirect" value="<?= htmlspecialchars($_GET['redirect']) ?>">
+							<?php endif ?>
+
 							<input type="checkbox" id="remember-me" name="remember-me"><label for="remember-me">Remember me</label>
 							<button type="submit" id="login" name="login" value="login">Sign in</button>
 						</form>
@@ -35,6 +59,17 @@
 					</div>
 					<div class="form-wrapper">
 						<h2>Create an account</h2>
+						<p class="error-message"><?php
+							switch($_GET['error']) {
+								case 'PassMismatch':
+									echo 'Sorry, those passwords were\'t the same. Try typing them again.';
+									break;
+								case 'UsernameOrEmailTaken':
+									echo 'Either that username or email is already registered. If you have an account, try signing in instead.';
+									break;
+								// add others as needed
+							}
+						?></p>
 						<form method="POST" action="/includes/signup-helper.php">
 							<label>Your name:</label>
 							<div class="name-wrapper">

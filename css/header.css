@@ -43,6 +43,12 @@ body {
     text-decoration: none;
 }
 
+.notification > header {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
 .notification-tray {
     right: 16px;
     top: 32px;

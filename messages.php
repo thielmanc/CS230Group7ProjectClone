@@ -8,14 +8,16 @@
 <main>
     <link rel="stylesheet" href="/css/messages.css">
     <script src="/js/messages.js"></script>
-	<div class="conversations-panel">
+    <div class="conversations-aside">
         <h3 class="my-conversations-header">My conversations</h3>
-        <?php
+        <div class="conversations-panel">
+            <?php
 
-        foreach(users_with_conversations() as $user)
-            echo_user_conversation_card($user);
-        ?>
-	</div>
+            foreach(users_with_conversations() as $user)
+                echo_user_conversation_card($user);
+            ?>
+        </div>
+    </div>
 	<div class="messages-panel">
 		<div class="messages-section">
             <?php

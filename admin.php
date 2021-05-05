@@ -1,8 +1,9 @@
 <!-- This code handles the admin page of the site. It displays useful information for an admin to monitor and manage the website. 
 Main functions being, comment monitoring-->
 <?php
-require 'includes/header.php';
-require_once 'includes/dbhandler.php';
+    require_once 'includes/require-admin-privileges.php';
+    require 'includes/header.php';
+    require_once 'includes/dbhandler.php';
 ?>
 
 <main>

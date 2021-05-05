@@ -4,7 +4,11 @@
 
 session_start();
 if(!isset($_SESSION['uname'])) {
-    header('Location: /login.php?error=NotLoggedIn');
+    // redirect back to this page on GETs, dont redirect on POSTs or other verbs
+    if($_SERVER['REQUEST_METHOD'] === 'GET')
+        header('Location: /login.php?error=NotLoggedIn&redirect='.urlencode($_SERVER['REQUEST_URI']));
+    else
+        header('Location: /login.php?error=NotLoggedIn');
     exit();
 }
 
