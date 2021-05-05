@@ -238,6 +238,8 @@ function initCommentElem(elem) {
 		let input = elem.querySelector('.comment-reply-field');
 		let controls = elem.querySelector('.comment-reply-panel-controls');
 
+		initMentionSystem(input);
+
 		let showReplyField = () => replyPanel.classList.add('enabled');
 		let hideReplyField = () => replyPanel.classList.remove('enabled');
 		let showReplyControls = () => controls.classList.add('enabled');
@@ -253,7 +255,6 @@ function initCommentElem(elem) {
 		
 		input.addEventListener('focus', () => {
 			content.removeEventListener('mouseout', hideReplyField);
-			showReplyControls();
 		});
 		input.addEventListener('blur', () => {
 			if(!input.innerText) {
@@ -266,10 +267,14 @@ function initCommentElem(elem) {
 				}			
 			}
 		});
-		
-		// -------- setup user mention and autocomplete system --------
-		initMentionSystem(input);
-		// -------- finish setup user mention and autocomplete system --------
+
+		// don't show reply controls once field is empty
+		input.addEventListener('input', () => {
+			if(input.innerText == '')
+				hideReplyControls();
+			else
+				showReplyControls();
+		})
 
 		input.addEventListener('input', () => { input.style.height = ''; input.style.height = input.scrollHeight + 'px'; }); // fix textarea height
 	}
@@ -300,12 +305,15 @@ let controls = document.querySelector('#main-comment-panel-controls');
 let showCommentControls = () => controls.classList.add('enabled');
 let hideCommentControls = () => controls.classList.remove('enabled');
 
-input.addEventListener('focus', () => {
-	showCommentControls();
+initMentionSystem(input);
+
+input.addEventListener('input', () => {
+	if(input.innerText == '')
+		hideCommentControls();
+	else
+		showCommentControls();
 });
 input.addEventListener('blur', () => {
 	if(!input.innerText)
 		hideCommentControls();			
 });
-
-initMentionSystem(input);

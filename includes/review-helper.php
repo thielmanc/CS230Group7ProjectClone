@@ -12,7 +12,7 @@ if(!check_csrf_token()) {
     exit();
 }
 
-if (!isset($_POST[$param = 'review-submit']) || !isset($_POST[$param = 'review']) || !isset($_POST[$param = 'item_id'])) {
+if (!isset($_POST[$param = 'review-submit']) || !isset($_POST[$param = 'review']) || strlen($_POST[$param = 'review']) == 0 || !isset($_POST[$param = 'item_id'])) {
     echo json_encode([
         'success' => false,
         'error' => "required parameter $param not set"

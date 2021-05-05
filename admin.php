@@ -27,12 +27,7 @@ Main functions being, comment monitoring-->
 
     <?php //session check for the user that is currently logged in
         if (isset($_SESSION['uname'])) {
-            $prof_user = $_SESSION['uname'];
-            $sqlpro = "SELECT * FROM users WHERE uname='$prof_user';";
-            $res = mysqli_query($conn,$sqlpro);
-            $row = mysqli_fetch_array($res);
-            
-            $photo = $row['pfpurl']; // path to the profile picture
+            $photo = $_SESSION['user']['profile_picture']; // path to the profile picture
     ?>
 
     <!DOCTYPE html>
@@ -69,7 +64,7 @@ Main functions being, comment monitoring-->
                     </div>
                     <div class="w3-col s8 w3-bar">
                         <!-- grabs users name to display-->
-                        <span>Welcome, <strong><?php echo htmlspecialchars($prof_user)?></strong></span><br>
+                        <span>Welcome, <strong><?php echo htmlspecialchars($_SESSION['user']['username'])?></strong></span><br>
                     </div>
                 </div>
                 <hr>

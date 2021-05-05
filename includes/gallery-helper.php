@@ -1,7 +1,7 @@
 <?php
 require_once 'dbhandler.php';
 require_once 'censorfunction.php';
-session_start();
+require_once 'require-admin-privileges.php';
 
 define('KB', 1024);
 define('MB', 1048576);

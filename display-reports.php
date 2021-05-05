@@ -1,8 +1,7 @@
 <?php
-
 require_once 'includes/display-report-helper.php';
 require_once 'includes/dbhandler.php';
-
+require_once 'includes/require-admin-privileges.php';
 
 $conn = mysqli_connect($servename, $DBuname, $DBPass, $DBname);
 
@@ -19,18 +18,17 @@ $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) { //while there is a comment to show
         $uname = $row['uname'];
-        $propic = "SELECT pfpurl FROM profiles WHERE uid=(SELECT uid FROM users WHERE uname='$uname');";//There is no profpic in profiles db. Along with no values for uname.
-        $res = mysqli_query($conn, $propic);
-        $picpath = mysqli_fetch_assoc($res);
+        require_once 'includes/fetch-user-info.php';
+        $picpath = fetch_user_by_username($uname)['profile_picture'];
 
         //top half - displays a comment along with the data and the profile picture
         //bottom half - approve (set status to 0 - normal) and remove buttons(delete the comment)
         echo '
             <div class="card mx-auto" style="width: 30%; padding: 5px; margin-bottom: 10px;">
                 <div class="media">
-                    <img class="mr-3" src="'.$picpath['pfpurl'].'" style="max-width: 75px; max-height: 75px; border-radius: 50%;">
+                    <img class="mr-3" src="'.htmlspecialchars($picpath).'" style="max-width: 75px; max-height: 75px; border-radius: 50%;">
                         <div class="media-body">
-                            <h4 class="mt-0">'.$row['uname'].'</h4>
+                            <h4 class="mt-0">'.htmlspecialchars($row['uname']).'</h4>
                             <p>'.htmlspecialchars($row['title']).'</p>
                             <p>'.htmlspecialchars($row['revdate']).'</p>
                             <p>'.htmlspecialchars($row['reviewtext']).'</p>
