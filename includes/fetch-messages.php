@@ -62,7 +62,7 @@ function users_with_conversations() {
     $stmt = $stmt->get_result();
     while($user = $stmt->fetch_assoc()) {
         $arr = fetch_user_by_id($user['uid']);
-        $arr['unread_messages_count'] = 'x'; # PLACEHOLDER
+        $arr['unread_messages_count'] = safe_query('SELECT COUNT(*) AS count FROM messages WHERE sender = ? AND receiver = ? AND dismissed = FALSE', 'ii', $user['uid'], $_SESSION['user']['uid'])['count'];
         yield $arr;
     }
 }

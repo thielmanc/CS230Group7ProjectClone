@@ -1,6 +1,5 @@
-//uploads profile picture to database
-
 <?php
+// handler for requests to edit a user's profile
 require_once 'require-session-start.php';
 
 if(!check_csrf_token()) {

@@ -44,7 +44,7 @@ foreach($matches[1] as $taggedUser) {
 require_once 'fetch-comment-helper.php';
 require_once '../view-components/comment.php';
 ob_start(); // buffer output from comment.php
-echo_comment(iterator_to_array(comment_with_id($cid))[0]); // UNFINISHED: remove dirty quick-fix for ->next() not working 
+echo_comment(comment_with_id($cid));
 $commentHTML = ob_get_clean();
 
 echo json_encode([

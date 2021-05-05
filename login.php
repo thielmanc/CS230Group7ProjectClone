@@ -95,6 +95,7 @@
 							
 							<input type="checkbox" id="remember-me-signup" name="remember-me"><label for="remember-me-signup">Remember me</label>
 							<button type="submit" id="signup" name="signup" value="signup">Sign up</button>
+							<script src="/js/signup.js"></script>
 						</form>
 						<a href="javascript:show_login_form()">I have an account</a>
 					</div>
