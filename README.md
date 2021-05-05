@@ -10,7 +10,6 @@ This repository holds the code for the HOUSING HELPER website. This website allo
 
 
 
-
 TODO: Build status
 
 TODO: screenshots of logo, demo
