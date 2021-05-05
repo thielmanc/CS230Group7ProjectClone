@@ -12,6 +12,8 @@ TODO: framework used
 
 TODO: credits/license
 
+TODO: best file comments for devine to review
+
 
 
 Things readme guide reccomends but dont think is necessary - API reference, code examples, how to contribute, installation, tests
