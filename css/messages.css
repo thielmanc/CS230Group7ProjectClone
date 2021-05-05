@@ -14,7 +14,7 @@ main {
 
 .conversations-aside {
 	width: 450px;
-	background-color: #f3f3f3;
+	background-color: rgba(201, 201, 201, 0.767);
 }
 
 .conversations-panel {

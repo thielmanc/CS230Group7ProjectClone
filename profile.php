@@ -13,6 +13,7 @@
 ?>
 <main>
     <link rel="stylesheet" href="/css/profile.css">
+	<div class="backdrop-filter"></div>
 	<header class="profile-header">
 		<div class="pfp-container">
 			<svg class="circle-svg">

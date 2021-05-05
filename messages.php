@@ -7,6 +7,9 @@
 ?>
 <main>
     <link rel="stylesheet" href="/css/messages.css">
+	<div class="backdrop-filter"></div>
+
+
     <script src="/js/messages.js"></script>
     <div class="conversations-aside">
         <h3 class="my-conversations-header">My conversations</h3>
