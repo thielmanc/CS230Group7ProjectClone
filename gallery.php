@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="css/gallery.css">
     <div class="backdrop-filter"></div>
 
-    <h1>Gallery</h1>
+    <h1>Places</h1>
 
     <div class="gallery-container">
         <?php 

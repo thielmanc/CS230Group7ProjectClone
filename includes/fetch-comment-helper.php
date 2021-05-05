@@ -20,6 +20,13 @@ function comment_with_id($cid) {
     return transform(safe_query('SELECT * FROM reviews WHERE revid = ?', 'i', $cid));
 }
 
+function comments_by($user) {
+    $stmt = safe_stmt_exec('SELECT * FROM reviews WHERE uname = ? AND parentid IS NULL ORDER BY upvotes - downvotes DESC', 's', $user);
+    $stmt = $stmt->get_result();
+    while($comment = $stmt->fetch_assoc())
+        yield transform($comment);
+}
+
 function transform($comment) {
     $vote_state = 'none';
     if(in_array($_SESSION['user']['uid'], json_decode($comment['upvoters']))) {

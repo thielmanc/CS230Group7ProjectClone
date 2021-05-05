@@ -14,7 +14,6 @@ body {
 
 main {
     height: 100vh;
-    margin: auto;
     margin-top: 0;
     margin-bottom: 0;
     padding-left: 15vw;
@@ -35,7 +34,7 @@ main {
     position: relative;
 }
 
-.profile-picture {
+.profile-picture-main {
     position: relative;
     left: calc(var(--pfp-outline-buffer) / 2);
     top: calc(-100% + var(--pfp-outline-buffer) / 2);

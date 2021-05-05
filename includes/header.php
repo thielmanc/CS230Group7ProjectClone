@@ -46,7 +46,7 @@
                 <?php endif ?>
 
                 <a class="navigation-link" href="/index.php">Search</a>
-                <a class="navigation-link" href="/gallery.php">Gallery</a>
+                <a class="navigation-link" href="/gallery.php">Places</a>
                 <a class="navigation-link" href="/profile.php">Profile</a>
                 <a class="navigation-link" href="/messages.php">Direct Messages</a>
                 <a class="navigation-link" href="includes/logout.php">Logout</a>

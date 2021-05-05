@@ -20,7 +20,7 @@
 				<circle class="circle-fill" cx="50%" cy="50%" r="50%" fill="#2f2f2f" />
 				<circle class="circle-outline" cx="50%" cy="50%" r="50%" stroke="var(--horiz-line-color)" stroke-width="var(--horiz-line-thickness)" fill="#2f2f2f" />
 			</svg> 
-			<img class="profile-picture" alt="Profile Picture" src="<?= htmlspecialchars($user['profile_picture']) ?>">
+			<img class="profile-picture-main" alt="Profile Picture" src="<?= htmlspecialchars($user['profile_picture']) ?>">
 		</div>
 		<div class="above-line-bg"></div>
 		<div class="right-content">
@@ -41,6 +41,14 @@
 	<div class="my-comments-panel">
 		<h2><?= $user_is_viewing_own_profile ? 'My ' : htmlspecialchars($user['username']) . "'s " ?>comments</h2>
 		<p class="no-comments-placeholder"><?= $user_is_viewing_own_profile ? 'You do not ' : htmlspecialchars($user['username']) . ' does not ' ?>have any comments yet</p>
+		<link rel="stylesheet" href="/css/comments.css">
+		<?php
+			require_once 'includes/fetch-comment-helper.php';
+			require_once 'view-components/comment.php';
+			foreach(comments_by($user['username']) as $comment) {
+				echo_comment($comment);
+			}
+		?>
 	</div>
 </main>
 </body>

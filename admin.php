@@ -78,8 +78,6 @@ Main functions being, comment monitoring-->
                         Gallery Uploader</a>
                     <a href="#preview" class="w3-bar-item w3-button w3-padding"><em class="fas fa-laptop-house fa-fw"></em> 
                         Gallery Preview</a>
-                    <a href="#wip" class="w3-bar-item w3-button w3-padding"><em class="	fas fa-question-circle fa-fw"></em> 
-                        Anything else...</a>
                 </div>
             </nav>
 
