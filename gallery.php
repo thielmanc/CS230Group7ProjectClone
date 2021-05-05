@@ -10,11 +10,13 @@
 
     <div class="gallery-container">
         <?php 
+            //get every gallery item from the database in descending upload date order
             include_once 'includes/dbhandler.php';
             $sql = "SELECT * FROM gallery ORDER BY upload_date DESC";
-            $query = mysqli_query($conn, $sql);  // Execute sql statement 
-
-            while ($row = mysqli_fetch_assoc($query)) { // While there is still a row in our gallery, keep displaying
+            $query = mysqli_query($conn, $sql);  
+            
+            //display each item in the gallery database
+            while ($row = mysqli_fetch_assoc($query)) { 
                 echo '<div class="card">
                         <a href="review.php?id='.$row['pid'].'">
                             <img src="'.$row["picpath"].'">

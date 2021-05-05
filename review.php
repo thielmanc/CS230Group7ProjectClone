@@ -5,10 +5,11 @@
 
     <?php 
             include_once 'includes/dbhandler.php';
-            
+            //get place info from database and display title card
             $stmt = safe_stmt_exec('SELECT * FROM gallery WHERE pid = ?', 'i', $_GET['id']);
             $result = $stmt->get_result();            
             $row = mysqli_fetch_assoc($result);
+            
             echo'
                 <div class="header-card">
                     <div class="media-body">
@@ -23,7 +24,7 @@
             ';
 
         ?>
-
+    <!--styling for comment pannel, sets up buttons and fields-->
     <div class="comment-section">
         <div class="comment-reply-panel" id="main-comment-panel" action="includes/review-helper.php" method="POST">
             <div class="comment-reply-field" id="main-comment-field" contenteditable></div>
@@ -33,6 +34,7 @@
             </div>
         </div>
         <div class="comment-tray">
+        <!--lists all comments-->
         <?php
             require_once 'includes/fetch-comment-helper.php';
             require_once 'view-components/comment.php';
