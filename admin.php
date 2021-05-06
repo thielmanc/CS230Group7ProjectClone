@@ -74,6 +74,8 @@ Main functions being, comment monitoring-->
                         Overview</a>
                     <a href="#reports" class="w3-bar-item w3-button w3-padding"><em class="fas fa-exclamation-circle fa-fw"></em> 
                         Reports</a>
+                    <a href="#requests" class="w3-bar-item w3-button w3-padding"><em class="fas fa-question-circle fa-fw"></em> 
+                        Requests</a>
                     <a href="#uploader" class="w3-bar-item w3-button w3-padding"><em class="fas fa-upload fa-fw"></em> 
                         Gallery Uploader</a>
                     <a href="#preview" class="w3-bar-item w3-button w3-padding"><em class="fas fa-laptop-house fa-fw"></em> 
@@ -151,6 +153,36 @@ Main functions being, comment monitoring-->
                 </div>
 
 
+            <div class="w3-container">
+                <a id="requests"></a><!-- Internal link destination def-->
+                <h3 class="w3-light-green w3-padding">Requests</h3>
+                <div class="gallery-container">
+                    <?php
+                    $stmt = mysqli_query($conn, 'SELECT * FROM requests');
+                    $count = 0;
+                    while($row = $stmt->fetch_assoc()): ?>
+                    <div class="card mx-auto" data-rid="<?= $row['rid'] ?>" data-address="<?= htmlspecialchars($row['address']) ?>" data-descript="<?= htmlspecialchars($row['descript']) ?>" style="width: 30%; padding: 5px; margin-bottom: 10px;">
+                        <div class="media">
+                            <div class="media-body">
+                                <h4 class="mt-0"><?= htmlspecialchars($row['address']) ?></h4>
+                                <p><?= htmlspecialchars($row['descript']) ?></p>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline-success mx-auto" style="width: 100%;" onclick="fillGalleryUploader(<?= $row['rid'] ?>)">Send to Gallery Uploader</button>
+                        <button class="btn btn-outline-danger mx-auto" style="width: 100%;" onclick="discardRequest(<?= $row['rid'] ?>)">Discard</button>
+                    </div>
+                    <?php
+                    $count++;
+                    endwhile;
+                    
+                    if($count == 0): ?>
+                        <h5 style="text-aligh: center;">No requests for places</h5>
+                    <?php endif ?>
+
+                </div>
+                <script src="/js/admin.js"></script>
+            </div>
+
             <a id="uploader"><!-- Internal link destination def-->
                 <div class="w3-container">
             </a>
@@ -174,11 +206,11 @@ Main functions being, comment monitoring-->
                                     <input type="text" name="title" class="form-control" placeholder="title">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="address" class="form-control" placeholder="address">
+                                    <input id="gallery-upload-address-input" type="text" name="address" class="form-control" placeholder="address">
                                  </div>
                                 <!-- Descrip of Image-->
                                 <div class="form-group">
-                                    <textarea name="descript" id="bio" cols="30" rows="10" placeholder="Description"
+                                    <textarea id="gallery-upload-descript-input" name="descript" id="bio" cols="30" rows="10" placeholder="Description"
                                     class="form-control" style="text-align: center;"></textarea>
                                 </div>
 
